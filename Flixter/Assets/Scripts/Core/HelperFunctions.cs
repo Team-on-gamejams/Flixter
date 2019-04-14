@@ -15,7 +15,7 @@ public class HelperFunctions : MonoBehaviour {
 	}
 
 	public static bool GetEventWithChance(int percent) {
-		int number = Random.Range(1, 100);
+		int number = Random.Range(1, 101);
 		return number <= percent;
 	}
 

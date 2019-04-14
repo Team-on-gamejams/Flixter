@@ -3,90 +3,68 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour {
-    [SerializeField]
-    private GameObject _SimpleBulletPrefab;
+	public GameObject player;
+	public float shootSpeed = 0.2f;
+	public int health = 10;
 
-    private float _shootSpeed = 0.2f;
-    private int _health = 13;
+	[SerializeField]
+	private GameObject simpleBulletPrefab;
 
-    private Vector3 borders;
+	private Vector3 borders;
+	private Vector3 offset;
 
-    void Start() {
-        //GetComponent<BoxCollider2D>().size;
-        borders = Camera.main.ViewportToWorldPoint(new Vector3(0.1f, 0.1f));
+	private float shootTime = 0;
+	private CheatManager cheat;
 
-        StartCoroutine(ShootRoutine());
-    }
+	void Start() {
+		borders = Camera.main.ViewportToWorldPoint(new Vector3(0.1f, 0.1f));
+		cheat = GetComponent<CheatManager>();
 
-    public void Damage(int damage) {
-        //_health -= damage;
+		GameManager.Instance.Player = this;
+	}
 
-        Debug.Log("Got damage: " + damage + " Current health: " + _health);
+	void OnMouseDown() {
+		if (GameManager.Instance.IsTimeStop)
+			return;
 
-        if (_health <= 0) {
-            Destroy(gameObject);
-        }
-    }
+		offset = player.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1 * (Camera.main.transform.position.z)));
+	}
 
-    IEnumerator ShootRoutine() {
-        while (true) {
-            Instantiate(_SimpleBulletPrefab, transform.position + new Vector3(0.044f, 1.2f), Quaternion.identity);
-            yield return new WaitForSeconds(_shootSpeed);
-        }
-    }
-    
+	void OnMouseDrag() {
+		if (GameManager.Instance.IsTimeStop)
+			return;
 
-    // Player controll
+		Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1 * (Camera.main.transform.position.z));
+		Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
 
-    // private Vector3 screenPoint;
-    private Vector3 offset;
+		if (!IsTouchingBorders(0, cursorPosition.y))
+			player.transform.position = new Vector3(player.transform.position.x, cursorPosition.y, player.transform.position.z);
 
-    void OnMouseDown() {
-        //screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-        offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1 * (Camera.main.transform.position.z)));
-    }
+		if (!IsTouchingBorders(cursorPosition.x, 0))
+			player.transform.position = new Vector3(cursorPosition.x, player.transform.position.y, player.transform.position.z);
+	}
 
-    void OnMouseDrag() {
-        Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1 * (Camera.main.transform.position.z));
-        Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;
+	void Update() {
+		if (GameManager.Instance.IsTimeStop)
+			return;
 
-        if (isTouchingBorders(0, cursorPosition.y) == false) {
-            transform.position = new Vector3(transform.position.x, cursorPosition.y, transform.position.z);
-        }
+		shootTime += Time.deltaTime;
 
-        if (isTouchingBorders(cursorPosition.x, 0) == false) {
-            transform.position = new Vector3(cursorPosition.x, transform.position.y, transform.position.z);
-        }
-    }
+		if(shootTime >= shootSpeed){
+			shootTime -= shootSpeed;
+			Instantiate(simpleBulletPrefab, player.transform.position + new Vector3(0.044f, 1.2f), Quaternion.identity);
+		}
+	}
 
-    bool isTouchingBorders(float x, float y) {
-        if (x < borders.x || x > -borders.x) {
-            return true;
-        } else if (y < borders.y || y > -borders.y) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+	public void Damage(int damage) {
+		if(cheat.PlayerReceiveDamage)
+			health -= damage;
 
-    IEnumerator CheckBordersRoutine() {
-        var borders = Camera.main.ViewportToWorldPoint(new Vector3(0.15f, 0.1f));
+		if (health <= 0)
+			Destroy(gameObject);
+	}
 
-        while (true) {
-            if (transform.position.x < borders.x) {
-                transform.position = new Vector3(borders.x, transform.position.y, transform.position.z);
-            }
-            if (transform.position.x > -borders.x) {
-                transform.position = new Vector3(-borders.x, transform.position.y, transform.position.z);
-            }
-            if (transform.position.y < borders.y) {
-                transform.position = new Vector3(transform.position.x, borders.y, transform.position.z);
-            }
-            if (transform.position.y > -borders.y) {
-                transform.position = new Vector3(transform.position.x, -borders.y, transform.position.z);
-            }
-
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
-    }
+	bool IsTouchingBorders(float x, float y) {
+		return x < borders.x || x > -borders.x || y < borders.y || y > -borders.y;
+	}
 }

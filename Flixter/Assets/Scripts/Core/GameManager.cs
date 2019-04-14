@@ -4,13 +4,26 @@ using System.Collections.Generic;
 
 public class GameManager : Singleton<GameManager> {
 	// guarantee this will be always a singleton only - can't use the constructor!
-	protected GameManager() { Init(); }
+	protected GameManager() { }
+
+	public bool IsTimeStop{
+		set{
+			isTimeStop = value;
+			EventManager.CallOnTimeStopChangedEvent();
+		}
+		get{
+			return isTimeStop;
+		}
+	}
+	private bool isTimeStop;
 
 	public EventManager EventManager;
+	public PlayerControl Player;
 
-	public void Init() {
-		Application.targetFrameRate = 60;
-
+	public void Start() {
+		EventManager = new EventManager();
 		LeanTween.init(800);
+
+		IsTimeStop = false;
 	}
 }

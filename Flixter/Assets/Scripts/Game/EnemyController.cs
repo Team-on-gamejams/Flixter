@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour {
 		}
 		else if (collision.tag == "Player") {
 			//TODO: Подумать над дамагом
-			GameManager.Instance.Player.Damage(lives);
+			GameManager.Instance.Player.GetDamage(lives);
 			Destroy(gameObject);
 		}
 	}

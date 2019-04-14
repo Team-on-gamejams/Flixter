@@ -123,7 +123,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheatsOn: 1
-  PlayerReceiveDamage: 1
+  PlayerReceiveDamage: 0
 --- !u!58 &1195263325651763238
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 5781828438590841068}
   - component: {fileID: 5781828438590841070}
   - component: {fileID: 5781828438590841071}
+  - component: {fileID: 1168216700}
   m_Layer: 0
   m_Name: engine
   m_TagString: Untagged
@@ -336,3 +337,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1168216700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5781828438590841069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee3ce2118444a248a912259fd42ae4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

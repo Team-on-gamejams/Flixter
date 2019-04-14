@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3144273075591879498}
   - component: {fileID: 3144273075591879509}
   - component: {fileID: 7361201304273809465}
-  - component: {fileID: 7861041951013854603}
+  - component: {fileID: 2048532143}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: EnemyHard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,6 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74de2548522ca14ebb9e57668b916d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lives: 5
+  _speed: 1
 --- !u!61 &7361201304273809465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -120,7 +122,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.58, y: 0.3}
   m_EdgeRadius: 0
---- !u!50 &7861041951013854603
+--- !u!50 &2048532143
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -128,14 +130,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3144273075591879510}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

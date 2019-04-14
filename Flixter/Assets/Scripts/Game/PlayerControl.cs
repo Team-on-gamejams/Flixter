@@ -56,12 +56,17 @@ public class PlayerControl : MonoBehaviour {
 		}
 	}
 
-	public void Damage(int damage) {
+	public void GetDamage(int damage) {
 		if(cheat.PlayerReceiveDamage)
 			health -= damage;
 
 		if (health <= 0)
-			Destroy(gameObject);
+			Die();
+	}
+
+	//TODO: Add cool effect on die
+	public void Die(){
+		Destroy(gameObject);
 	}
 
 	bool IsTouchingBorders(float x, float y) {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5713835879366028915}
   - component: {fileID: 5713835879366028924}
   - component: {fileID: 5713835879366028925}
-  - component: {fileID: 5713835879366028926}
+  - component: {fileID: 1223345632}
   m_Layer: 0
   m_Name: EnemyNormal
   m_TagString: Untagged
@@ -94,6 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74de2548522ca14ebb9e57668b916d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lives: 3
+  _speed: 2
 --- !u!61 &5713835879366028925
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -120,7 +122,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
---- !u!50 &5713835879366028926
+--- !u!50 &1223345632
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -128,14 +130,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5713835879366028927}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

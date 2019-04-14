@@ -67,6 +67,7 @@ public class PlayerControl : MonoBehaviour {
 	//TODO: Add cool effect on die
 	public void Die(){
 		Destroy(gameObject);
+		GameManager.Instance.IsTimeStop = true;
 	}
 
 	bool IsTouchingBorders(float x, float y) {

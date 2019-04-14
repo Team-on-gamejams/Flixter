@@ -8,7 +8,7 @@ public class CheatManager : MonoBehaviour {
 
 	public bool CheatsOn = true;
 
-	public bool PlayerReceiveDamage = true;
+	public bool PlayerIgnoreDamage = false;
 
 	void Update() {
 		if (!CheatsOn)

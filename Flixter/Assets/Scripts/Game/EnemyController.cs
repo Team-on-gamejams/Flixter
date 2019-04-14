@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 	public int lives = 3;
-	public float _speed = 2;
+	public float speed = 2;
 
 	private SpriteRenderer _spRen;
 	private Color _startColor;
@@ -50,7 +50,7 @@ public class EnemyController : MonoBehaviour {
 	IEnumerator MoveRoutine() {
 		while (true) {
 			if(!GameManager.Instance.IsTimeStop)
-				transform.Translate(Vector3.down * _speed * Time.deltaTime);
+				transform.Translate(Vector3.down * speed * Time.deltaTime);
 			yield return new WaitForSeconds(Time.deltaTime);
 		}
 	}

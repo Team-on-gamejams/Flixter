@@ -17,11 +17,14 @@ public class GameManager : Singleton<GameManager> {
 	}
 	private bool isTimeStop;
 
+	public System.Random rand;
 	public EventManager EventManager;
 	public PlayerControl Player;
 
 	public void Start() {
+		rand = new System.Random();
 		EventManager = new EventManager();
+		Input.multiTouchEnabled = false;
 		LeanTween.init(800);
 
 		IsTimeStop = false;

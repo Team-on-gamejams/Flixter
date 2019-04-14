@@ -57,7 +57,7 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public void GetDamage(int damage) {
-		if(cheat.PlayerReceiveDamage)
+		if(!cheat.PlayerIgnoreDamage)
 			health -= damage;
 
 		if (health <= 0)

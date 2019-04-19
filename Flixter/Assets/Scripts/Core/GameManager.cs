@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager> {
 	public System.Random rand;
 	public EventManager EventManager;
 	public PlayerControl Player;
+	public BosterDock bosterDock;
 	public InGameMenuController InGameMenu;
 
 	public void Start() {

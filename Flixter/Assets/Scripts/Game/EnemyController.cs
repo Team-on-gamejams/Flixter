@@ -13,8 +13,8 @@ public class EnemyController : MonoBehaviour {
 		_spRen = GetComponent<SpriteRenderer>();
 		_startColor = _spRen.color;
 
-		StartCoroutine(MoveRoutine());
-		StartCoroutine(CheckOutBorders());
+		StartCoroutine(HelperFunctions.MoveRoutine(gameObject, speed));
+		StartCoroutine(HelperFunctions.CheckOutBorders(gameObject));
 	}
 
 	private void ReciveDamage(int damage) {
@@ -45,23 +45,5 @@ public class EnemyController : MonoBehaviour {
 				_startColor.a * 0.5f);
 		yield return new WaitForSeconds(0.01f);
 		_spRen.color = _startColor;
-	}
-
-	IEnumerator MoveRoutine() {
-		while (true) {
-			if(!GameManager.Instance.IsTimeStop)
-				transform.Translate(Vector3.down * speed * Time.deltaTime);
-			yield return new WaitForSeconds(Time.deltaTime);
-		}
-	}
-
-	IEnumerator CheckOutBorders() {
-		var buttom = Camera.main.ViewportToWorldPoint(new Vector3(0, -0.1f));
-
-		while (true) {
-			if (transform.position.y < buttom.y) 
-				Destroy(this.gameObject);
-			yield return new WaitForSeconds(3);
-		}
 	}
 }

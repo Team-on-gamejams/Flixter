@@ -5,6 +5,7 @@ using System.Linq;
 
 public class PlayerControl : MonoBehaviour {
 	public GameObject player;
+
 	public float shootSpeed = 0.2f;
 	public int health = 10;
 
@@ -20,7 +21,7 @@ public class PlayerControl : MonoBehaviour {
 	private CheatManager cheat;
 
 	void Start() {
-		borders = Camera.main.ViewportToWorldPoint(new Vector3(0.1f, 0.1f));
+		borders = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
 		cheat = GetComponent<CheatManager>();
 
 		GameManager.Instance.Player = this;
@@ -68,9 +69,8 @@ public class PlayerControl : MonoBehaviour {
 
 		if (shootTime >= shootSpeed) {
 			shootTime -= shootSpeed;
-			foreach (var currPos in bulletStartPosParsed[currentBulletStartPosUse]) {
+			foreach (var currPos in bulletStartPosParsed[currentBulletStartPosUse])
 				Instantiate(simpleBulletPrefab, currPos.position, Quaternion.identity);
-			}
 		}
 	}
 

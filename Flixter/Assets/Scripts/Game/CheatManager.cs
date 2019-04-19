@@ -16,5 +16,18 @@ public class CheatManager : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.P))
 			GameManager.Instance.IsTimeStop = !GameManager.Instance.IsTimeStop;
+
+		if (Input.GetKeyDown(KeyCode.Plus) || Input.GetKeyDown(KeyCode.KeypadPlus)) {
+			var player = GameManager.Instance.Player;
+			++player.currentBulletStartPosUse;
+			if (player.bulletStartPos.Length == player.currentBulletStartPosUse)
+				--player.currentBulletStartPosUse;
+		}
+
+		if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.KeypadMinus)) {
+			var player = GameManager.Instance.Player;
+			if (player.currentBulletStartPosUse != 0)
+				--player.currentBulletStartPosUse;
+		}
 	}
 }

@@ -11,12 +11,21 @@ public class CoolShieldEffect : MonoBehaviour {
 	public float a1 = 0.5f;
 	public float a2 = 1f;
 
-	void Start() {
-		StartTween();
+	void Awake() {
+		EventManager.OnTimeStopChangedEvent += OnTimeStopChangedEvent;
 	}
 
-	void Update() {
+	void OnDestroy() {
+		EventManager.OnTimeStopChangedEvent -= OnTimeStopChangedEvent;
+	}
 
+	void OnTimeStopChangedEvent(EventData ed) {
+		if(GameManager.Instance.IsTimeStop){
+			LeanTween.cancelAll(gameObject);
+		}
+		else{
+			StartTween();
+		}
 	}
 
 	void StartTween(){
@@ -24,7 +33,8 @@ public class CoolShieldEffect : MonoBehaviour {
 		LeanTween.alpha(gameObject, a1, time1).setOnComplete(()=> {
 			LeanTween.scale(gameObject, new Vector3(s2, s2), time2);
 			LeanTween.alpha(gameObject, a2, time2).setOnComplete(() => {
-				StartTween();
+				if(!GameManager.Instance.IsTimeStop)
+					StartTween();
 			});
 		});
 	}

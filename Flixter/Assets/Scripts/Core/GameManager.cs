@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager> {
 	public System.Random rand;
 	public EventManager EventManager;
 	public PlayerControl Player;
+	public InGameMenuController InGameMenu;
 
 	public void Start() {
 		rand = new System.Random();
@@ -27,6 +28,6 @@ public class GameManager : Singleton<GameManager> {
 		Input.multiTouchEnabled = false;
 		LeanTween.init(800);
 
-		IsTimeStop = false;
+		IsTimeStop = true;
 	}
 }

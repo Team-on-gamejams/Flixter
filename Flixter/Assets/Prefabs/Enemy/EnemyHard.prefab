@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3144273075591879498}
   - component: {fileID: 3144273075591879509}
   - component: {fileID: 7361201304273809465}
+  - component: {fileID: 2926417472598777180}
   - component: {fileID: 2048532143}
   m_Layer: 0
   m_Name: EnemyHard
@@ -121,6 +122,32 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.58, y: 0.3}
+  m_EdgeRadius: 0
+--- !u!61 &2926417472598777180
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3144273075591879510}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0043198466, y: -0.0007200837}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.58, y: 0.58}
+    newSize: {x: 0.58, y: 0.58}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.29473245, y: 0.59949887}
   m_EdgeRadius: 0
 --- !u!50 &2048532143
 Rigidbody2D:

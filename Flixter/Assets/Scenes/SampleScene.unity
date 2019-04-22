@@ -397,6 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boster: {fileID: 0}
+  UIImage: {fileID: 0}
 --- !u!1 &499749190
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,6 +805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boster: {fileID: 0}
+  UIImage: {fileID: 0}
 --- !u!1001 &727255671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -961,6 +963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boster: {fileID: 0}
+  UIImage: {fileID: 0}
 --- !u!1 &1514237853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,6 +1158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boster: {fileID: 0}
+  UIImage: {fileID: 0}
 --- !u!1 &1681523283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1243,6 +1247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boster: {fileID: 0}
+  UIImage: {fileID: 0}
 --- !u!1 &1723246409
 GameObject:
   m_ObjectHideFlags: 0

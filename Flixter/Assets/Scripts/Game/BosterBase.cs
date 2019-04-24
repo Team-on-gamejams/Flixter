@@ -2,12 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BosterType {
+	None,
+	Random,
+	Speed,
+	Magnet,
+	Shield,
+	Shoot3,
+	Shoot4
+}
+
 public class BosterBase : MonoBehaviour {
 	public float speed = 2;
 	public SpriteRenderer spRen;
 
 	public Coroutine moveCoroutine;
 	public Coroutine checkOutBordersCoroutine;
+	public BosterType bosterType;
 
 
 	void Start() {

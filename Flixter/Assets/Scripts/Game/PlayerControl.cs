@@ -9,6 +9,10 @@ public class PlayerControl : MonoBehaviour {
 	public float shootSpeed = 0.2f;
 	public int health = 10;
 
+	public static List<BosterBase> activeBoster = new List<BosterBase>();
+
+	CoolShieldEffect shield;
+
 	public int currentBulletStartPosUse;
 	public GameObject simpleBulletPrefab;
 	public GameObject[] bulletStartPos;
@@ -31,6 +35,8 @@ public class PlayerControl : MonoBehaviour {
 		bulletStartPosParsed = new Transform[bulletStartPos.Length][];
 		for(byte i = 0; i < bulletStartPosParsed.Length; ++i)
 			bulletStartPosParsed[i] = bulletStartPos[i].GetComponentsInChildren<Transform>().Skip(1).ToArray();
+
+		shield = GetComponentInChildren<CoolShieldEffect>();
 	}
 
 	void OnMouseDown() {
@@ -75,11 +81,21 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public void GetDamage(int damage) {
-		if(!cheat.PlayerIgnoreDamage)
-			health -= damage;
+		if (shield.IsActive || cheat.PlayerIgnoreDamage)
+			return;
+
+		health -= damage;
 
 		if (health <= 0)
 			Die();
+	}
+
+	public void ActivateShield(){
+		shield.ActivateShield();
+	}
+
+	public void DeactivateShield() {
+		shield.DeactivateShield();
 	}
 
 	//TODO: Add cool effect on die

@@ -13,7 +13,7 @@ public class Fader : MonoBehaviour {
 	public float fadeDelay;
 
 	public void FadeIn(){
-		LeanTween.value(fader.gameObject, minAlpha, maxAlpha, fadeTime)
+		LeanTween.value(fader.gameObject, fader.color.a, maxAlpha, fadeTime)
 			.setDelay(fadeDelay)
 			.setOnUpdate((float a)=> {
 				fader.color = new Color(fader.color.r, fader.color.g, fader.color.b, a);
@@ -21,7 +21,7 @@ public class Fader : MonoBehaviour {
 	}
 
 	public void FadeOut() {
-		LeanTween.value(fader.gameObject, maxAlpha, minAlpha, fadeTime)
+		LeanTween.value(fader.gameObject, fader.color.a, minAlpha, fadeTime)
 			.setDelay(fadeDelay)
 			.setOnUpdate((float a) => {
 				fader.color = new Color(fader.color.r, fader.color.g, fader.color.b, a);

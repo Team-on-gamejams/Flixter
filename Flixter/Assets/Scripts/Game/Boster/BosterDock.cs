@@ -10,12 +10,12 @@ public class BosterDock : MonoBehaviour {
 	}
 
 	public void AddBoster(BosterBase boster) {
-		if (bosterHolders[0].bosterType == BosterType.None){
+		if (bosterHolders[0].IsEmpty()){
 			bosterHolders[0].FlyToHolder(boster);
 		}
-		else if (bosterHolders[1].bosterType == BosterType.None || bosterHolders[2].bosterType == BosterType.None) {
-			bool b1 = bosterHolders[1].bosterType == BosterType.None,
-				 b2 = bosterHolders[2].bosterType == BosterType.None;
+		else if (bosterHolders[1].IsEmpty() || bosterHolders[2].IsEmpty()) {
+			bool b1 = bosterHolders[1].IsEmpty() ,
+				 b2 = bosterHolders[2].IsEmpty() ;
 				if(b1 && b2)
 					bosterHolders[Random.Range(1, 3)].FlyToHolder(boster);
 				else if (b1)
@@ -23,9 +23,9 @@ public class BosterDock : MonoBehaviour {
 				else
 					bosterHolders[2].FlyToHolder(boster);
 		}
-		else if (bosterHolders[3].bosterType == BosterType.None || bosterHolders[4].bosterType == BosterType.None) {
-			bool b1 = bosterHolders[3].bosterType == BosterType.None,
-				 b2 = bosterHolders[4].bosterType == BosterType.None;
+		else if (bosterHolders[3].IsEmpty() || bosterHolders[4].IsEmpty()) {
+			bool b1 = bosterHolders[3].IsEmpty(),
+				 b2 = bosterHolders[4].IsEmpty();
 			if (b1 && b2)
 				bosterHolders[Random.Range(3, 5)].FlyToHolder(boster);
 			else if (b1)

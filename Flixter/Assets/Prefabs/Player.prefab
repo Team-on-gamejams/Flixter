@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 5781828437688907759}
   - component: {fileID: 5781828437688907758}
   - component: {fileID: 996541820}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: body
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -617,7 +617,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5781828438254496098}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1

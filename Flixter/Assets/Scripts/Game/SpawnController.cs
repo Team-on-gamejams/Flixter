@@ -34,7 +34,7 @@ public class SpawnController : MonoBehaviour {
 			return;
 
 		for(byte i = 0; i < spawnTimer.Length; ++i) {
-			spawnTimer[i] += Time.deltaTime * GameManager.Instance.speedMult;
+			spawnTimer[i] += Time.deltaTime * GameManager.Instance.SpeedMult;
 
 			if(spawnTimer[i] >= spawnTime[i]){
 				spawnTimer[i] -= spawnTime[i];

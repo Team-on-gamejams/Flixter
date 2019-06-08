@@ -69,7 +69,6 @@ public class BosterBase : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D collision) {
 		if (collision.tag == "Player") {
-			Hide();
 			GameManager.Instance.bosterDock.AddBoster(this);
 		}
 	}

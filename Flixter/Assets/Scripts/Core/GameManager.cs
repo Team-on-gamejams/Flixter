@@ -17,6 +17,8 @@ public class GameManager : Singleton<GameManager> {
 	}
 	private bool isTimeStop;
 
+	public float speedMult = 1.0f;
+
 	public System.Random rand;
 	public EventManager EventManager;
 	public PlayerControl Player;

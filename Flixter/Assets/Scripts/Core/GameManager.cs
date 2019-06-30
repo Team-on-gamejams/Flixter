@@ -28,6 +28,8 @@ public class GameManager : Singleton<GameManager> {
 	}
 	private float speedMult = 1.0f;
 
+	public bool ClickOnButton = false;
+
 	public System.Random rand;
 	public EventManager EventManager;
 	public PlayerControl Player;

@@ -55,15 +55,6 @@ public class SpawnController : MonoBehaviour {
 			enemyIndex =  GameManager.Instance.rand.Next(0, EnemyToSpawn[id].Count);
 		}
 
-		Instantiate(EnemyToSpawn[id][enemyIndex], GetRandSpawnPoint(), Quaternion.identity);
-	}
-
-	Vector3 GetRandSpawnPoint() {
-		return Camera.main.ViewportToWorldPoint(
-			new Vector3(
-				GameManager.Instance.rand.Next(1, 10) / 10.0f,
-				1.2f,
-				-1 * (Camera.main.transform.position.z)
-		));
+		Instantiate(EnemyToSpawn[id][enemyIndex], HelperFunctions.GetRandSpawnPoint(), Quaternion.identity);
 	}
 }

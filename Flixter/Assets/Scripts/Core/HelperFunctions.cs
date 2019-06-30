@@ -47,4 +47,22 @@ public class HelperFunctions : MonoBehaviour {
 			yield return new WaitForSeconds(3);
 		}
 	}
+
+	public static Vector3 GetRandSpawnPoint() {
+		return Camera.main.ViewportToWorldPoint(
+			new Vector3(
+				GameManager.Instance.rand.Next(1, 10) / 10.0f,
+				1.2f,
+				-1 * (Camera.main.transform.position.z)
+		));
+	}
+
+	public static Vector3 GetRandSpawnPointForStars() {
+		return Camera.main.ViewportToWorldPoint(
+			new Vector3(
+				GameManager.Instance.rand.Next(1, 10) / 10.0f,
+				1.2f,
+				-1 * (Camera.main.transform.position.z)
+		));
+	}
 }

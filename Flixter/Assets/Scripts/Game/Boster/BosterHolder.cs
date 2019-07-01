@@ -35,9 +35,4 @@ public class BosterHolder : MonoBehaviour {
 		UIImage.sprite = emptySprite;
 		button.interactable = false;
 	}
-
-	public void ClickOnButton(){
-		GameManager.Instance.ClickOnButton = true;
-		LeanTween.delayedCall(0.2f, () => { GameManager.Instance.ClickOnButton = false; });
-	}
 }

@@ -40,15 +40,13 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
-		if (GameManager.Instance.ClickOnButton)
-			return;
 		GameManager.Instance.InGameMenu.Hide();
 
 		offset = player.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1 * (Camera.main.transform.position.z)));
 	}
 
 	void OnMouseDrag() {
-		if (GameManager.Instance.IsTimeStop || GameManager.Instance.ClickOnButton)
+		if (GameManager.Instance.IsTimeStop)
 			return;
 
 		Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1 * (Camera.main.transform.position.z));
@@ -62,15 +60,12 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	private void OnMouseUp() {
-		if (GameManager.Instance.ClickOnButton)
-			return;
 		GameManager.Instance.InGameMenu.Show();
 	}
 
 	void Update() {
 		if (GameManager.Instance.IsTimeStop)
 			return;
-
 		ShootUpdate(Time.deltaTime);
 	}
 

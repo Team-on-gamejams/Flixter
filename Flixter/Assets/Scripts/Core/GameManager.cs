@@ -28,14 +28,12 @@ public class GameManager : Singleton<GameManager> {
 	}
 	private float speedMult = 1.0f;
 
-	public System.Random rand;
 	public EventManager EventManager;
 	public PlayerControl Player;
 	public BosterDock bosterDock;
 	public InGameMenuController InGameMenu;
 
 	public void Start() {
-		rand = new System.Random();
 		EventManager = new EventManager();
 		Input.multiTouchEnabled = false;
 		LeanTween.init(800);

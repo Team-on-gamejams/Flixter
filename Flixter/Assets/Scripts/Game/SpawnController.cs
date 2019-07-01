@@ -52,7 +52,7 @@ public class SpawnController : MonoBehaviour {
 				lastSpawnedBossId = 0;
 		}
 		else{
-			enemyIndex =  GameManager.Instance.rand.Next(0, EnemyToSpawn[id].Count);
+			enemyIndex = Random.Range(0, EnemyToSpawn[id].Count);
 		}
 
 		Instantiate(EnemyToSpawn[id][enemyIndex], HelperFunctions.GetRandSpawnPoint(), Quaternion.identity);

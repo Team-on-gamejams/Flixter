@@ -51,7 +51,7 @@ public class HelperFunctions : MonoBehaviour {
 	public static Vector3 GetRandSpawnPoint() {
 		return Camera.main.ViewportToWorldPoint(
 			new Vector3(
-				GameManager.Instance.rand.Next(1, 10) / 10.0f,
+				Random.Range(1, 10) / 10.0f,
 				1.2f,
 				-1 * (Camera.main.transform.position.z)
 		));
@@ -60,7 +60,7 @@ public class HelperFunctions : MonoBehaviour {
 	public static Vector3 GetRandSpawnPointForStars() {
 		return Camera.main.ViewportToWorldPoint(
 			new Vector3(
-				GameManager.Instance.rand.Next(1, 10) / 11.0f,
+				Random.Range(1, 10) / 11.0f,
 				1.2f,
 				-1 * (Camera.main.transform.position.z)
 		));

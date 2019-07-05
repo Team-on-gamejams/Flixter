@@ -40,8 +40,4 @@ public class GameManager : Singleton<GameManager> {
 
 		IsTimeStop = true;
 	}
-
-	public void Update() {
-		Debug.Log(SpeedMult);
-	}
 }

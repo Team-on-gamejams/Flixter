@@ -6157,6 +6157,10 @@ MonoBehaviour:
   - {fileID: 3250196350666273533, guid: e9d04357d1da67849a5b3e221c27ab18, type: 3}
   - {fileID: 3250196350666273533, guid: df6d255e831f62d44b288d33e83b6205, type: 3}
   - {fileID: 3250196350666273533, guid: 63156fcf9d2e2114fbac50f0d16c67ad, type: 3}
+  - {fileID: 3250196350666273533, guid: 63156fcf9d2e2114fbac50f0d16c67ad, type: 3}
+  - {fileID: 3250196350666273533, guid: 63156fcf9d2e2114fbac50f0d16c67ad, type: 3}
+  - {fileID: 3250196350666273533, guid: 63156fcf9d2e2114fbac50f0d16c67ad, type: 3}
+  - {fileID: 3250196350666273533, guid: 63156fcf9d2e2114fbac50f0d16c67ad, type: 3}
   timeForSpawn: 1
 --- !u!1001 &5781828437607248533
 PrefabInstance:

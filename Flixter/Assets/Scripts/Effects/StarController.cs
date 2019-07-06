@@ -29,7 +29,7 @@ public class StarController : MonoBehaviour {
 	}
 
 	void OnSpeedMultChangedEvent(EventData ed) {
-		if (GameManager.Instance.IsTimeStop)
+		if (GameManager.Instance.IsTimeStop || slider == null)
 			return;
 
 		LeanTween.cancel(gameObject);

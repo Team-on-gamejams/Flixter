@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b21de06a62b9124bb32377093109ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slideValue: {x: 0, y: 21, z: 0}
+  slideValue: {x: 0, y: 0, z: 0}
   tweenType: 10
   slideTime: 1
   slideDelay: 0
@@ -805,10 +805,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 400, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

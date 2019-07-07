@@ -10,21 +10,27 @@ public class Slider : MonoBehaviour {
 	public float slideTime;
 	public float slideDelay;
 
+	bool calculatePos = true;
 	Vector3 slideInPos;
 	Vector3 slideOutPos;
 
-	void Start() {
-		slideInPos = transform.position;
-		slideOutPos = transform.position - slideValue;
-	}
-
 	public void SlideIn() {
+		if(calculatePos) {
+			calculatePos = false;
+			slideInPos = transform.position;
+			slideOutPos = transform.position - slideValue;
+		}
 		LeanTween.move(gameObject, slideInPos, slideTime)
 		.setDelay(slideDelay)
 		.setEase(tweenType);
 	}
 
 	public void SlideOut() {
+		if (calculatePos) {
+			calculatePos = false;
+			slideInPos = transform.position;
+			slideOutPos = transform.position - slideValue;
+		}
 		LeanTween.move(gameObject, slideOutPos, slideTime)
 		.setDelay(slideDelay)
 		.setEase(tweenType);

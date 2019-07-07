@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BosterDock : MonoBehaviour {
 	public BosterHolder[] bosterHolders;
 
 	void Start() {
 		GameManager.Instance.bosterDock = this;
+
+		var img = GetComponentInChildren<Image>();
+		GetComponent<Slider>().slideValue.y = img.rectTransform.rect.height * img.rectTransform.lossyScale.y / 2;
 	}
 
 	public void AddBoster(BosterBase boster) {

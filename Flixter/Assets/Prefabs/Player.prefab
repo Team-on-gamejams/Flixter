@@ -550,7 +550,6 @@ GameObject:
   - component: {fileID: 5781828438254496109}
   - component: {fileID: 1852177320202619683}
   - component: {fileID: 1505614840}
-  - component: {fileID: 1195263325651763238}
   - component: {fileID: 6452997352939879674}
   m_Layer: 0
   m_Name: Player
@@ -611,22 +610,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CheatsOn: 1
   PlayerIgnoreDamage: 1
---- !u!58 &1195263325651763238
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5781828438254496098}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 10
 --- !u!60 &6452997352939879674
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -637,7 +620,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -652,11 +635,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1}
-      - {x: -0.95105654, y: 0.30901697}
-      - {x: -0.5877852, y: -0.80901706}
-      - {x: 0.58778536, y: -0.80901694}
-      - {x: 0.9510565, y: 0.30901712}
+    - - {x: -3.2658498, y: 5.3544674}
+      - {x: -3.2235742, y: -5.443297}
+      - {x: -1.9610195, y: -5.4354415}
+      - {x: -1.9873779, y: -4.033012}
+      - {x: 1.9418901, y: -4.0276704}
+      - {x: 2.0011451, y: -5.4443364}
+      - {x: 3.2922113, y: -5.473287}
+      - {x: 3.2089279, y: 5.369069}
 --- !u!1 &5781828438590841069
 GameObject:
   m_ObjectHideFlags: 0

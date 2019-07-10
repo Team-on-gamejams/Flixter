@@ -73,9 +73,6 @@ public class MenuController : MonoBehaviour {
 	}
 
 	public void ToMainMenu() {
-		MainMenu.SetActive(true);
-		InGameMenu.SetActive(false);
-
 		Back1.position = Back1Start;
 		Back2.position = Back2Start;
 		Back1.rotation = Quaternion.Euler(0, 0, 34);

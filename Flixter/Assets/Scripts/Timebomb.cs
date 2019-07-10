@@ -23,12 +23,12 @@ public class Timebomb : MonoBehaviour {
 		if (!BombActivated)
 			return;
 
-		DateTime deathDate = new DateTime(ayear, amonth, aday);
+		DateTime deathDate = new DateTime(Day, Month, Year);
 		DateTime nowDate = System.DateTime.Now;
 
 		TimeSpan elapsed = nowDate.Subtract(deathDate);
 
-		if (elapsed.TotalDays > timebombLength) 
+		if (elapsed.TotalDays > TimebombLength) 
 			Application.Quit();
 	}
 #endif

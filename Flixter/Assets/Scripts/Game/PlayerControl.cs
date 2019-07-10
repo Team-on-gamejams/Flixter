@@ -40,13 +40,15 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
+		if (!GameManager.Instance.IsGameStart)
+			return;
 		GameManager.Instance.InGameMenu.Hide();
 
 		offset = player.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1 * (Camera.main.transform.position.z)));
 	}
 
 	void OnMouseDrag() {
-		if (GameManager.Instance.IsTimeStop)
+		if (GameManager.Instance.IsTimeStop || !GameManager.Instance.IsGameStart)
 			return;
 
 		Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -1 * (Camera.main.transform.position.z));
@@ -60,6 +62,8 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	private void OnMouseUp() {
+		if (!GameManager.Instance.IsGameStart)
+			return;
 		GameManager.Instance.InGameMenu.Show();
 	}
 
@@ -101,6 +105,7 @@ public class PlayerControl : MonoBehaviour {
 	public void Die(){
 		Destroy(gameObject);
 		GameManager.Instance.IsTimeStop = true;
+		GameManager.Instance.IsGameStart = false;
 	}
 
 	bool IsTouchingBorders(float x, float y) {

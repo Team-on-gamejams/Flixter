@@ -28,6 +28,8 @@ public class GameManager : Singleton<GameManager> {
 	}
 	private float speedMult = 1.0f;
 
+	public bool IsGameStart = false;
+
 	public EventManager EventManager;
 	public PlayerControl Player;
 	public BosterDock bosterDock;

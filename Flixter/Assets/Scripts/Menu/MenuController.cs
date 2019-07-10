@@ -45,7 +45,7 @@ public class MenuController : MonoBehaviour {
 			Back1.rotation = Quaternion.Euler(0, 0, z);
 		});
 
-		LeanTween.move(Back2, new Vector2(641, -1528), MainMenuToPreGameMenu)//38
+		LeanTween.move(Back2, new Vector2(641, -1800), MainMenuToPreGameMenu)//38
 		.setEase(LeanTweenType.easeInOutBack);
 		LeanTween.value(Back2.gameObject, 34.0f, 38.0f, MainMenuToPreGameMenu)
 		.setEase(LeanTweenType.linear)

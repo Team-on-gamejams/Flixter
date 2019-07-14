@@ -42,11 +42,22 @@ public class MenuController : MonoBehaviour {
 
 		LeanTween.move(Back2, new Vector2(641, -4086), MainMenuToPreGameMenu)
 		.setEase(LeanTweenType.easeOutExpo);
-
 		LeanTween.move(PreGameMenuRect, new Vector2(0, -2284), MainMenuToPreGameMenu)
 		.setEase(LeanTweenType.easeOutExpo);
 
-		GameManager.Instance.IsGameStart = true;
+		LeanTween.move(PlayerSpriteMainMenu, new Vector2(0, 0), MainMenuToPreGameMenu)
+		.setEase(LeanTweenType.easeOutExpo);
+		LeanTween.scale(PlayerSpriteMainMenu, new Vector2(0.6f, 0.6f), MainMenuToPreGameMenu)
+		.setEase(LeanTweenType.easeOutExpo);
+		CanvasGroup cgPlayer = PlayerSpriteMainMenu.GetComponent<CanvasGroup>();
+		LeanTween.value(PlayerSpriteMainMenu.gameObject, 1, 0, 1)
+		.setDelay(MainMenuToPreGameMenu / 2)
+		.setOnUpdate((a) => {
+			cgPlayer.alpha = a;
+		})
+		.setOnComplete(()=> { 
+			GameManager.Instance.IsGameStart = true;
+		});
 	}
 
 	public void ToPreGameMenu() {

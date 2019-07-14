@@ -13,6 +13,10 @@ public class MenuController : MonoBehaviour {
 	Vector3 Back2Start;
 	public RectTransform[] Buttons;
 	RectTransformSaver[] ButtonsStart;
+	public RectTransform PlayerSpriteMainMenu;
+
+	public GameObject PreGameMenu;
+	RectTransform PreGameMenuRect;
 
 	public GameObject InGameMenu;
 
@@ -27,21 +31,68 @@ public class MenuController : MonoBehaviour {
 				localScale = Buttons[i].localScale,
 			};
 		}
+
+		PreGameMenuRect = PreGameMenu.GetComponent<RectTransform>();
+		PreGameMenuRect.anchoredPosition = new Vector2(2000, 0);
 	}
 
 	public void ToInGameMenu(){
-		MainMenu.SetActive(false);
-		InGameMenu.SetActive(true);
+		LeanTween.move(Back1, new Vector2(-732, 3916), MainMenuToPreGameMenu)
+		.setEase(LeanTweenType.easeOutExpo);
+
+		LeanTween.move(Back2, new Vector2(641, -4086), MainMenuToPreGameMenu)
+		.setEase(LeanTweenType.easeOutExpo);
+
+		LeanTween.move(PreGameMenuRect, new Vector2(0, -2284), MainMenuToPreGameMenu)
+		.setEase(LeanTweenType.easeOutExpo);
 
 		GameManager.Instance.IsGameStart = true;
 	}
 
 	public void ToPreGameMenu() {
+		HideMainMenu();
+		LeanTween.delayedCall(MainMenuToPreGameMenu / 3, () => ShowPreGameMenu());
+	}
+
+	public void ToMainMenu() {
+		HidePreGameMenu();
+		LeanTween.delayedCall(MainMenuToPreGameMenu / 3, () => ShowMainMenu());
+	}
+
+	void ShowMainMenu(){
+		LeanTween.move(Back1, Back1Start, MainMenuToPreGameMenu)//30
+					.setEase(LeanTweenType.easeInBack);
+		LeanTween.value(Back1.gameObject, 30.0f, 34.0f, MainMenuToPreGameMenu)
+			.setEase(LeanTweenType.linear)
+			.setOnUpdate((float z) => {
+				Back1.rotation = Quaternion.Euler(0, 0, z);
+			});
+
+		LeanTween.move(Back2, Back2Start, MainMenuToPreGameMenu)//38
+			.setEase(LeanTweenType.easeInOutBack);
+		LeanTween.value(Back2.gameObject, 38.0f, 34.0f, MainMenuToPreGameMenu)
+			.setEase(LeanTweenType.linear)
+			.setOnUpdate((float z) => {
+				Back2.rotation = Quaternion.Euler(0, 0, z);
+			});
+
+		for (byte i = 0; i < Buttons.Length; ++i) {
+			LeanTween.scale(Buttons[i], ButtonsStart[i].localScale, MainMenuToPreGameMenu)
+				.setEase(LeanTweenType.easeInOutQuart);
+			LeanTween.rotateZ(Buttons[i].gameObject, ButtonsStart[i].rotation.eulerAngles.z + 360 * Random.Range(1, 10), MainMenuToPreGameMenu)
+				.setEase(LeanTweenType.easeOutCirc);
+			LeanTween.move(Buttons[i], ButtonsStart[i].position, MainMenuToPreGameMenu / 2)
+				.setEase(LeanTweenType.easeInQuint);
+			Buttons[i].GetComponent<Button>().interactable = true;
+		}
+	}
+
+	void HideMainMenu(){
 		LeanTween.move(Back1, new Vector2(-732, 2225), MainMenuToPreGameMenu)//30
 		.setEase(LeanTweenType.easeOutBack);
 		LeanTween.value(Back1.gameObject, 34.0f, 30.0f, MainMenuToPreGameMenu)
 		.setEase(LeanTweenType.linear)
-		.setOnUpdate((float z)=> {
+		.setOnUpdate((float z) => {
 			Back1.rotation = Quaternion.Euler(0, 0, z);
 		});
 
@@ -72,32 +123,21 @@ public class MenuController : MonoBehaviour {
 		.setEase(t);
 	}
 
-	public void ToMainMenu() {
-		LeanTween.move(Back1, Back1Start, MainMenuToPreGameMenu)//30
+	void ShowPreGameMenu(){
+		LeanTween.move(PreGameMenuRect, new Vector2(0, 0), MainMenuToPreGameMenu / 3 * 2)
+			.setEase(LeanTweenType.easeOutBack);
+
+		LeanTween.move(PlayerSpriteMainMenu, new Vector2(0, 450), MainMenuToPreGameMenu / 6)
+			.setDelay(MainMenuToPreGameMenu / 2)
+			.setEase(LeanTweenType.easeInOutQuad);
+	}
+
+	void HidePreGameMenu() {
+		LeanTween.move(PreGameMenuRect, new Vector2(2000, 0), MainMenuToPreGameMenu / 3 * 2)
 			.setEase(LeanTweenType.easeInBack);
-		LeanTween.value(Back1.gameObject, 30.0f, 34.0f, MainMenuToPreGameMenu)
-			.setEase(LeanTweenType.linear)
-			.setOnUpdate((float z) => {
-				Back1.rotation = Quaternion.Euler(0, 0, z);
-			});
 
-		LeanTween.move(Back2, Back2Start, MainMenuToPreGameMenu)//38
-			.setEase(LeanTweenType.easeInOutBack);
-		LeanTween.value(Back2.gameObject, 38.0f, 34.0f, MainMenuToPreGameMenu)
-			.setEase(LeanTweenType.linear)
-			.setOnUpdate((float z) => {
-				Back2.rotation = Quaternion.Euler(0, 0, z);
-			});
-
-		for (byte i = 0; i < Buttons.Length; ++i) {
-			LeanTween.scale(Buttons[i], ButtonsStart[i].localScale, MainMenuToPreGameMenu)
-				.setEase(LeanTweenType.easeInOutQuart);
-			LeanTween.rotateZ(Buttons[i].gameObject, ButtonsStart[i].rotation.eulerAngles.z + 360 * Random.Range(1, 10), MainMenuToPreGameMenu)
-				.setEase(LeanTweenType.easeOutCirc);
-			LeanTween.move(Buttons[i], ButtonsStart[i].position, MainMenuToPreGameMenu / 2)
-				.setEase(LeanTweenType.easeInQuint);
-			Buttons[i].GetComponent<Button>().interactable = true;
-		}
+		LeanTween.move(PlayerSpriteMainMenu, new Vector2(1450, 1400), MainMenuToPreGameMenu / 6)
+			.setEase(LeanTweenType.easeInOutQuad);
 	}
 }
 

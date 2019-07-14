@@ -17,13 +17,13 @@ public class MenuController : MonoBehaviour {
 	public GameObject InGameMenu;
 
 	void Start() {
-		Back1Start = Back1.position;
-		Back2Start = Back2.position;
+		Back1Start = Back1.localPosition;
+		Back2Start = Back2.localPosition;
 		ButtonsStart = new RectTransformSaver[Buttons.Length];
 		for(byte i = 0; i < Buttons.Length; ++i){
 			ButtonsStart[i] = new RectTransformSaver() {
 				rotation = Buttons[i].rotation,
-				position = Buttons[i].position,
+				position = Buttons[i].localPosition,
 				localScale = Buttons[i].localScale,
 			};
 		}
@@ -73,15 +73,29 @@ public class MenuController : MonoBehaviour {
 	}
 
 	public void ToMainMenu() {
-		Back1.position = Back1Start;
-		Back2.position = Back2Start;
-		Back1.rotation = Quaternion.Euler(0, 0, 34);
-		Back2.rotation = Quaternion.Euler(0, 0, 34);
+		LeanTween.move(Back1, Back1Start, MainMenuToPreGameMenu)//30
+			.setEase(LeanTweenType.easeInBack);
+		LeanTween.value(Back1.gameObject, 30.0f, 34.0f, MainMenuToPreGameMenu)
+			.setEase(LeanTweenType.linear)
+			.setOnUpdate((float z) => {
+				Back1.rotation = Quaternion.Euler(0, 0, z);
+			});
+
+		LeanTween.move(Back2, Back2Start, MainMenuToPreGameMenu)//38
+			.setEase(LeanTweenType.easeInOutBack);
+		LeanTween.value(Back2.gameObject, 38.0f, 34.0f, MainMenuToPreGameMenu)
+			.setEase(LeanTweenType.linear)
+			.setOnUpdate((float z) => {
+				Back2.rotation = Quaternion.Euler(0, 0, z);
+			});
 
 		for (byte i = 0; i < Buttons.Length; ++i) {
-			Buttons[i].rotation = ButtonsStart[i].rotation;
-			Buttons[i].position = ButtonsStart[i].position;
-			Buttons[i].localScale = ButtonsStart[i].localScale;
+			LeanTween.scale(Buttons[i], ButtonsStart[i].localScale, MainMenuToPreGameMenu)
+				.setEase(LeanTweenType.easeInOutQuart);
+			LeanTween.rotateZ(Buttons[i].gameObject, ButtonsStart[i].rotation.eulerAngles.z + 360 * Random.Range(1, 10), MainMenuToPreGameMenu)
+				.setEase(LeanTweenType.easeOutCirc);
+			LeanTween.move(Buttons[i], ButtonsStart[i].position, MainMenuToPreGameMenu / 2)
+				.setEase(LeanTweenType.easeInQuint);
 			Buttons[i].GetComponent<Button>().interactable = true;
 		}
 	}

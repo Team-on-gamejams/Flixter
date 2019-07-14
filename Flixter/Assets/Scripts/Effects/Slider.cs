@@ -20,6 +20,7 @@ public class Slider : MonoBehaviour {
 			slideInPos = transform.position;
 			slideOutPos = transform.position - slideValue;
 		}
+		LeanTween.cancel(gameObject);
 		LeanTween.move(gameObject, slideInPos, slideTime)
 		.setDelay(slideDelay)
 		.setEase(tweenType);
@@ -31,6 +32,7 @@ public class Slider : MonoBehaviour {
 			slideInPos = transform.position;
 			slideOutPos = transform.position - slideValue;
 		}
+		LeanTween.cancel(gameObject);
 		LeanTween.move(gameObject, slideOutPos, slideTime)
 		.setDelay(slideDelay)
 		.setEase(tweenType);

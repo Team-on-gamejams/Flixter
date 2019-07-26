@@ -22,8 +22,11 @@ public class SpeedEffectSpawner : MonoBehaviour {
 		if (GameManager.Instance.IsTimeStop)
 			return;
 
-		currTime += Time.deltaTime * GameManager.Instance.SpeedMult;
-		while(timeForSpawn <= currTime){
+		if(GameManager.Instance.SpeedMult == 1)
+			currTime += Time.deltaTime;
+		else
+			currTime += Time.deltaTime * GameManager.Instance.SpeedMult * 4;
+		while (timeForSpawn <= currTime){
 			currTime -= timeForSpawn;
 			Instantiate(starPrefab, HelperFunctions.GetRandSpawnPointForStars(), Quaternion.identity, transform);
 		}

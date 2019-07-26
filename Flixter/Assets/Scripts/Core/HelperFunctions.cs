@@ -35,7 +35,16 @@ public class HelperFunctions : MonoBehaviour {
 	public static IEnumerator MoveRoutine(GameObject go, float speed) {
 		while (true) {
 			if (!GameManager.Instance.IsTimeStop){
-					go.transform.Translate(Vector3.down * speed * GameManager.Instance.SpeedMult * Time.deltaTime);
+					go.transform.Translate(Vector3.down * speed * Time.deltaTime * GameManager.Instance.SpeedMult);
+			}
+			yield return new WaitForSeconds(Time.deltaTime);
+		}
+	}
+
+	public static IEnumerator MoveRoutine(GameObject go, float speed, float addSpeedMult) {
+		while (true) {
+			if (!GameManager.Instance.IsTimeStop) {
+				go.transform.Translate(Vector3.down * speed * Time.deltaTime * (GameManager.Instance.SpeedMult == 1 ? 1 : GameManager.Instance.SpeedMult * addSpeedMult));
 			}
 			yield return new WaitForSeconds(Time.deltaTime);
 		}

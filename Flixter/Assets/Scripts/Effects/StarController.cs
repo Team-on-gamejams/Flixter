@@ -14,7 +14,7 @@ public class StarController : MonoBehaviour {
 
 		slider.value = GameManager.Instance.SpeedMult == 1 ? 0 : length;
 
-		StartCoroutine(HelperFunctions.MoveRoutine(gameObject, speed));
+		StartCoroutine(HelperFunctions.MoveRoutine(gameObject, speed, 4));
 		StartCoroutine(HelperFunctions.CheckOutBorders(gameObject));
 	}
 

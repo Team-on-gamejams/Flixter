@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour {
+	public enum CurrMenu : byte { MainMenu, PreGameMenu, InGameMenu, DieMenu }
+	public CurrMenu currMenu = CurrMenu.MainMenu;
+
 	public float MainMenuToPreGameMenu;
 
 	public GameObject MainMenu;
@@ -19,6 +22,7 @@ public class MenuController : MonoBehaviour {
 	RectTransform PreGameMenuRect;
 
 	public GameObject InGameMenu;
+	public CanvasGroup DieMenu;
 
 	void Start() {
 		Back1Start = Back1.localPosition;
@@ -37,37 +41,58 @@ public class MenuController : MonoBehaviour {
 	}
 
 	public void ToInGameMenu(){
-		LeanTween.move(Back1, new Vector2(-732, 3916), MainMenuToPreGameMenu)
-		.setEase(LeanTweenType.easeOutExpo);
-
-		LeanTween.move(Back2, new Vector2(641, -4086), MainMenuToPreGameMenu)
-		.setEase(LeanTweenType.easeOutExpo);
-		LeanTween.move(PreGameMenuRect, new Vector2(0, -2284), MainMenuToPreGameMenu)
-		.setEase(LeanTweenType.easeOutExpo);
-
-		LeanTween.move(PlayerSpriteMainMenu, new Vector2(0, 0), MainMenuToPreGameMenu)
-		.setEase(LeanTweenType.easeOutExpo);
-		LeanTween.scale(PlayerSpriteMainMenu, new Vector2(0.6f, 0.6f), MainMenuToPreGameMenu)
-		.setEase(LeanTweenType.easeOutExpo);
-		CanvasGroup cgPlayer = PlayerSpriteMainMenu.GetComponent<CanvasGroup>();
-		LeanTween.value(PlayerSpriteMainMenu.gameObject, 1, 0, 1)
-		.setDelay(MainMenuToPreGameMenu / 2)
-		.setOnUpdate((a) => {
-			cgPlayer.alpha = a;
-		})
-		.setOnComplete(()=> { 
-			GameManager.Instance.IsGameStart = true;
-		});
+		ShowInGameMenu();
+		currMenu = CurrMenu.InGameMenu;
 	}
 
 	public void ToPreGameMenu() {
-		HideMainMenu();
-		LeanTween.delayedCall(MainMenuToPreGameMenu / 3, () => ShowPreGameMenu());
+		if(currMenu == CurrMenu.MainMenu){
+			HideMainMenu();
+			LeanTween.delayedCall(MainMenuToPreGameMenu / 3, () => ShowPreGameMenu());
+		}
+		else{
+			ShowPreGameMenu();
+		}
+		currMenu = CurrMenu.PreGameMenu;
 	}
 
 	public void ToMainMenu() {
-		HidePreGameMenu();
-		LeanTween.delayedCall(MainMenuToPreGameMenu / 3, () => ShowMainMenu());
+		if (currMenu == CurrMenu.PreGameMenu) {
+			HidePreGameMenu();
+			LeanTween.delayedCall(MainMenuToPreGameMenu / 3, () => ShowMainMenu());
+		}
+		else if (currMenu == CurrMenu.InGameMenu) {
+			GameManager.Instance.IsGameStart = false;
+			ShowMainMenu();
+		}
+		else if (currMenu == CurrMenu.DieMenu) {
+			LeanTween.value(DieMenu.gameObject, DieMenu.alpha, 0, MainMenuToPreGameMenu / 3)
+			.setOnUpdate((a) => {
+				DieMenu.alpha = a;
+			})
+			.setOnComplete(() => {
+				DieMenu.blocksRaycasts = DieMenu.interactable = false;
+			});
+			ShowMainMenu();
+		}
+		currMenu = CurrMenu.MainMenu;
+	}
+
+	public void ToDieMenu() {
+		LeanTween.value(DieMenu.gameObject, DieMenu.alpha, 1, MainMenuToPreGameMenu)
+			.setOnUpdate((a) => {
+				DieMenu.alpha = a;
+			})
+			.setOnComplete(()=> {
+				DieMenu.blocksRaycasts = DieMenu.interactable = true;
+			});
+		currMenu = CurrMenu.DieMenu;
+	}
+
+	public void HideDieMenu() {
+		DieMenu.blocksRaycasts = DieMenu.interactable = false;
+		DieMenu.alpha = 0;
+		currMenu = CurrMenu.InGameMenu;
 	}
 
 	void ShowMainMenu(){
@@ -149,6 +174,30 @@ public class MenuController : MonoBehaviour {
 
 		LeanTween.move(PlayerSpriteMainMenu, new Vector2(1450, 1400), MainMenuToPreGameMenu / 6)
 			.setEase(LeanTweenType.easeInOutQuad);
+	}
+
+	void ShowInGameMenu(){
+		LeanTween.move(Back1, new Vector2(-732, 3916), MainMenuToPreGameMenu)
+			.setEase(LeanTweenType.easeOutExpo);
+
+		LeanTween.move(Back2, new Vector2(641, -4086), MainMenuToPreGameMenu)
+		.setEase(LeanTweenType.easeOutExpo);
+		LeanTween.move(PreGameMenuRect, new Vector2(0, -2284), MainMenuToPreGameMenu)
+		.setEase(LeanTweenType.easeOutExpo);
+
+		LeanTween.move(PlayerSpriteMainMenu, new Vector2(0, 0), MainMenuToPreGameMenu)
+		.setEase(LeanTweenType.easeOutExpo);
+		LeanTween.scale(PlayerSpriteMainMenu, new Vector2(0.6f, 0.6f), MainMenuToPreGameMenu)
+		.setEase(LeanTweenType.easeOutExpo);
+		CanvasGroup cgPlayer = PlayerSpriteMainMenu.GetComponent<CanvasGroup>();
+		LeanTween.value(PlayerSpriteMainMenu.gameObject, 1, 0, 1)
+		.setDelay(MainMenuToPreGameMenu / 2)
+		.setOnUpdate((a) => {
+			cgPlayer.alpha = a;
+		})
+		.setOnComplete(() => {
+			GameManager.Instance.IsGameStart = true;
+		});
 	}
 }
 

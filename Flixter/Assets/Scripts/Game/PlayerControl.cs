@@ -7,7 +7,8 @@ public class PlayerControl : MonoBehaviour {
 	public GameObject player;
 
 	public float shootSpeed = 0.2f;
-	public int health = 10;
+	public int maxHealth = 10;
+	int health;
 
 	public static List<BosterBase> activeBoster = new List<BosterBase>();
 
@@ -23,6 +24,7 @@ public class PlayerControl : MonoBehaviour {
 
 	private float shootTime = 0;
 	private CheatManager cheat;
+	private MenuController menuController;
 
 	void Start() {
 		borders = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
@@ -37,6 +39,9 @@ public class PlayerControl : MonoBehaviour {
 			bulletStartPosParsed[i] = bulletStartPos[i].GetComponentsInChildren<Transform>().Skip(1).ToArray();
 
 		shield = GetComponentInChildren<CoolShieldEffect>();
+		menuController = GameObject.FindObjectOfType<MenuController>();
+
+		health = maxHealth;
 	}
 
 	void OnMouseDown() {
@@ -103,9 +108,21 @@ public class PlayerControl : MonoBehaviour {
 
 	//TODO: Add cool effect on die
 	public void Die(){
-		Destroy(gameObject);
-		GameManager.Instance.IsTimeStop = true;
 		GameManager.Instance.IsGameStart = false;
+		GameManager.Instance.InGameMenu.Show(false);
+		menuController.ToDieMenu();
+	}
+
+	//TODO: Add cool effect on revive
+	public void Revive(){
+		menuController.HideDieMenu();
+		health = maxHealth;
+		GameManager.Instance.IsGameStart = true;
+	}
+
+	public void Reload(){
+		health = maxHealth;
+		player.transform.position = new Vector2(0, 0);
 	}
 
 	bool IsTouchingBorders(float x, float y) {

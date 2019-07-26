@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MenuController : MonoBehaviour {
 	public enum CurrMenu : byte { MainMenu, PreGameMenu, InGameMenu, DieMenu }
@@ -24,6 +25,11 @@ public class MenuController : MonoBehaviour {
 	public GameObject InGameMenu;
 	public CanvasGroup DieMenu;
 
+	public TextMeshProUGUI coinsText;
+	public TextMeshProUGUI scoreText;
+	Slider coinsSlider;
+	Slider scoreSlider;
+
 	void Start() {
 		Back1Start = Back1.localPosition;
 		Back2Start = Back2.localPosition;
@@ -38,10 +44,14 @@ public class MenuController : MonoBehaviour {
 
 		PreGameMenuRect = PreGameMenu.GetComponent<RectTransform>();
 		PreGameMenuRect.anchoredPosition = new Vector2(2000, 0);
+
+		coinsSlider = coinsText.GetComponent<Slider>();
+		scoreSlider = scoreText.GetComponent<Slider>();
 	}
 
 	public void ToInGameMenu(){
 		ShowInGameMenu();
+		scoreSlider.SlideOut();
 		currMenu = CurrMenu.InGameMenu;
 	}
 
@@ -53,6 +63,7 @@ public class MenuController : MonoBehaviour {
 		else{
 			ShowPreGameMenu();
 		}
+		coinsSlider.SlideOut();
 		currMenu = CurrMenu.PreGameMenu;
 	}
 
@@ -75,6 +86,9 @@ public class MenuController : MonoBehaviour {
 			});
 			ShowMainMenu();
 		}
+
+		coinsSlider.SlideIn();
+		scoreSlider.SlideIn();
 		currMenu = CurrMenu.MainMenu;
 	}
 

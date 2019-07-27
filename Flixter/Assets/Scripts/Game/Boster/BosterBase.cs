@@ -60,6 +60,11 @@ public class BosterBase : MonoBehaviour {
 		Destroy(gameObject);
 	}
 
+	public void ForceEnd() {
+		isActive = false;
+		Destroy(gameObject);
+	}
+
 	public void Hide() {
 		StopCoroutine(moveCoroutine);
 		StopCoroutine(checkOutBordersCoroutine);

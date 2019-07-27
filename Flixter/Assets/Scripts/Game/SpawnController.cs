@@ -26,6 +26,8 @@ public class SpawnController : MonoBehaviour {
 		spawnTimer = new float[3];
 		for (byte i = 0; i < spawnTimer.Length; ++i)
 			spawnTimer[i] = 0;
+
+		GameManager.Instance.SpawnController = this;
 	}
 
 	void Update() {
@@ -54,6 +56,14 @@ public class SpawnController : MonoBehaviour {
 			enemyIndex = Random.Range(0, EnemyToSpawn[id].Count);
 		}
 
-		Instantiate(EnemyToSpawn[id][enemyIndex], HelperFunctions.GetRandSpawnPoint(), Quaternion.identity);
+		Instantiate(EnemyToSpawn[id][enemyIndex], HelperFunctions.GetRandSpawnPoint(), Quaternion.identity, transform);
+	}
+
+	public void Clear(){
+		var childs = transform.GetComponentsInChildren<Transform>();
+		foreach (var child in childs)
+			Destroy(child.gameObject);
+		for (byte i = 0; i < spawnTimer.Length; ++i)
+			spawnTimer[i] = 0;
 	}
 }

@@ -26,6 +26,8 @@ public class ScoreOutput : MonoBehaviour {
 			text.text = displayScore.ToString();
 			yield return new WaitForSeconds(0.2f);
 		}
+		if(currScore < displayScore)
+			text.text = (displayScore = currScore).ToString();
 	}
 
 	void OnScoreChanged(EventData data){

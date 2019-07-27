@@ -34,6 +34,8 @@ public class GameManager : Singleton<GameManager> {
 	public PlayerControl Player;
 	public BosterDock bosterDock;
 	public InGameMenuController InGameMenu;
+	public SpawnController SpawnController;
+	public BosterSpawner BosterSpawner;
 
 	public void Awake() {
 		EventManager = new EventManager();

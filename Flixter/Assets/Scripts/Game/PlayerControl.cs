@@ -37,6 +37,8 @@ public class PlayerControl : MonoBehaviour {
 	private CheatManager cheat;
 	private MenuController menuController;
 
+	GameObject bulletsHolder;
+
 	void Start() {
 		borders = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
 		cheat = GetComponent<CheatManager>();
@@ -52,6 +54,7 @@ public class PlayerControl : MonoBehaviour {
 		shield = GetComponentInChildren<CoolShieldEffect>();
 		menuController = GameObject.FindObjectOfType<MenuController>();
 
+		bulletsHolder = new GameObject("Bullets");
 		health = maxHealth;
 		Score = 0;
 	}
@@ -96,7 +99,7 @@ public class PlayerControl : MonoBehaviour {
 		if (shootTime >= shootSpeed) {
 			shootTime -= shootSpeed;
 			foreach (var currPos in bulletStartPosParsed[currentBulletStartPosUse])
-				Instantiate(simpleBulletPrefab, currPos.position, Quaternion.identity);
+				Instantiate(simpleBulletPrefab, currPos.position, Quaternion.identity, bulletsHolder.transform);
 		}
 	}
 
@@ -135,7 +138,15 @@ public class PlayerControl : MonoBehaviour {
 	public void Reload(){
 		health = maxHealth;
 		Score = 0;
+		Destroy(bulletsHolder);
+		bulletsHolder = new GameObject("Bullets");
+
 		player.transform.position = new Vector2(0, 0);
+		foreach (var boster in activeBoster) 
+			boster.ForceEnd();
+		activeBoster.Clear();
+		GameManager.Instance.BosterSpawner.Clear();
+		GameManager.Instance.SpawnController.Clear();
 	}
 
 	bool IsTouchingBorders(float x, float y) {

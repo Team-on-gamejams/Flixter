@@ -56,11 +56,30 @@ public class MenuController : MonoBehaviour {
 	}
 
 	public void ToPreGameMenu() {
-		if(currMenu == CurrMenu.MainMenu){
+		if (currMenu == CurrMenu.MainMenu) {
 			HideMainMenu();
 			LeanTween.delayedCall(MainMenuToPreGameMenu / 3, () => ShowPreGameMenu());
 		}
-		else{
+		else if (currMenu == CurrMenu.InGameMenu) {
+			LeanTween.move(Back1, new Vector2(-732, 2225), MainMenuToPreGameMenu)//30
+				.setEase(LeanTweenType.linear);
+			LeanTween.value(Back1.gameObject, 34.0f, 30.0f, MainMenuToPreGameMenu)
+				.setEase(LeanTweenType.linear)
+				.setOnUpdate((float z) => {
+					Back1.rotation = Quaternion.Euler(0, 0, z);
+				});
+
+			LeanTween.move(Back2, new Vector2(641, -1800), MainMenuToPreGameMenu)//38
+				.setEase(LeanTweenType.linear);
+			LeanTween.value(Back2.gameObject, 34.0f, 38.0f, MainMenuToPreGameMenu)
+				.setEase(LeanTweenType.linear)
+				.setOnUpdate((float z) => {
+					Back2.rotation = Quaternion.Euler(0, 0, z);
+				});
+
+			LeanTween.delayedCall(MainMenuToPreGameMenu / 3, () => ShowPreGameMenu());
+		}
+		else {
 			ShowPreGameMenu();
 		}
 		coinsSlider.SlideOut();

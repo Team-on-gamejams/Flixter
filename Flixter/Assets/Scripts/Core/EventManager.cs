@@ -8,4 +8,7 @@ public class EventManager {
 
 	public static event EventController.MethodContainer OnSpeedMultChangedEvent;
 	public void CallSpeedMultChangedEvent(EventData ob = null) => OnSpeedMultChangedEvent?.Invoke(ob);
+
+	public static event EventController.MethodContainer OnScoreChangedEvent;
+	public void CallOnScoreChangedEvent(EventData ob = null) => OnScoreChangedEvent?.Invoke(ob);
 }

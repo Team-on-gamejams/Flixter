@@ -4,6 +4,17 @@ using UnityEngine;
 using System.Linq;
 
 public class PlayerControl : MonoBehaviour {
+	public int Score{
+		get => _score;
+		set{
+			_score = value;
+			EventData data = new EventData("OnScoreChangedEvent");
+			data.Data["score"] = _score;
+			GameManager.Instance.EventManager.CallOnScoreChangedEvent(data);
+		}
+	}
+	int _score;
+
 	public GameObject player;
 
 	public float shootSpeed = 0.2f;
@@ -42,6 +53,7 @@ public class PlayerControl : MonoBehaviour {
 		menuController = GameObject.FindObjectOfType<MenuController>();
 
 		health = maxHealth;
+		Score = 0;
 	}
 
 	void OnMouseDown() {
@@ -122,6 +134,7 @@ public class PlayerControl : MonoBehaviour {
 
 	public void Reload(){
 		health = maxHealth;
+		Score = 0;
 		player.transform.position = new Vector2(0, 0);
 	}
 

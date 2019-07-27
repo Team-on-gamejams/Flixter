@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
-	public int lives = 3;
+	public int livesMax = 3;
+	int livesCurr;
 	public float speed = 2;
 
 	private SpriteRenderer _spRen;
@@ -13,16 +14,20 @@ public class EnemyController : MonoBehaviour {
 		_spRen = GetComponent<SpriteRenderer>();
 		_startColor = _spRen.color;
 
+		livesCurr = livesMax;
+
 		StartCoroutine(HelperFunctions.MoveRoutine(gameObject, speed));
 		StartCoroutine(HelperFunctions.CheckOutBorders(gameObject));
 	}
 
 	private void ReciveDamage(int damage) {
-		lives -= damage;
+		livesCurr -= damage;
 		StartCoroutine(BlinkOfDamage());
 
-		if (lives <= 0) 
+		if (livesCurr <= 0) {
+			GameManager.Instance.Player.Score += livesMax;
 			Destroy(this.gameObject);
+		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision) {
@@ -32,7 +37,7 @@ public class EnemyController : MonoBehaviour {
 		}
 		else if (collision.tag == "Player") {
 			//TODO: Подумать над дамагом
-			GameManager.Instance.Player.GetDamage(lives);
+			GameManager.Instance.Player.GetDamage(livesCurr);
 			Destroy(gameObject);
 		}
 	}

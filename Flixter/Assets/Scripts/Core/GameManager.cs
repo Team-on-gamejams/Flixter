@@ -35,7 +35,7 @@ public class GameManager : Singleton<GameManager> {
 	public BosterDock bosterDock;
 	public InGameMenuController InGameMenu;
 
-	public void Start() {
+	public void Awake() {
 		EventManager = new EventManager();
 		Input.multiTouchEnabled = false;
 		LeanTween.init(800);

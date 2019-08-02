@@ -7739,6 +7739,12 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!212 &1499629799 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5781828437688907759, guid: 891e80f4cd0fea94a9b43012b8eeb754,
+    type: 3}
+  m_PrefabInstance: {fileID: 5781828437607248533}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1502804071
 GameObject:
   m_ObjectHideFlags: 0
@@ -9079,6 +9085,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1852177320202619683, guid: 891e80f4cd0fea94a9b43012b8eeb754,
+        type: 3}
+      propertyPath: playerBody
+      value: 
+      objectReference: {fileID: 1499629799}
     - target: {fileID: 5781828438254496109, guid: 891e80f4cd0fea94a9b43012b8eeb754,
         type: 3}
       propertyPath: m_LocalPosition.x

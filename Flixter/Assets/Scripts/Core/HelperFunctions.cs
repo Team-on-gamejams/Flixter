@@ -58,7 +58,17 @@ public class HelperFunctions : MonoBehaviour {
 		}
 	}
 
-	public static Vector3 GetRandSpawnPoint() {
+    public static IEnumerator BlinkOfDamage(SpriteRenderer _spRen)
+    {
+        Color tmp = _spRen.color;
+        tmp.a = 0.5f;
+        _spRen.color = tmp;
+        yield return new WaitForSeconds(0.01f);
+        tmp.a = 1f;
+        _spRen.color = tmp;
+    }
+
+    public static Vector3 GetRandSpawnPoint() {
 		return Camera.main.ViewportToWorldPoint(
 			new Vector3(
 				Random.Range(0.0f, 1.0f),

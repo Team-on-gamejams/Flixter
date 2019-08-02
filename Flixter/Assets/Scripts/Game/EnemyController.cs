@@ -8,11 +8,9 @@ public class EnemyController : MonoBehaviour {
 	public float speed = 2;
 
 	private SpriteRenderer _spRen;
-	private Color _startColor;
 
 	void Start() {
 		_spRen = GetComponent<SpriteRenderer>();
-		_startColor = _spRen.color;
 
 		livesCurr = livesMax;
 
@@ -22,7 +20,7 @@ public class EnemyController : MonoBehaviour {
 
 	private void ReciveDamage(int damage) {
 		livesCurr -= damage;
-		StartCoroutine(BlinkOfDamage());
+		StartCoroutine(HelperFunctions.BlinkOfDamage(_spRen));
 
 		if (livesCurr <= 0) {
 			GameManager.Instance.Player.Score += livesMax;
@@ -40,15 +38,5 @@ public class EnemyController : MonoBehaviour {
 			GameManager.Instance.Player.GetDamage(livesCurr);
 			Destroy(gameObject);
 		}
-	}
-
-	IEnumerator BlinkOfDamage() {
-		_spRen.color = new Color(
-				_startColor.r,
-				_startColor.g,
-				_startColor.b,
-				_startColor.a * 0.5f);
-		yield return new WaitForSeconds(0.01f);
-		_spRen.color = _startColor;
 	}
 }

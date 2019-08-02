@@ -587,7 +587,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 154157226130350300}
   shootSpeed: 0.2
-  health: 10
+  maxHealth: 10
+  blinkTime: 1
+  blinkCount: 5
+  playerBody: {fileID: 5781828437688907759}
   currentBulletStartPosUse: 0
   simpleBulletPrefab: {fileID: 5474211784042162513, guid: d1c3ea1a4cb7d014fbef07bd0a7642f4,
     type: 3}
@@ -609,7 +612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheatsOn: 1
-  PlayerIgnoreDamage: 1
+  PlayerIgnoreDamage: 0
 --- !u!60 &6452997352939879674
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -637,11 +640,17 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -3.2658498, y: 5.3544674}
       - {x: -3.2235742, y: -5.443297}
-      - {x: -1.9610195, y: -5.4354415}
-      - {x: -1.9873779, y: -4.033012}
-      - {x: 1.9418901, y: -4.0276704}
-      - {x: 2.0011451, y: -5.4443364}
-      - {x: 3.2922113, y: -5.473287}
+      - {x: -1.8481696, y: -5.4504886}
+      - {x: -1.8369111, y: -4.168432}
+      - {x: 1.2502824, y: -4.200392}
+      - {x: 1.2821332, y: -2.966582}
+      - {x: 2.318057, y: -2.9668791}
+      - {x: 2.3119497, y: -3.9763148}
+      - {x: 1.2886015, y: -3.988955}
+      - {x: 1.2786567, y: -4.219066}
+      - {x: 1.7835597, y: -4.18399}
+      - {x: 1.798015, y: -5.4067197}
+      - {x: 3.2922113, y: -5.4131002}
       - {x: 3.2089279, y: 5.369069}
 --- !u!1 &5781828438590841069
 GameObject:

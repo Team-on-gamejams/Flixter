@@ -20,12 +20,19 @@ public class PlayerControl : MonoBehaviour {
 	public float shootSpeed = 0.2f;
 	public int maxHealth = 10;
 	int health;
+	public float blinkTime = 1.0f;
+	public int blinkCount = 5;
+	float oneBlinkTime;
+	float currBlinkTime;
+
 
 	public static List<BosterBase> activeBoster = new List<BosterBase>();
 
 	CoolShieldEffect shield;
 
-	public int currentBulletStartPosUse;
+    public SpriteRenderer playerBody;
+
+    public int currentBulletStartPosUse;
 	public GameObject simpleBulletPrefab;
 	public GameObject[] bulletStartPos;
 	private Transform[][] bulletStartPosParsed;
@@ -54,7 +61,9 @@ public class PlayerControl : MonoBehaviour {
 		shield = GetComponentInChildren<CoolShieldEffect>();
 		menuController = GameObject.FindObjectOfType<MenuController>();
 
-        Reload();
+		oneBlinkTime = blinkTime / blinkCount;
+
+		Reload();
     }
 
 	void OnMouseDown() {
@@ -102,13 +111,15 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public void GetDamage(int damage) {
-		if (shield.IsActive || cheat.PlayerIgnoreDamage)
+		if (shield.IsActive || cheat.PlayerIgnoreDamage || currBlinkTime != 0)
 			return;
 
 		health -= damage;
 
-		if (health <= 0)
+        if (health <= 0)
 			Die();
+		else
+			StartCoroutine(BlinkOfDamage(playerBody));
 	}
 
 	public void ActivateShield(){
@@ -136,7 +147,8 @@ public class PlayerControl : MonoBehaviour {
 	public void Reload(){
 		health = maxHealth;
 		Score = 0;
-        if(bulletsHolder != null)
+		currBlinkTime = 0;
+		if (bulletsHolder != null)
 		    Destroy(bulletsHolder);
 		bulletsHolder = new GameObject("Bullets");
 
@@ -150,5 +162,28 @@ public class PlayerControl : MonoBehaviour {
 
 	bool IsTouchingBorders(float x, float y) {
 		return x < borders.x || x > -borders.x || y < borders.y || y > -borders.y;
+	}
+
+    IEnumerator BlinkOfDamage(SpriteRenderer sr){
+		currBlinkTime = 0;
+		Color tmp = sr.color;
+		while ((currBlinkTime += oneBlinkTime) <= blinkTime) {
+			while (GameManager.Instance.IsTimeStop) 
+				yield return new WaitForSeconds(oneBlinkTime);
+
+			tmp.a = 0.75f;
+			sr.color = tmp;
+			yield return new WaitForSeconds(oneBlinkTime);
+
+			while (GameManager.Instance.IsTimeStop)
+				yield return new WaitForSeconds(oneBlinkTime);
+
+			tmp.a = 1f;
+			sr.color = tmp;
+			yield return new WaitForSeconds(oneBlinkTime);
+		}
+		tmp.a = 1f;
+		sr.color = tmp;
+		currBlinkTime = 0;
 	}
 }

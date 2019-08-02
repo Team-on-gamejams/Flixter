@@ -54,10 +54,8 @@ public class PlayerControl : MonoBehaviour {
 		shield = GetComponentInChildren<CoolShieldEffect>();
 		menuController = GameObject.FindObjectOfType<MenuController>();
 
-		bulletsHolder = new GameObject("Bullets");
-		health = maxHealth;
-		Score = 0;
-	}
+        Reload();
+    }
 
 	void OnMouseDown() {
 		if (!GameManager.Instance.IsGameStart)
@@ -138,7 +136,8 @@ public class PlayerControl : MonoBehaviour {
 	public void Reload(){
 		health = maxHealth;
 		Score = 0;
-		Destroy(bulletsHolder);
+        if(bulletsHolder != null)
+		    Destroy(bulletsHolder);
 		bulletsHolder = new GameObject("Bullets");
 
 		player.transform.position = new Vector2(0, 0);

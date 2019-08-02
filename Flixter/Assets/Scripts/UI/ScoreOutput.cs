@@ -21,10 +21,11 @@ public class ScoreOutput : MonoBehaviour {
 	}
 
 	IEnumerator UpgradeText(){
+        float pause = 1.0f / (currScore - displayScore);
 		while(displayScore < currScore){
 			++displayScore;
 			text.text = displayScore.ToString();
-			yield return new WaitForSeconds(0.2f);
+			yield return new WaitForSeconds(pause);
 		}
 		if(currScore < displayScore)
 			text.text = (displayScore = currScore).ToString();

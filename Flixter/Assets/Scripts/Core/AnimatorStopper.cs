@@ -5,11 +5,9 @@ using UnityEngine;
 public class AnimatorStopper : MonoBehaviour {
 	Animator animator;
 
-	void Start() {
-		animator = GetComponent<Animator>();
-	}
-
 	void Awake() {
+		animator = GetComponent<Animator>();
+
 		EventManager.OnTimeStopChangedEvent += OnTimeStopChangedEvent;
 	}
 

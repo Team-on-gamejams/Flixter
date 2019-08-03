@@ -14,7 +14,7 @@ public class SpawnController : MonoBehaviour {
 	private List<List<GameObject>> EnemyToSpawn;
 	private float[] spawnTimer;
 
-	void Start() {
+	void Awake() {
 		lastSpawnedBossId = 0;
 		HelperFunctions.Shuffle(EnemyBossPrefab);
 
@@ -60,9 +60,15 @@ public class SpawnController : MonoBehaviour {
 	}
 
 	public void Clear(){
+		const float fadeTime = 1.0f;
 		var childs = transform.GetComponentsInChildren<Transform>();
-		foreach (var child in childs)
-			Destroy(child.gameObject);
+		foreach (var child in childs) {
+			if (child.gameObject.GetInstanceID() != gameObject.GetInstanceID()) {
+				LeanTween.alpha(child.gameObject, 0, fadeTime)
+				.setOnComplete(()=> Destroy(child.gameObject));
+			}
+		}
+			
 		for (byte i = 0; i < spawnTimer.Length; ++i)
 			spawnTimer[i] = 0;
 	}

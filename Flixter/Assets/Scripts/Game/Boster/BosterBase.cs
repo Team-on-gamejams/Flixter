@@ -62,7 +62,7 @@ public class BosterBase : MonoBehaviour {
 
 	public void ForceEnd() {
 		isActive = false;
-		Destroy(gameObject);
+		TimeEnd();
 	}
 
 	public void Hide() {

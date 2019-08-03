@@ -139,7 +139,7 @@ public class PlayerControl : MonoBehaviour {
 
 	//TODO: Add cool effect on revive
 	public void Revive(){
-		menuController.HideDieMenu();
+		menuController.HideDieMenu(true);
 		health = maxHealth;
 		GameManager.Instance.IsGameStart = true;
 	}
@@ -153,11 +153,8 @@ public class PlayerControl : MonoBehaviour {
 		bulletsHolder = new GameObject("Bullets");
 
 		player.transform.position = new Vector2(0, 0);
-		foreach (var boster in activeBoster) 
-			boster.ForceEnd();
-		activeBoster.Clear();
-		GameManager.Instance.BosterSpawner.Clear();
 		GameManager.Instance.SpawnController.Clear();
+		GameManager.Instance.bosterDock.Clear();
 	}
 
 	bool IsTouchingBorders(float x, float y) {

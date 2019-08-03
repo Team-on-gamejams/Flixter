@@ -9,7 +9,7 @@ public class BosterHolder : MonoBehaviour {
 	Image UIImage;
 	Button button;
 
-	void Start() {
+	void Awake() {
 		UIImage = GetComponent<Image>();
 		button = GetComponent<Button>();
 		emptySprite = UIImage.sprite;
@@ -17,6 +17,7 @@ public class BosterHolder : MonoBehaviour {
 
 	public bool IsEmpty() => boster == null;
 
+	//TODO: add fly anim
 	public void FlyToHolder(BosterBase _boster){
 		boster = _boster;
 		UIImage.sprite = boster.spRen.sprite;
@@ -31,6 +32,12 @@ public class BosterHolder : MonoBehaviour {
 
 		boster.Use();
 
+		boster = null;
+		UIImage.sprite = emptySprite;
+		button.interactable = false;
+	}
+
+	public void Clear(){
 		boster = null;
 		UIImage.sprite = emptySprite;
 		button.interactable = false;

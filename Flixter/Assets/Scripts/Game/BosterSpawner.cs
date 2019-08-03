@@ -10,7 +10,7 @@ public class BosterSpawner : MonoBehaviour {
 
 	List<Slider> start;
 
-	void Start() {
+	void Awake() {
 		start = new List<Slider>();
 		GameManager.Instance.BosterSpawner = this;
 	}
@@ -24,12 +24,5 @@ public class BosterSpawner : MonoBehaviour {
 			currTime -= timeForSpawn;
 			Instantiate(bosters[Random.Range(0, bosters.Length)], HelperFunctions.GetRandSpawnPoint(), Quaternion.identity, transform);
 		}
-	}
-
-	public void Clear() {
-		var childs = transform.GetComponentsInChildren<Transform>();
-		foreach (var child in childs)
-			Destroy(child.gameObject);
-		currTime = 0.0f;
 	}
 }

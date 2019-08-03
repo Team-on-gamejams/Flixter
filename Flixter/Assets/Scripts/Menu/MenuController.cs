@@ -51,7 +51,6 @@ public class MenuController : MonoBehaviour {
 
 	public void ToInGameMenu(){
 		ShowInGameMenu();
-		scoreSlider.SlideOut();
 		currMenu = CurrMenu.InGameMenu;
 	}
 
@@ -60,7 +59,7 @@ public class MenuController : MonoBehaviour {
 			HideMainMenu();
 			LeanTween.delayedCall(MainMenuToPreGameMenu / 3, () => ShowPreGameMenu());
 		}
-		else if (currMenu == CurrMenu.InGameMenu) {
+		else if (currMenu == CurrMenu.DieMenu || currMenu == CurrMenu.InGameMenu) {
 			LeanTween.move(Back1, new Vector2(-732, 2225), MainMenuToPreGameMenu)//30
 				.setEase(LeanTweenType.linear);
 			LeanTween.value(Back1.gameObject, 34.0f, 30.0f, MainMenuToPreGameMenu)
@@ -82,6 +81,7 @@ public class MenuController : MonoBehaviour {
 		else {
 			ShowPreGameMenu();
 		}
+		scoreSlider.SlideOut();
 		coinsSlider.SlideOut();
 		currMenu = CurrMenu.PreGameMenu;
 	}
@@ -116,16 +116,26 @@ public class MenuController : MonoBehaviour {
 			.setOnUpdate((a) => {
 				DieMenu.alpha = a;
 			})
-			.setOnComplete(()=> {
+			.setOnComplete(() => {
 				DieMenu.blocksRaycasts = DieMenu.interactable = true;
 			});
 		currMenu = CurrMenu.DieMenu;
 	}
 
-	public void HideDieMenu() {
-		DieMenu.blocksRaycasts = DieMenu.interactable = false;
-		DieMenu.alpha = 0;
-		currMenu = CurrMenu.InGameMenu;
+	public void HideDieMenu(bool isForce) {
+		if (isForce) {
+			DieMenu.blocksRaycasts = DieMenu.interactable = false;
+			DieMenu.alpha = 0;
+		}
+		else {
+			LeanTween.value(DieMenu.gameObject, DieMenu.alpha, 0, MainMenuToPreGameMenu / 4)
+			.setOnUpdate((a) => {
+				DieMenu.alpha = a;
+			})
+			.setOnComplete(() => {
+				DieMenu.blocksRaycasts = DieMenu.interactable = false;
+			});
+		}
 	}
 
 	void ShowMainMenu(){
@@ -193,12 +203,20 @@ public class MenuController : MonoBehaviour {
 	}
 
 	void ShowPreGameMenu(){
+		HideDieMenu(false);
+
+		GameManager.Instance.IsGameStart = false;
+
 		LeanTween.move(PreGameMenuRect, new Vector2(0, 0), MainMenuToPreGameMenu / 3 * 2)
 			.setEase(LeanTweenType.easeOutBack);
 
 		LeanTween.move(PlayerSpriteMainMenu, new Vector2(0, 450), MainMenuToPreGameMenu / 6)
 			.setDelay(MainMenuToPreGameMenu / 2)
-			.setEase(LeanTweenType.easeInOutQuad);
+			.setEase(LeanTweenType.easeInOutQuad)
+			//.setOnComplete(()=> {
+			//	GameManager.Instance.Player.Reload();
+			//})
+			;
 	}
 
 	void HidePreGameMenu() {

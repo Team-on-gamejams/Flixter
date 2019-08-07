@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BosterDock : MonoBehaviour {
 	public BosterHolder[] bosterHolders;
 
-	void Start() {
+	void Awake() {
 		GameManager.Instance.bosterDock = this;
 
 		var img = GetComponentInChildren<Image>();

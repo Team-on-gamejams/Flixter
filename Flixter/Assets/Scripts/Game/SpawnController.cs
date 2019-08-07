@@ -14,6 +14,8 @@ public class SpawnController : MonoBehaviour {
 	private List<List<GameObject>> EnemyToSpawn;
 	private float[] spawnTimer;
 
+	private bool suspendBossSpawn;
+
 	void Awake() {
 		lastSpawnedBossId = 0;
 		HelperFunctions.Shuffle(EnemyBossPrefab);
@@ -27,7 +29,17 @@ public class SpawnController : MonoBehaviour {
 		for (byte i = 0; i < spawnTimer.Length; ++i)
 			spawnTimer[i] = 0;
 
+		suspendBossSpawn = false;
+
+		EventManager.OnBossSpawned += OnBossSpawned;
+		EventManager.OnBossKilled += OnBossKilled;
+
 		GameManager.Instance.SpawnController = this;
+	}
+
+	private void OnDestroy() {
+		EventManager.OnBossSpawned -= OnBossSpawned;
+		EventManager.OnBossKilled -= OnBossKilled;
 	}
 
 	void Update() {
@@ -35,6 +47,9 @@ public class SpawnController : MonoBehaviour {
 			return;
 
 		for(byte i = 0; i < spawnTimer.Length; ++i) {
+			if (i == Consts.bossIdSpawner && suspendBossSpawn)
+				continue;
+
 			spawnTimer[i] += Time.deltaTime * GameManager.Instance.SpeedMult;
 
 			if(spawnTimer[i] >= spawnTime[i]){
@@ -46,17 +61,18 @@ public class SpawnController : MonoBehaviour {
 
 	void Spawn(byte id) {
 		int enemyIndex;
-		if(id == 2) {
+		if(id == Consts.bossIdSpawner) {
 			enemyIndex = lastSpawnedBossId;
 			++lastSpawnedBossId;
 			if (lastSpawnedBossId >= EnemyBossPrefab.Count)
 				lastSpawnedBossId = 0;
+			Instantiate(EnemyToSpawn[id][enemyIndex], new Vector3(0, 6f, 0), Quaternion.identity, transform);
+			GameManager.Instance.EventManager.CallOnBossSpawned();
 		}
-		else{
+		else {
 			enemyIndex = Random.Range(0, EnemyToSpawn[id].Count);
+			Instantiate(EnemyToSpawn[id][enemyIndex], HelperFunctions.GetRandSpawnPoint(), Quaternion.identity, transform);
 		}
-
-		Instantiate(EnemyToSpawn[id][enemyIndex], HelperFunctions.GetRandSpawnPoint(), Quaternion.identity, transform);
 	}
 
 	public void Clear(){
@@ -71,5 +87,14 @@ public class SpawnController : MonoBehaviour {
 			
 		for (byte i = 0; i < spawnTimer.Length; ++i)
 			spawnTimer[i] = 0;
+	}
+
+
+	void OnBossSpawned(EventData data) {
+		suspendBossSpawn = true;
+	}
+
+	void OnBossKilled(EventData data) {
+		suspendBossSpawn = false;
 	}
 }

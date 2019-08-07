@@ -4,28 +4,19 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 	public int livesMax = 3;
-	int livesCurr;
+	private int livesCurr;
 	public float speed = 2;
 
 	private SpriteRenderer _spRen;
 
-	void Start() {
+	protected void Awake() {
 		_spRen = GetComponent<SpriteRenderer>();
-
 		livesCurr = livesMax;
-
-		StartCoroutine(HelperFunctions.MoveRoutine(gameObject, speed));
-		StartCoroutine(HelperFunctions.CheckOutBorders(gameObject));
 	}
 
-	private void ReciveDamage(int damage) {
-		livesCurr -= damage;
-		StartCoroutine(HelperFunctions.BlinkOfDamage(_spRen));
-
-		if (livesCurr <= 0) {
-			GameManager.Instance.Player.Score += livesMax;
-			Destroy(this.gameObject);
-		}
+	void Start() {
+		StartCoroutine(HelperFunctions.MoveRoutine(gameObject, speed));
+		StartCoroutine(HelperFunctions.CheckOutBorders(gameObject));
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision) {
@@ -35,8 +26,21 @@ public class EnemyController : MonoBehaviour {
 		}
 		else if (collision.tag == "Player") {
 			//TODO: Подумать над дамагом
+			//Особенно від боссів
 			GameManager.Instance.Player.GetDamage(livesCurr);
-			Destroy(gameObject);
+			ReciveDamage(livesMax);
+		}
+	}
+
+	private void ReciveDamage(int damage) {
+		livesCurr -= damage;
+		StartCoroutine(HelperFunctions.BlinkOfDamage(_spRen));
+
+		if (livesCurr <= 0) {
+			GameManager.Instance.Player.Score += livesMax;
+			Destroy(this.gameObject);
+			if (this is BossBase)
+				GameManager.Instance.EventManager.CallOnBossKilled();
 		}
 	}
 }

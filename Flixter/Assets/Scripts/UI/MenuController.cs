@@ -30,6 +30,13 @@ public class MenuController : MonoBehaviour {
 	Slider coinsSlider;
 	Slider scoreSlider;
 
+	private void Awake(){
+		var childs = transform.GetComponentsInChildren<Transform>(true);
+		foreach (var child in childs){
+			child.gameObject.SetActive(true);
+		}
+	}
+
 	void Start() {
 		Back1Start = Back1.localPosition;
 		Back2Start = Back2.localPosition;

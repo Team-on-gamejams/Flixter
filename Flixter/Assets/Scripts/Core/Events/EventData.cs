@@ -11,6 +11,15 @@ public class EventData {
 		Data[EventIdKey] = eventId;
 	}
 
+	public object this[string key] {
+		get {
+			return Data[key];
+		}
+		set {
+			Data[key] = value;
+		}
+	}
+
 	public void Log() {
 		string logStr = "Event: " + Data[EventIdKey] + '(';
 		int keyIndex = 0;

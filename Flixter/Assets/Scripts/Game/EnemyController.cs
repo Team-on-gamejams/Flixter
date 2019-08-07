@@ -36,6 +36,13 @@ public class EnemyController : MonoBehaviour {
 		livesCurr -= damage;
 		StartCoroutine(HelperFunctions.BlinkOfDamage(_spRen));
 
+		if (this is BossBase) {
+			EventData data = new EventData("OnBossGetDamage");
+			data["livesMax"] = livesMax;
+			data["livesCurr"] = livesCurr;
+			GameManager.Instance.EventManager.CallOnBossGetDamage(data);
+		}
+
 		if (livesCurr <= 0) {
 			GameManager.Instance.Player.Score += livesMax;
 			Destroy(this.gameObject);

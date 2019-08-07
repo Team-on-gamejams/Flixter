@@ -37,4 +37,24 @@ public class Slider : MonoBehaviour {
 		.setDelay(slideDelay)
 		.setEase(tweenType);
 	}
+
+	public void SlideInForce() {
+		if (calculatePos) {
+			calculatePos = false;
+			slideInPos = transform.position;
+			slideOutPos = transform.position - slideValue;
+		}
+		LeanTween.cancel(gameObject);
+		transform.position = slideInPos;
+	}
+
+	public void SlideOutForce() {
+		if (calculatePos) {
+			calculatePos = false;
+			slideInPos = transform.position;
+			slideOutPos = transform.position - slideValue;
+		}
+		LeanTween.cancel(gameObject);
+		transform.position = slideOutPos;
+	}
 }

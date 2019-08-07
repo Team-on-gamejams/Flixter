@@ -17,4 +17,7 @@ public class EventManager {
 
 	public static event EventController.MethodContainer OnBossKilled;
 	public void CallOnBossKilled(EventData ob = null) => OnBossKilled?.Invoke(ob);
+
+	public static event EventController.MethodContainer OnBossGetDamage;
+	public void CallOnBossGetDamage(EventData ob = null) => OnBossGetDamage?.Invoke(ob);
 }

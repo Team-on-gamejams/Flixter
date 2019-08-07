@@ -3133,6 +3133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1196016054}
   - component: {fileID: 1196016055}
+  - component: {fileID: 1196016056}
   m_Layer: 0
   m_Name: SliderLeft
   m_TagString: Untagged
@@ -3214,6 +3215,22 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1196016056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196016053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b21de06a62b9124bb32377093109ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slideValue: {x: 0, y: -150, z: 0}
+  tweenType: 10
+  slideTime: 1
+  slideDelay: 0
 --- !u!1 &1232797660
 GameObject:
   m_ObjectHideFlags: 0
@@ -9136,6 +9153,7 @@ GameObject:
   - component: {fileID: 1713337643}
   - component: {fileID: 1713337645}
   - component: {fileID: 1713337644}
+  - component: {fileID: 1713337646}
   m_Layer: 0
   m_Name: Name
   m_TagString: Untagged
@@ -9282,6 +9300,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713337642}
   m_CullTransparentMesh: 0
+--- !u!114 &1713337646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713337642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b21de06a62b9124bb32377093109ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slideValue: {x: 0, y: -150, z: 0}
+  tweenType: 10
+  slideTime: 1
+  slideDelay: 0
 --- !u!1 &1723246409
 GameObject:
   m_ObjectHideFlags: 0
@@ -9975,6 +10009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2108213619}
   - component: {fileID: 2108213620}
+  - component: {fileID: 2108213621}
   m_Layer: 0
   m_Name: SliderRight
   m_TagString: Untagged
@@ -10056,6 +10091,22 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &2108213621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108213618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b21de06a62b9124bb32377093109ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slideValue: {x: 0, y: -150, z: 0}
+  tweenType: 10
+  slideTime: 1
+  slideDelay: 0
 --- !u!1001 &5781828437607248533
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -38,4 +38,6 @@ public class BossBase : EnemyController {
 			}
 		});
 	}
+
+	public virtual string GetBossName() => "NO BOSS NAME";
 }

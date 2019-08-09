@@ -51,6 +51,7 @@ public class BossBattleUIController : MonoBehaviour {
 	}
 
 	void OnBossSpawned(EventData data) {
+		bossName.text = (string)data["name"];
 		Show(false);
 	}
 

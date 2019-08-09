@@ -43,12 +43,12 @@ public class SpawnController : MonoBehaviour {
 	}
 
 	void Update() {
-		if (GameManager.Instance.IsTimeStop)
+		if (GameManager.Instance.IsTimeStop || suspendBossSpawn)
 			return;
 
 		for(byte i = 0; i < spawnTimer.Length; ++i) {
-			if (i == Consts.bossIdSpawner && suspendBossSpawn)
-				continue;
+			//if (i == Consts.bossIdSpawner && suspendBossSpawn)
+			//	continue;
 
 			spawnTimer[i] += Time.deltaTime * GameManager.Instance.SpeedMult;
 
@@ -67,7 +67,10 @@ public class SpawnController : MonoBehaviour {
 			if (lastSpawnedBossId >= EnemyBossPrefab.Count)
 				lastSpawnedBossId = 0;
 			Instantiate(EnemyToSpawn[id][enemyIndex], new Vector3(0, 6f, 0), Quaternion.identity, transform);
-			GameManager.Instance.EventManager.CallOnBossSpawned();
+
+			EventData data = new EventData("BossSpawn");
+			data["name"] = EnemyToSpawn[id][enemyIndex].GetComponent<BossBase>().GetBossName();
+			GameManager.Instance.EventManager.CallOnBossSpawned(data);
 		}
 		else {
 			enemyIndex = Random.Range(0, EnemyToSpawn[id].Count);

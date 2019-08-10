@@ -14,7 +14,6 @@ public class LazerCannon : BossBase {
 
 	protected new private void OnDestroy() {
 		base.OnDestroy();
-
 	}
 
 	public override string GetBossName() => "Lazer cannon";

@@ -39,6 +39,8 @@ public class BossBase : EnemyController {
 			ProcessMove();
 	}
 
+	//TODO: cool effect when boss appear
+	//TODO: boss moving down when you speed up
 	void ProcessMove() {
 		if (!completeMovingDown) {
 			LeanTween.moveLocalY(gameObject, stopPointY, (transform.position.y - stopPointY) / speed)

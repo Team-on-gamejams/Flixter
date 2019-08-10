@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3144273075591879499}
   - component: {fileID: 3144273075591879498}
-  - component: {fileID: 8064307397877590356}
+  - component: {fileID: 5447861631676934391}
   - component: {fileID: 2048532143}
-  - component: {fileID: 2252462886927609074}
+  - component: {fileID: 7361201304273809465}
   m_Layer: 0
-  m_Name: LazerCannon
+  m_Name: Cargo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3144273075591879510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 4, z: 0}
-  m_LocalScale: {x: 8.767162, y: 8.767162, z: 8.767162}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: -12105527
   m_SortingLayer: 1
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: a9b2dc900f6df8949b243cc3a423f8d5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b86aaddb2dfd9b54fa58e7c5ce8a7300, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8064307397877590356
+--- !u!114 &5447861631676934391
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,12 +91,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3144273075591879510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84510c21122a0ba4dbae54c7ca03dd7d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f7bcb2b27f5ebb438b92ee2c90e7186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   livesMax: 100
-  speed: 1
-  moveType: 2
+  speed: 8
+  moveType: 3
 --- !u!50 &2048532143
 Rigidbody2D:
   serializedVersion: 4
@@ -118,8 +118,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &2252462886927609074
-PolygonCollider2D:
+--- !u!61 &7361201304273809465
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -128,33 +128,19 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.001985073, y: -0.0009925365}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.33, y: 0.18}
+    oldSize: {x: 3.42, y: 0.9}
     newSize: {x: 0.58, y: 0.58}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.11059039, y: -0.022709582}
-      - {x: 0.3476126, y: -0.022624165}
-      - {x: 0.39499998, y: -0.089999996}
-      - {x: 0.59499997, y: -0.089999996}
-      - {x: 0.615, y: -0.08}
-      - {x: 0.66499996, y: -0.06}
-      - {x: 0.66499996, y: 0.089999996}
-      - {x: -0.66499996, y: 0.089999996}
-      - {x: -0.66499996, y: -0.06}
-      - {x: -0.625, y: -0.089999996}
-      - {x: -0.405, y: -0.089999996}
-      - {x: -0.38364807, y: -0.019828841}
-      - {x: -0.108418256, y: -0.016525308}
-      - {x: -0.08923273, y: -0.09}
-      - {x: 0.088388465, y: -0.07813461}
+  serializedVersion: 2
+  m_Size: {x: 0.82577765, y: 0.8255089}
+  m_EdgeRadius: 0

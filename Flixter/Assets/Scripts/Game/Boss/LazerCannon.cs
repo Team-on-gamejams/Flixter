@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LazerCannon : BossBase {
+	public GameObject attack;
+
 	protected new void Awake() {
 		base.Awake();
 	}
@@ -16,5 +18,8 @@ public class LazerCannon : BossBase {
 		base.OnDestroy();
 	}
 
-	public override string GetBossName() => "Lazer cannon";
+	protected override void ProcessAttack() {
+		LeanTween.cancel(gameObject);
+		attack.SetActive(true);
+	}
 }

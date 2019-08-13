@@ -17,5 +17,7 @@ public class Cargo : BossBase {
 
 	}
 
-	public override string GetBossName() => "Cargo";
+	protected override void ProcessAttack() {
+
+	}
 }

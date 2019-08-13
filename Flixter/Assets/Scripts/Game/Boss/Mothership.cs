@@ -17,5 +17,7 @@ public class Mothership : BossBase {
 
 	}
 
-	public override string GetBossName() => "Mothership";
+	protected override void ProcessAttack() {
+
+	}
 }

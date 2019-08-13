@@ -21,15 +21,15 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: 3241ba3e092f19047a8a6265ebdcc167, type: 3}
-    - time: 0.05
+    - time: 0.45
       value: {fileID: 21300000, guid: e5e1f09b49572d74e889987c254b0fde, type: 3}
-    - time: 0.1
+    - time: 0.9166667
       value: {fileID: 21300000, guid: 6b51b8ff1f0dd5b4090cdbe6b24b6c63, type: 3}
-    - time: 0.15
+    - time: 1.3666667
       value: {fileID: 21300000, guid: 96e348097aa4ab047b843355ab9cc27f, type: 3}
-    - time: 0.2
+    - time: 1.8333334
       value: {fileID: 21300000, guid: 5a45b0a77b3237347b70d77972a51d90, type: 3}
-    - time: 1
+    - time: 3
       value: {fileID: 21300000, guid: 5a45b0a77b3237347b70d77972a51d90, type: 3}
     attribute: m_Sprite
     path: 
@@ -61,7 +61,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0166667
+    m_StopTime: 3.0166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -82,14 +82,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: Disable
+    functionName: DisableComponent
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.2
-    functionName: Enable
+  - time: 1.8333334
+    functionName: EnableComponent
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3
+    functionName: DisableGameObject
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

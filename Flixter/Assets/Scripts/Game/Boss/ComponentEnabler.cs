@@ -5,11 +5,11 @@ using UnityEngine;
 public class ComponentEnabler : MonoBehaviour {
 	public Behaviour component;
 
-	public void Enable() {
+	public void EnableComponent() {
 		component.enabled = true;
 	}
 
-	public void Disable() {
+	public void DisableComponent() {
 		component.enabled = false;
 	}
 }

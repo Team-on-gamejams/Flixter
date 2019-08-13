@@ -9525,7 +9525,7 @@ MonoBehaviour:
   - {fileID: 3144273075591879510, guid: 1b451f59eec5b974c943310c63894181, type: 3}
   - {fileID: 3144273075591879510, guid: fb8a4440806d4da44b905d3f3d371d14, type: 3}
   EnemyBossPrefab:
-  - {fileID: 3144273075591879510, guid: d7892b36de36f734992b7cfffd621a1f, type: 3}
+  - {fileID: 3144273075591879510, guid: b574a34b0c7af7445871cf6201ac40d4, type: 3}
 --- !u!4 &1793660148
 Transform:
   m_ObjectHideFlags: 0

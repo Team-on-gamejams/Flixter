@@ -38,7 +38,7 @@ public class PlayerControl : MonoBehaviour {
 	private Transform[][] bulletStartPosParsed;
 
 	private Vector3 borders;
-	private Vector3 offset;
+	internal Vector3 offset;
 
 	private float shootTime = 0;
 	private CheatManager cheat;

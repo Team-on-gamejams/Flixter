@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Cargo : BossBase {
+	public GameObject attack;
+
 	protected new void Awake() {
 		base.Awake();
 	}
@@ -14,10 +16,9 @@ public class Cargo : BossBase {
 
 	protected new private void OnDestroy() {
 		base.OnDestroy();
-
 	}
 
 	protected override void ProcessAttack() {
-
+		attack.SetActive(true);
 	}
 }

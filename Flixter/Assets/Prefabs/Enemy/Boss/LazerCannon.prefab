@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 5262807599333035105}
   - component: {fileID: 6992714425635470874}
   - component: {fileID: 2707060269650414290}
-  - component: {fileID: 8701523315598027887}
   - component: {fileID: 5020245023785517410}
   - component: {fileID: 4386184436387318126}
   m_Layer: 0
@@ -173,18 +172,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &8701523315598027887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81508677974199814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ee3ce2118444a248a912259fd42ae4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &5020245023785517410
 Rigidbody2D:
   serializedVersion: 4

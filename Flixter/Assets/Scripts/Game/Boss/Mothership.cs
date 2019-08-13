@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Mothership : BossBase {
+	public GameObject attack;
+
 	protected new void Awake() {
 		base.Awake();
 	}
@@ -18,6 +20,7 @@ public class Mothership : BossBase {
 	}
 
 	protected override void ProcessAttack() {
-
+		attack.SetActive(true);
+		//TODO: spawn enamies
 	}
 }

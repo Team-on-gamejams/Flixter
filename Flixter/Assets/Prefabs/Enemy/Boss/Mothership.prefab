@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 7611103781400785530}
   - component: {fileID: 6536762742285285882}
   - component: {fileID: 34159585768709935}
-  - component: {fileID: 5262807599333035105}
-  - component: {fileID: 6992714425635470874}
   - component: {fileID: 2707060269650414290}
-  - component: {fileID: 8701523315598027887}
+  - component: {fileID: 8120803815561979970}
   - component: {fileID: 5020245023785517410}
   - component: {fileID: 7768771618112802172}
   - component: {fileID: 4386184436387318126}
@@ -24,7 +22,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7611103781400785530
 Transform:
   m_ObjectHideFlags: 0
@@ -99,32 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee3ce2118444a248a912259fd42ae4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5262807599333035105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81508677974199814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 508006197750392468db4446aa593055, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  component: {fileID: 4386184436387318126}
---- !u!114 &6992714425635470874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81508677974199814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0917ff00b57896d4fac2b09c1d04d56d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 3
 --- !u!114 &2707060269650414290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +126,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &8701523315598027887
+--- !u!114 &8120803815561979970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,9 +135,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 81508677974199814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ee3ce2118444a248a912259fd42ae4c, type: 3}
+  m_Script: {fileID: 11500000, guid: af60e20ebab860f4a83cc5edf25b88f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: {fileID: 2152620817478292909}
+  DamageOnPlayerCollision: 1
 --- !u!50 &5020245023785517410
 Rigidbody2D:
   serializedVersion: 4
@@ -219,7 +193,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.07204513}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -230,7 +204,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.09, y: 1.0756031}
+  m_Size: {x: 0.6938119, y: 0.19057426}
   m_EdgeRadius: 0
 --- !u!1 &3144273075591879510
 GameObject:
@@ -332,6 +306,7 @@ MonoBehaviour:
   BossName: Mothership
   moveType: 1
   AttackTime: 5
+  attack: {fileID: 81508677974199814}
 --- !u!50 &2048532143
 Rigidbody2D:
   serializedVersion: 4

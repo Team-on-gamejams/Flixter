@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
-	private void ReciveDamage(int damage) {
+	public void ReciveDamage(int damage) {
 		livesCurr -= damage;
 		StartCoroutine(HelperFunctions.BlinkOfDamage(_spRen));
 

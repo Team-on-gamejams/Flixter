@@ -365,7 +365,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 232345237}
-        m_MethodName: Reload
+        m_MethodName: ReInit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1112,7 +1112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Year: 2019
   Month: 8
-  Day: 14
+  Day: 15
   TimebombLength: 7
   BombActivated: 1
 --- !u!4 &454092624
@@ -1664,6 +1664,7 @@ MonoBehaviour:
   PreGameMenu: {fileID: 1502804071}
   InGameMenu: {fileID: 300214391}
   DieMenu: {fileID: 1095894319}
+  BossUI: {fileID: 1257415763}
   coinsText: {fileID: 338883474}
   scoreText: {fileID: 2105395476}
 --- !u!1 &519420028

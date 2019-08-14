@@ -17,19 +17,15 @@ public class SpawnController : MonoBehaviour {
 	private bool suspendBossSpawn;
 
 	void Awake() {
-		lastSpawnedBossId = 0;
-		HelperFunctions.Shuffle(EnemyBossPrefab);
+		spawnTimer = new float[3];
+
+		ReInit();
 
 		EnemyToSpawn = new List<List<GameObject>>(3);
 		EnemyToSpawn.Add(EnemySinglePrefab);
 		EnemyToSpawn.Add(EnemyGroupPrefab);
 		EnemyToSpawn.Add(EnemyBossPrefab);
 
-		spawnTimer = new float[3];
-		for (byte i = 0; i < spawnTimer.Length; ++i)
-			spawnTimer[i] = 0;
-
-		suspendBossSpawn = false;
 
 		EventManager.OnBossSpawned += OnBossSpawned;
 		EventManager.OnBossKilled += OnBossKilled;
@@ -87,9 +83,18 @@ public class SpawnController : MonoBehaviour {
 				.setOnComplete(()=> Destroy(child.gameObject));
 			}
 		}
-			
+
+		ReInit();
+	}
+
+	void ReInit() {
 		for (byte i = 0; i < spawnTimer.Length; ++i)
 			spawnTimer[i] = 0;
+
+		lastSpawnedBossId = 0;
+		HelperFunctions.Shuffle(EnemyBossPrefab);
+
+		suspendBossSpawn = false;
 	}
 
 

@@ -30,7 +30,7 @@ public class BossBattleUIController : MonoBehaviour {
 		EventManager.OnBossKilled -= OnBossKilled;
 	}
 
-	void Show(bool isForce) {
+	public void Show(bool isForce) {
 		foreach (var i in sliders) {
 			if (isForce)
 				i.SlideInForce();
@@ -41,7 +41,7 @@ public class BossBattleUIController : MonoBehaviour {
 		sliderLeft.value = sliderRight.value = 1.0f;
 	}
 
-	void Hide(bool isForce) {
+	public void Hide(bool isForce) {
 		foreach (var i in sliders) {
 			if (isForce)
 				i.SlideOutForce();

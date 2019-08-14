@@ -63,7 +63,7 @@ public class PlayerControl : MonoBehaviour {
 
 		oneBlinkTime = blinkTime / blinkCount;
 
-		Reload();
+		ReInit();
     }
 
 	void OnMouseDown() {
@@ -144,7 +144,7 @@ public class PlayerControl : MonoBehaviour {
 		GameManager.Instance.IsGameStart = true;
 	}
 
-	public void Reload(){
+	public void ReInit(){
 		health = maxHealth;
 		Score = 0;
 		currBlinkTime = 0;

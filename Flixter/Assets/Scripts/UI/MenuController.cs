@@ -24,6 +24,7 @@ public class MenuController : MonoBehaviour {
 
 	public GameObject InGameMenu;
 	public CanvasGroup DieMenu;
+	public BossBattleUIController BossUI;
 
 	public TextMeshProUGUI coinsText;
 	public TextMeshProUGUI scoreText;
@@ -90,6 +91,7 @@ public class MenuController : MonoBehaviour {
 		}
 		scoreSlider.SlideOut();
 		coinsSlider.SlideOut();
+		BossUI.Hide(false);
 		currMenu = CurrMenu.PreGameMenu;
 	}
 

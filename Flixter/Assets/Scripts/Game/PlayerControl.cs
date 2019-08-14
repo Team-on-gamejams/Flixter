@@ -15,6 +15,17 @@ public class PlayerControl : MonoBehaviour {
 	}
 	int _score;
 
+	public int Coins {
+		get => _coins;
+		set {
+			_coins = value;
+			EventData data = new EventData("OnCoinsChangedEvent");
+			data.Data["coins"] = _coins;
+			GameManager.Instance.EventManager.CallOnCoinsChangedEvent(data);
+		}
+	}
+	int _coins;
+
 	public GameObject player;
 
 	public float shootSpeed = 0.2f;
@@ -145,8 +156,11 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public void ReInit(){
-		health = maxHealth;
+		//TODO: save/load coins and score
 		Score = 0;
+		Coins = 0;
+
+		health = maxHealth;
 		currBlinkTime = 0;
 		if (bulletsHolder != null)
 		    Destroy(bulletsHolder);

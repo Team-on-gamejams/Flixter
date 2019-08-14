@@ -12,6 +12,9 @@ public class EventManager {
 	public static event EventController.MethodContainer OnScoreChangedEvent;
 	public void CallOnScoreChangedEvent(EventData ob = null) => OnScoreChangedEvent?.Invoke(ob);
 
+	public static event EventController.MethodContainer OnCoinsChangedEvent;
+	public void CallOnCoinsChangedEvent(EventData ob = null) => OnCoinsChangedEvent?.Invoke(ob);
+
 	public static event EventController.MethodContainer OnBossSpawned;
 	public void CallOnBossSpawned(EventData ob = null) => OnBossSpawned?.Invoke(ob);
 

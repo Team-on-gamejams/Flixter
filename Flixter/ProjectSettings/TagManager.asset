@@ -7,6 +7,7 @@ TagManager:
   - Bullet
   - Management
   - EnemyAttack
+  - Coin
   layers:
   - Default
   - TransparentFX

@@ -28,8 +28,11 @@ public class CoinsOutput : MonoBehaviour {
 			text.text = displayCoins.ToString();
 			yield return new WaitForSeconds(pause);
 		}
-		if (currCoins < displayCoins)
-			text.text = (displayCoins = currCoins).ToString();
+		while (displayCoins > currCoins) {
+			--displayCoins;
+			text.text = displayCoins.ToString();
+			yield return new WaitForSeconds(pause);
+		}
 	}
 
 	void OnCoinsChangedEvent(EventData data) {

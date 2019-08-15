@@ -155,6 +155,16 @@ public class PlayerControl : MonoBehaviour {
 		GameManager.Instance.IsGameStart = true;
 	}
 
+	//TODO: Add cool effect on revive
+	public void ReviveForCoins() {
+		if(Coins >= 5) {
+			menuController.HideDieMenu(true);
+			health = maxHealth;
+			GameManager.Instance.IsGameStart = true;
+			Coins -= 5;
+		}
+	}
+
 	public void ReInit(){
 		//TODO: save/load coins and score
 		Score = 0;

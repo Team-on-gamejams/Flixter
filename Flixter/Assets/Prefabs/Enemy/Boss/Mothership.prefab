@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 2152620817478292909}
   - component: {fileID: 2048532143}
   - component: {fileID: 4400959358698016873}
+  - component: {fileID: 7970971430908129624}
   m_Layer: 0
   m_Name: Mothership
   m_TagString: Untagged
@@ -379,3 +380,20 @@ PolygonCollider2D:
       - {x: 0.2156141, y: -0.2627372}
       - {x: 0.32352912, y: -0.2567951}
       - {x: 0.35878277, y: -0.2247462}
+--- !u!114 &7970971430908129624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3144273075591879510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e052316734f0dd44a34a93b6614d31c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 5280842279912932408, guid: 4415abe4ddf17704f855df9eee7f95dc,
+    type: 3}
+  coinsCount: 10
+  dropDistance: 2
+  flightSpeed: 4

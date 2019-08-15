@@ -46,8 +46,10 @@ public class EnemyController : MonoBehaviour {
 		if (livesCurr <= 0) {
 			GameManager.Instance.Player.Score += livesMax;
 			Destroy(this.gameObject);
-			if (this is BossBase)
+			if (this is BossBase) {
+				GetComponent<CoinsDropper>().Drop();
 				GameManager.Instance.EventManager.CallOnBossKilled();
+			}
 		}
 	}
 }

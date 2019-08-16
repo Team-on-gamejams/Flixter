@@ -25,7 +25,6 @@ public class PlayerControl : MonoBehaviour {
             PlayerPrefs.SetInt("coins", value);
         }
 	}
-    //if(PlayerPrefs.)
     int _coins;
 
 	public GameObject player;

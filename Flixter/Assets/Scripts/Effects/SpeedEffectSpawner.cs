@@ -10,11 +10,13 @@ public class SpeedEffectSpawner : MonoBehaviour {
 
 	List<Slider> start;
 	
-	void Start() {
+	IEnumerator Start() {
 		start = new List<Slider>();
 
 		for(byte i = 0; i < 100; ++i){
 			Instantiate(starPrefab, HelperFunctions.GetRandSpawnPointForInit(), Quaternion.identity, transform);
+			if (i % 10 == 0)
+				yield return null;
 		}
 	}
 

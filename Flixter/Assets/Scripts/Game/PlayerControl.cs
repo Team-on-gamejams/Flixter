@@ -39,9 +39,11 @@ public class PlayerControl : MonoBehaviour {
 
 	public static List<BosterBase> activeBoster = new List<BosterBase>();
 
-	CoolShieldEffect shield;
+	[SerializeField] CoolShieldEffect shield;
+	[SerializeField] CheatManager cheat;
+	[SerializeField] MenuController menuController;
 
-    public SpriteRenderer playerBody;
+	public SpriteRenderer playerBody;
 
     public int currentBulletStartPosUse;
 	public GameObject simpleBulletPrefab;
@@ -52,16 +54,13 @@ public class PlayerControl : MonoBehaviour {
 	internal Vector3 offset;
 
 	private float shootTime = 0;
-	private CheatManager cheat;
-	private MenuController menuController;
+	
 
 	GameObject bulletsHolder;
 
 	void Start() {
 		borders = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
-		cheat = GetComponent<CheatManager>();
 
-		GameManager.Instance.Player = this;
 
 		foreach (var i in bulletStartPos)
 			i.SetActive(true);
@@ -69,13 +68,12 @@ public class PlayerControl : MonoBehaviour {
 		for(byte i = 0; i < bulletStartPosParsed.Length; ++i)
 			bulletStartPosParsed[i] = bulletStartPos[i].GetComponentsInChildren<Transform>().Skip(1).ToArray();
 
-		shield = GetComponentInChildren<CoolShieldEffect>();
-		menuController = GameObject.FindObjectOfType<MenuController>();
-
 		oneBlinkTime = blinkTime / blinkCount;
 
 		ReInit();
-    }
+
+		GameManager.Instance.Player = this;
+	}
 
 	void OnMouseDown() {
 		if (!GameManager.Instance.IsGameStart)

@@ -7,20 +7,26 @@ public class BossBattleUIController : MonoBehaviour {
 	[SerializeField] TextMeshProUGUI bossName;
 	[SerializeField] UnityEngine.UI.Slider sliderLeft;
 	[SerializeField] UnityEngine.UI.Slider sliderRight;
+	[SerializeField] Slider menuSlider;
 	List<Slider> sliders;
 
+	bool isShowed;
+
 	void Awake() {
-		sliders = new List<Slider>(3);
-		sliders.Add(bossName.GetComponent<Slider>());
-		sliders.Add(sliderLeft.GetComponent<Slider>());
-		sliders.Add(sliderRight.GetComponent<Slider>());
+		sliders = new List<Slider>(3) {
+			bossName.GetComponent<Slider>(),
+			sliderLeft.GetComponent<Slider>(),
+			sliderRight.GetComponent<Slider>()
+		};
 
 		EventManager.OnBossSpawned += OnBossSpawned;
 		EventManager.OnBossGetDamage += OnBossGetDamage;
 		EventManager.OnBossKilled += OnBossKilled;
+		EventManager.OnTimeStopChangedEvent += OnTimeStopChangedEvent;
 	}
 
 	void Start() {
+		isShowed = true;
 		Hide(true);
 	}
 
@@ -28,9 +34,14 @@ public class BossBattleUIController : MonoBehaviour {
 		EventManager.OnBossSpawned -= OnBossSpawned;
 		EventManager.OnBossGetDamage -= OnBossGetDamage;
 		EventManager.OnBossKilled -= OnBossKilled;
+		EventManager.OnTimeStopChangedEvent -= OnTimeStopChangedEvent;
 	}
 
 	public void Show(bool isForce) {
+		if (isShowed)
+			return;
+
+		isShowed = true;
 		foreach (var i in sliders) {
 			if (isForce)
 				i.SlideInForce();
@@ -42,12 +53,17 @@ public class BossBattleUIController : MonoBehaviour {
 	}
 
 	public void Hide(bool isForce) {
+		if (!isShowed)
+			return;
+
+		isShowed = false;
 		foreach (var i in sliders) {
 			if (isForce)
 				i.SlideOutForce();
 			else
 				i.SlideOut();
 		}
+		menuSlider.SlideOut();
 	}
 
 	void OnBossSpawned(EventData data) {
@@ -61,5 +77,15 @@ public class BossBattleUIController : MonoBehaviour {
 
 	void OnBossGetDamage(EventData data) {
 		sliderLeft.value = sliderRight.value = (float)((int)(data["livesCurr"])) / (int)(data["livesMax"]);
+	}
+
+	void OnTimeStopChangedEvent(EventData data) {
+		if (!isShowed)
+			return;
+
+		if (GameManager.Instance.IsTimeStop)
+			menuSlider.SlideIn();
+		else
+			menuSlider.SlideOut();
 	}
 }

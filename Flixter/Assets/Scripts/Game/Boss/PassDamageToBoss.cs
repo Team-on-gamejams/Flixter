@@ -8,14 +8,14 @@ public class PassDamageToBoss : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D collision) {
 		if (collision.tag == "Bullet") {
-			boss.ReciveDamage(collision.GetComponent<BulletController>().damage);
+			boss.ReciveDamage(collision.GetComponent<BulletController>().damage, false);
 			Destroy(collision.gameObject);
 		}
 		else if (collision.tag == "Player") {
 			//TODO: Подумать над дамагом
 			//Особенно від боссів
 			GameManager.Instance.Player.GetDamage(DamageOnPlayerCollision);
-			boss.ReciveDamage(boss.livesMax);
+			boss.ReciveDamage(boss.livesMax, true);
 		}
 	}
 }

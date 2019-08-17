@@ -21,18 +21,21 @@ public class EnemyController : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D collision) {
 		if (collision.tag == "Bullet") {
-			ReciveDamage(collision.GetComponent<BulletController>().damage);
+			ReciveDamage(collision.GetComponent<BulletController>().damage, false);
 			Destroy(collision.gameObject);
 		}
 		else if (collision.tag == "Player") {
 			//TODO: Подумать над дамагом
 			//Особенно від боссів
 			GameManager.Instance.Player.GetDamage(livesCurr);
-			ReciveDamage(livesMax);
+			ReciveDamage(livesMax, true);
 		}
 	}
 
-	public void ReciveDamage(int damage) {
+	public void ReciveDamage(int damage, bool isPlayerCollision) {
+		if (livesCurr <= 0)
+			return;
+
 		livesCurr -= damage;
 		StartCoroutine(HelperFunctions.BlinkOfDamage(_spRen));
 
@@ -44,12 +47,16 @@ public class EnemyController : MonoBehaviour {
 		}
 
 		if (livesCurr <= 0) {
-			GameManager.Instance.Player.Score += livesMax;
-			Destroy(this.gameObject);
-			if (this is BossBase) {
-				GetComponent<CoinsDropper>().Drop();
-				GameManager.Instance.EventManager.CallOnBossKilled();
+			if (!isPlayerCollision) {
+				GameManager.Instance.Player.Score += livesMax;
+				if (this is BossBase)
+					GetComponent<CoinsDropper>().Drop();
 			}
+
+			if (this is BossBase)
+				GameManager.Instance.EventManager.CallOnBossKilled();
+
+			Destroy(this.gameObject);
 		}
 	}
 }

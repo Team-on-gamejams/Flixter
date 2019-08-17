@@ -20,6 +20,7 @@ public class LazerCannon : BossBase {
 
 	protected override void ProcessAttack() {
 		LeanTween.cancel(gameObject);
+		EventManager.OnTimeStopChangedEvent -= OnTimeStopChanged;
 		attack.SetActive(true);
 	}
 }

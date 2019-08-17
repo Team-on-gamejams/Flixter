@@ -50,7 +50,7 @@ public abstract class BossBase : EnemyController {
 
 	protected abstract void ProcessAttack();
 
-	void OnTimeStopChanged(EventData data) {
+	protected void OnTimeStopChanged(EventData data) {
 		if (GameManager.Instance.IsTimeStop)
 			LeanTween.cancel(gameObject);
 		else
@@ -60,30 +60,14 @@ public abstract class BossBase : EnemyController {
 	//TODO: cool effect when boss appear
 	//TODO: boss moving down when you speed up
 	public void ProcessMove() {
-		if (!completeMovingDown) {
-			LeanTween.moveLocalY(gameObject, stopPointY, (transform.position.y - stopPointY) / speed)
-			.setOnComplete(() => {
-				completeMovingDown = true;
-				ProcessMove();
-			});
-		}
-		else {
+		if (completeMovingDown) {
 			switch (moveType) {
 				case BossBehaviourEnums.BossMoveType.LeftRight:
-					if (movingLeft) {
-						LeanTween.moveLocalX(gameObject, leftBorder.x, Mathf.Abs((transform.position.x - leftBorder.x)) / speed)
-						.setOnComplete(() => {
-							movingLeft = !movingLeft;
-							ProcessMove();
-						});
-					}
-					else {
-						LeanTween.moveLocalX(gameObject, rightBorder.x, Mathf.Abs((transform.position.x - rightBorder.x)) / speed)
-						.setOnComplete(() => {
-							movingLeft = !movingLeft;
-							ProcessMove();
-						});
-					}
+					LeanTween.moveLocalX(gameObject, leftBorder.x, Mathf.Abs((transform.position.x - (movingLeft ? leftBorder.x : rightBorder.x))) / speed)
+					.setOnComplete(() => {
+						movingLeft = !movingLeft;
+						ProcessMove();
+					});
 					break;
 
 				case BossBehaviourEnums.BossMoveType.FollowPlayer:
@@ -94,6 +78,18 @@ public abstract class BossBase : EnemyController {
 					break;
 			}
 		}
+		else {
+			LeanTween.moveLocalY(gameObject, stopPointY, (transform.position.y - stopPointY) / speed)
+			.setOnComplete(() => {
+				completeMovingDown = true;
+				ProcessMove();
+			});
+		}
+	}
+
+	public void SubscribeToTimeChangedEvent() {
+		EventManager.OnTimeStopChangedEvent -= OnTimeStopChanged;
+		EventManager.OnTimeStopChangedEvent += OnTimeStopChanged;
 	}
 
 	public string GetBossName() => BossName;

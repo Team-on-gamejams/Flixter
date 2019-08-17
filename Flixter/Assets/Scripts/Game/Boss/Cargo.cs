@@ -19,6 +19,7 @@ public class Cargo : BossBase {
 	}
 
 	protected override void ProcessAttack() {
+		EventManager.OnTimeStopChangedEvent -= OnTimeStopChanged;
 		attack.SetActive(true);
 	}
 }

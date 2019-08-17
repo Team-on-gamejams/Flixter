@@ -1811,7 +1811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currMenu: 0
-  MainMenuToPreGameMenu: 2
+  MainMenuToPreGameMenu: 1.5
   MainMenu: {fileID: 297990086}
   Back1: {fileID: 886317849}
   Back2: {fileID: 219859863}

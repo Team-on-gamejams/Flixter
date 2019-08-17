@@ -181,13 +181,16 @@ public class PlayerControl : MonoBehaviour {
 		Score = 0;
 		Coins = 0;
 
-		LeanTween.delayedCall(menuController.MainMenuToPreGameMenu, () => { health = maxHealth; }); 
+		LeanTween.delayedCall(menuController.MainMenuToPreGameMenu, () => {
+			player.transform.position = new Vector2(0, 0);
+			health = maxHealth;
+		}); 
+
 		currBlinkTime = 0;
 		if (bulletsHolder != null)
 		    Destroy(bulletsHolder);
 		bulletsHolder = new GameObject("Bullets");
 
-		player.transform.position = new Vector2(0, 0);
 		GameManager.Instance.SpawnController.Clear();
 		GameManager.Instance.bosterDock.Clear();
 	}

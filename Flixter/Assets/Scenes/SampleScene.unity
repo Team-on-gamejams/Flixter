@@ -1124,7 +1124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Year: 2019
   Month: 8
-  Day: 16
+  Day: 17
   TimebombLength: 7
   BombActivated: 1
 --- !u!4 &454092624
@@ -3371,7 +3371,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 718031866}
   m_FillRect: {fileID: 1415473568}
   m_HandleRect: {fileID: 718031865}
@@ -10249,7 +10249,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1290723000}
   m_FillRect: {fileID: 969217701}
   m_HandleRect: {fileID: 1290722999}

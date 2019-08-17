@@ -15,8 +15,8 @@ public class BossBattleUIController : MonoBehaviour {
 	void Awake() {
 		sliders = new List<Slider>(3) {
 			bossName.GetComponent<Slider>(),
-			sliderLeft.GetComponent<Slider>(),
-			sliderRight.GetComponent<Slider>()
+			sliderLeft.transform.parent.GetComponent<Slider>(),
+			sliderRight.transform.parent.GetComponent<Slider>()
 		};
 
 		EventManager.OnBossSpawned += OnBossSpawned;

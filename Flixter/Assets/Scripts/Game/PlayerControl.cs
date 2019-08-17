@@ -30,18 +30,31 @@ public class PlayerControl : MonoBehaviour {
 
 	public float shootSpeed = 0.2f;
 	public int maxHealth = 10;
-	int health;
+	int health {
+		get => _health;
+		set {
+			_health = value;
+			foreach (var i in hpSliders) {
+				LeanTween.cancel(i.gameObject, false);
+				LeanTween.value(i.gameObject, i.value, ((float)(_health)) / maxHealth, 0.2f)
+				.setOnUpdate((float val)=> {
+					i.value = val;
+				});
+			}
+		}
+	}
+	int _health;
 	public float blinkTime = 1.0f;
 	public int blinkCount = 5;
 	float oneBlinkTime;
 	float currBlinkTime;
-
 
 	public static List<BosterBase> activeBoster = new List<BosterBase>();
 
 	[SerializeField] CoolShieldEffect shield;
 	[SerializeField] CheatManager cheat;
 	[SerializeField] MenuController menuController;
+	[SerializeField] UnityEngine.UI.Slider[] hpSliders;
 
 	public SpriteRenderer playerBody;
 
@@ -125,7 +138,7 @@ public class PlayerControl : MonoBehaviour {
 
 		health -= damage;
 
-        if (health <= 0)
+		if (health <= 0)
 			Die();
 		else
 			StartCoroutine(BlinkOfDamage(playerBody));
@@ -168,7 +181,7 @@ public class PlayerControl : MonoBehaviour {
 		Score = 0;
 		Coins = 0;
 
-		health = maxHealth;
+		LeanTween.delayedCall(menuController.MainMenuToPreGameMenu, () => { health = maxHealth; }); 
 		currBlinkTime = 0;
 		if (bulletsHolder != null)
 		    Destroy(bulletsHolder);

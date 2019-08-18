@@ -22,7 +22,7 @@ public class CoinsOutput : MonoBehaviour {
 	}
 
 	IEnumerator UpgradeText() {
-		float pause = 1.0f / (currCoins - displayCoins);
+		float pause = 1.0f / Mathf.Abs(currCoins - displayCoins);
 		while (displayCoins < currCoins) {
 			++displayCoins;
 			text.text = displayCoins.ToString();

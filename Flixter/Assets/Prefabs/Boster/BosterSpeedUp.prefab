@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   bosterType: 2
-  time: 5
+  time: 10
   newSpeedMult: 4
 --- !u!61 &6515335473853153225
 BoxCollider2D:

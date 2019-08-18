@@ -587,9 +587,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 154157226130350300}
   shootSpeed: 0.2
-  maxHealth: 10
+  maxHealth: 100
   blinkTime: 1
   blinkCount: 5
+  shield: {fileID: 810456196}
+  cheat: {fileID: 1505614840}
+  menuController: {fileID: 0}
+  hpSliders:
+  - {fileID: 0}
+  - {fileID: 0}
   playerBody: {fileID: 5781828437688907759}
   currentBulletStartPosUse: 0
   simpleBulletPrefab: {fileID: 5474211784042162513, guid: d1c3ea1a4cb7d014fbef07bd0a7642f4,

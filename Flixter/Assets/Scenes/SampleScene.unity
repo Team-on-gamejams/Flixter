@@ -1236,7 +1236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Year: 2019
   Month: 8
-  Day: 18
+  Day: 19
   TimebombLength: 7
   BombActivated: 1
 --- !u!4 &454092624
@@ -2138,18 +2138,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596660587}
   m_CullTransparentMesh: 0
---- !u!114 &626188522 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 810456196, guid: 891e80f4cd0fea94a9b43012b8eeb754,
-    type: 3}
-  m_PrefabInstance: {fileID: 5781828437607248533}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc4117ac8c7746d4fb82e25eacbb7b71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &653638953
 GameObject:
   m_ObjectHideFlags: 0
@@ -5793,7 +5781,7 @@ MonoBehaviour:
   spawnTime:
   - 1
   - 8
-  - 5
+  - 1
   EnemySinglePrefab:
   - {fileID: 3250196350666273533, guid: 08e23e33aef26974d8e28dec131ea19c, type: 3}
   - {fileID: 5713835879366028927, guid: d8f73eae531b6214aaadfc1ee407f203, type: 3}
@@ -5804,8 +5792,6 @@ MonoBehaviour:
   - {fileID: 3144273075591879510, guid: fb8a4440806d4da44b905d3f3d371d14, type: 3}
   EnemyBossPrefab:
   - {fileID: 3144273075591879510, guid: 9097d70ccb63e214ca21418978d40bba, type: 3}
-  - {fileID: 3144273075591879510, guid: d7892b36de36f734992b7cfffd621a1f, type: 3}
-  - {fileID: 3144273075591879510, guid: b574a34b0c7af7445871cf6201ac40d4, type: 3}
 --- !u!4 &1793660148
 Transform:
   m_ObjectHideFlags: 0
@@ -6231,18 +6217,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069281005}
   m_CullTransparentMesh: 0
---- !u!114 &2077732347 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1505614840, guid: 891e80f4cd0fea94a9b43012b8eeb754,
-    type: 3}
-  m_PrefabInstance: {fileID: 5781828437607248533}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42b890455a6a51e46a31dfcf500edc82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2080546595
 GameObject:
   m_ObjectHideFlags: 0
@@ -6572,24 +6546,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1852177320202619683, guid: 891e80f4cd0fea94a9b43012b8eeb754,
         type: 3}
-      propertyPath: hpSliders.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1852177320202619683, guid: 891e80f4cd0fea94a9b43012b8eeb754,
-        type: 3}
       propertyPath: menuController
       value: 
       objectReference: {fileID: 499749197}
-    - target: {fileID: 1852177320202619683, guid: 891e80f4cd0fea94a9b43012b8eeb754,
-        type: 3}
-      propertyPath: cheat
-      value: 
-      objectReference: {fileID: 2077732347}
-    - target: {fileID: 1852177320202619683, guid: 891e80f4cd0fea94a9b43012b8eeb754,
-        type: 3}
-      propertyPath: shield
-      value: 
-      objectReference: {fileID: 626188522}
     - target: {fileID: 1852177320202619683, guid: 891e80f4cd0fea94a9b43012b8eeb754,
         type: 3}
       propertyPath: hpSliders.Array.data[0]

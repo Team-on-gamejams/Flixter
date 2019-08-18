@@ -42,7 +42,7 @@ public abstract class BossBase : EnemyController {
 		if (GameManager.Instance.IsTimeStop)
 			return;
 
-		if((attackTimer += Time.deltaTime) >= AttackTime) {
+		if(AttackTime != -1 && (attackTimer += Time.deltaTime) >= AttackTime) {
 			attackTimer -= AttackTime;
 			ProcessAttack();
 		}
@@ -59,7 +59,7 @@ public abstract class BossBase : EnemyController {
 
 	//TODO: cool effect when boss appear
 	//TODO: boss moving down when you speed up
-	public void ProcessMove() {
+	public virtual void ProcessMove() {
 		if (completeMovingDown) {
 			switch (moveType) {
 				case BossBehaviourEnums.BossMoveType.LeftRight:

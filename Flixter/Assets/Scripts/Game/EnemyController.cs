@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour {
 
 		if (livesCurr <= 0) {
 			if (!isPlayerCollision) {
-				GameManager.Instance.Player.Score += livesMax;
+				GameManager.Instance.Player.Score += livesMax / 10;
 				if (this is BossBase)
 					GetComponent<CoinsDropper>().Drop();
 			}

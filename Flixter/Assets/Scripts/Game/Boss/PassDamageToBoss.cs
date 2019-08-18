@@ -11,7 +11,7 @@ public class PassDamageToBoss : MonoBehaviour {
 			boss.ReciveDamage(collision.GetComponent<BulletController>().damage, false);
 			Destroy(collision.gameObject);
 		}
-		else if (collision.tag == "Player") {
+		else if (collision.tag == "Player" && !GameManager.Instance.Player.IsInvinsible()) {
 			//TODO: Подумать над дамагом
 			//Особенно від боссів
 			GameManager.Instance.Player.GetDamage(DamageOnPlayerCollision);

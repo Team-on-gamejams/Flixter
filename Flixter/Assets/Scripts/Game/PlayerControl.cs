@@ -133,7 +133,7 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public void GetDamage(int damage) {
-		if (shield.IsActive || cheat.PlayerIgnoreDamage || currBlinkTime != 0)
+		if (shield.IsActive || cheat.PlayerIgnoreDamage || IsInvinsible())
 			return;
 
 		health -= damage;
@@ -197,6 +197,10 @@ public class PlayerControl : MonoBehaviour {
 
 	bool IsTouchingBorders(float x, float y) {
 		return x < borders.x || x > -borders.x || y < borders.y || y > -borders.y;
+	}
+
+	public bool IsInvinsible() {
+		return currBlinkTime != 0;
 	}
 
     IEnumerator BlinkOfDamage(SpriteRenderer sr){

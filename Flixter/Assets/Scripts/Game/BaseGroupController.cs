@@ -11,11 +11,9 @@ public class BaseGroupController : MonoBehaviour {
 		controllers = new List<EnemyController>(GetComponentsInChildren<EnemyController>());
 
 		if(GroupSpeed != 0)
-			foreach (var c in controllers) 
+			foreach (var c in controllers) {
 				c.speed = GroupSpeed;
-	}
-
-	void Update() {
-
+				c.StartMove();
+			}
 	}
 }

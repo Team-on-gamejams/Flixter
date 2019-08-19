@@ -184,6 +184,7 @@ public class PlayerControl : MonoBehaviour {
 		LeanTween.delayedCall(menuController.MainMenuToPreGameMenu, () => {
 			player.transform.position = new Vector2(0, 0);
 			health = maxHealth;
+			GameManager.Instance.bosterDock.Clear();
 		}); 
 
 		currBlinkTime = 0;
@@ -192,7 +193,6 @@ public class PlayerControl : MonoBehaviour {
 		bulletsHolder = new GameObject("Bullets");
 
 		GameManager.Instance.SpawnController.Clear();
-		GameManager.Instance.bosterDock.Clear();
 	}
 
 	bool IsTouchingBorders(float x, float y) {

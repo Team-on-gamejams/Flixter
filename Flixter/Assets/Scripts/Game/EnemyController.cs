@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour {
 	public int livesMax = 3;
 	private int livesCurr;
 	public float speed = 2;
+	private Coroutine moveCoroutine;
 
 	private SpriteRenderer _spRen;
 
@@ -15,7 +16,6 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	void Start() {
-		StartCoroutine(HelperFunctions.MoveRoutine(gameObject, speed));
 		StartCoroutine(HelperFunctions.CheckOutBorders(gameObject));
 	}
 
@@ -58,5 +58,13 @@ public class EnemyController : MonoBehaviour {
 
 			Destroy(this.gameObject);
 		}
+	}
+
+	public void StartMove() {
+		moveCoroutine = StartCoroutine(HelperFunctions.MoveRoutine(gameObject, speed));
+	}
+
+	public void StopMove() {
+		StopCoroutine(moveCoroutine);
 	}
 }

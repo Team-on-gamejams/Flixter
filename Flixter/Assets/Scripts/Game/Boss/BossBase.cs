@@ -63,7 +63,7 @@ public abstract class BossBase : EnemyController {
 		if (completeMovingDown) {
 			switch (moveType) {
 				case BossBehaviourEnums.BossMoveType.LeftRight:
-					LeanTween.moveLocalX(gameObject, leftBorder.x, Mathf.Abs((transform.position.x - (movingLeft ? leftBorder.x : rightBorder.x))) / speed)
+					LeanTween.moveLocalX(gameObject, movingLeft ? leftBorder.x : rightBorder.x, Mathf.Abs((transform.position.x - (movingLeft ? leftBorder.x : rightBorder.x))) / speed)
 					.setOnComplete(() => {
 						movingLeft = !movingLeft;
 						ProcessMove();

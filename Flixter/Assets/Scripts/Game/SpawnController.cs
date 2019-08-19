@@ -70,7 +70,9 @@ public class SpawnController : MonoBehaviour {
 		}
 		else {
 			enemyIndex = Random.Range(0, EnemyToSpawn[id].Count);
-			Instantiate(EnemyToSpawn[id][enemyIndex], HelperFunctions.GetRandSpawnPoint(), Quaternion.identity, transform);
+			var go = Instantiate(EnemyToSpawn[id][enemyIndex], HelperFunctions.GetRandSpawnPoint(), Quaternion.identity, transform);
+			var ec = go.GetComponent<EnemyController>();
+			ec?.StartMove();
 		}
 	}
 

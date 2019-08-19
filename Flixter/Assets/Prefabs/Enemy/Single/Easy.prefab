@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6515335473853153225}
   - component: {fileID: 181994613}
   m_Layer: 0
-  m_Name: EnemyEasy
+  m_Name: Easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74de2548522ca14ebb9e57668b916d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  livesMax: 1
+  livesMax: 10
   speed: 3
 --- !u!61 &6515335473853153225
 BoxCollider2D:

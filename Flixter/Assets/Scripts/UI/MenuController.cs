@@ -23,7 +23,7 @@ public class MenuController : MonoBehaviour {
 	RectTransform PreGameMenuRect;
 
 	public GameObject InGameMenu;
-	public CanvasGroup DieMenu;
+	public DieMenuController DieMenu;
 	public BossBattleUIController BossUI;
 
 	public TextMeshProUGUI coinsText;
@@ -105,13 +105,7 @@ public class MenuController : MonoBehaviour {
 			ShowMainMenu();
 		}
 		else if (currMenu == CurrMenu.DieMenu) {
-			LeanTween.value(DieMenu.gameObject, DieMenu.alpha, 0, MainMenuToPreGameMenu / 3)
-			.setOnUpdate((a) => {
-				DieMenu.alpha = a;
-			})
-			.setOnComplete(() => {
-				DieMenu.blocksRaycasts = DieMenu.interactable = false;
-			});
+			DieMenu.Hide(MainMenuToPreGameMenu);
 			ShowMainMenu();
 		}
 
@@ -121,30 +115,8 @@ public class MenuController : MonoBehaviour {
 	}
 
 	public void ToDieMenu() {
-		LeanTween.value(DieMenu.gameObject, DieMenu.alpha, 1, MainMenuToPreGameMenu)
-			.setOnUpdate((a) => {
-				DieMenu.alpha = a;
-			})
-			.setOnComplete(() => {
-				DieMenu.blocksRaycasts = DieMenu.interactable = true;
-			});
+		DieMenu.Show(MainMenuToPreGameMenu);
 		currMenu = CurrMenu.DieMenu;
-	}
-
-	public void HideDieMenu(bool isForce) {
-		if (isForce) {
-			DieMenu.blocksRaycasts = DieMenu.interactable = false;
-			DieMenu.alpha = 0;
-		}
-		else {
-			LeanTween.value(DieMenu.gameObject, DieMenu.alpha, 0, MainMenuToPreGameMenu / 4)
-			.setOnUpdate((a) => {
-				DieMenu.alpha = a;
-			})
-			.setOnComplete(() => {
-				DieMenu.blocksRaycasts = DieMenu.interactable = false;
-			});
-		}
 	}
 
 	void ShowMainMenu(){
@@ -212,7 +184,7 @@ public class MenuController : MonoBehaviour {
 	}
 
 	void ShowPreGameMenu(){
-		HideDieMenu(false);
+		DieMenu.Hide(MainMenuToPreGameMenu, false);
 
 		GameManager.Instance.IsGameStart = false;
 

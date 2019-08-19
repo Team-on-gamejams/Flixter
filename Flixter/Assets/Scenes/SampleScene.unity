@@ -1823,7 +1823,7 @@ MonoBehaviour:
   PlayerSpriteMainMenu: {fileID: 1356846691}
   PreGameMenu: {fileID: 1502804071}
   InGameMenu: {fileID: 300214391}
-  DieMenu: {fileID: 1095894319}
+  DieMenu: {fileID: 1095894320}
   BossUI: {fileID: 1257415763}
   coinsText: {fileID: 338883474}
   scoreText: {fileID: 2105395476}
@@ -3750,6 +3750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1095894318}
   - component: {fileID: 1095894319}
+  - component: {fileID: 1095894320}
   m_Layer: 5
   m_Name: DieMenu
   m_TagString: Untagged
@@ -3787,9 +3788,24 @@ CanvasGroup:
   m_GameObject: {fileID: 1095894317}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
+  m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &1095894320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095894317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 385a27fcee30b874dadb8d6f07cab57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 1095894319}
+  reviveButton: {fileID: 720019409}
+  reviveForCoinsPriceText: {fileID: 902090292}
 --- !u!1 &1131321086
 GameObject:
   m_ObjectHideFlags: 0

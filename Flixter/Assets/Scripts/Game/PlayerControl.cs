@@ -161,7 +161,8 @@ public class PlayerControl : MonoBehaviour {
 
 	//TODO: Add cool effect on revive
 	public void Revive(){
-		menuController.HideDieMenu(true);
+		menuController.DieMenu.Hide(menuController.MainMenuToPreGameMenu, true);
+		menuController.DieMenu.UseRevive();
 		health = maxHealth;
 		GameManager.Instance.IsGameStart = true;
 	}
@@ -169,7 +170,8 @@ public class PlayerControl : MonoBehaviour {
 	//TODO: Add cool effect on revive
 	public void ReviveForCoins() {
 		if(Coins >= 5) {
-			menuController.HideDieMenu(true);
+			menuController.DieMenu.Hide(menuController.MainMenuToPreGameMenu, true);
+			menuController.DieMenu.UseReviveForCoins();
 			health = maxHealth;
 			GameManager.Instance.IsGameStart = true;
 			Coins -= 5;
@@ -185,6 +187,7 @@ public class PlayerControl : MonoBehaviour {
 			player.transform.position = new Vector2(0, 0);
 			health = maxHealth;
 			GameManager.Instance.bosterDock.Clear();
+			menuController.DieMenu.SetDefaults();
 		}); 
 
 		currBlinkTime = 0;

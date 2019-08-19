@@ -26,6 +26,8 @@ public class PlayerControl : MonoBehaviour {
 	}
 	int _coins;
 
+	internal int currRevivePrice;
+
 	public GameObject player;
 
 	public float shootSpeed = 0.2f;
@@ -169,12 +171,14 @@ public class PlayerControl : MonoBehaviour {
 
 	//TODO: Add cool effect on revive
 	public void ReviveForCoins() {
-		if(Coins >= 5) {
-			menuController.DieMenu.Hide(menuController.MainMenuToPreGameMenu, true);
-			menuController.DieMenu.UseReviveForCoins();
+		if(Coins >= currRevivePrice) {
 			health = maxHealth;
 			GameManager.Instance.IsGameStart = true;
-			Coins -= 5;
+			Coins -= currRevivePrice;
+			currRevivePrice += Consts.reviveStartPrice;
+
+			menuController.DieMenu.Hide(menuController.MainMenuToPreGameMenu, true);
+			menuController.DieMenu.UseReviveForCoins();
 		}
 	}
 
@@ -182,6 +186,8 @@ public class PlayerControl : MonoBehaviour {
 		//TODO: save/load coins and score
 		Score = 0;
 		Coins = 0;
+
+		currRevivePrice = Consts.reviveStartPrice;
 
 		LeanTween.delayedCall(menuController.MainMenuToPreGameMenu, () => {
 			player.transform.position = new Vector2(0, 0);

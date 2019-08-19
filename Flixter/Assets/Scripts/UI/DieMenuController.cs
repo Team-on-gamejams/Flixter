@@ -21,10 +21,11 @@ public class DieMenuController : MonoBehaviour {
 
 	public void SetDefaults() {
 		reviveButton.gameObject.SetActive(true);
+		reviveForCoinsPriceText.text = $"-{GameManager.Instance.Player.currRevivePrice}";
 	}
 
 	public void UseReviveForCoins() {
-
+		reviveForCoinsPriceText.text = $"-{GameManager.Instance.Player.currRevivePrice}";
 	}
 
 	public void UseRevive() {

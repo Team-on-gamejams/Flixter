@@ -8,4 +8,6 @@ public static class Consts {
 	public static Color backColorMenu = new Color(0, 0, 0);
 
 	public const byte bossIdSpawner = 2;
+
+	public const string myPlacementId = "rewardedVideo";
 }

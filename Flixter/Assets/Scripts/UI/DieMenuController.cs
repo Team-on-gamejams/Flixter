@@ -1,16 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Advertisements;
 using UnityEngine.UI;
 using TMPro;
 
 public class DieMenuController : MonoBehaviour {
 	[SerializeField] CanvasGroup canvasGroup;
-	[SerializeField] GameObject reviveButton;
+	[SerializeField] Button reviveButton;
 	[SerializeField] TextMeshProUGUI reviveForCoinsPriceText;
 
+	LambdaListener reviveListener;
+
+	private void Awake() {
+		reviveListener = new LambdaListener();
+		reviveListener.OnFinish += () => {
+			GameManager.Instance.Player.Revive();
+		};
+	}
+
 	public void SetDefaults() {
-		reviveButton.SetActive(true);
+		reviveButton.gameObject.SetActive(true);
 	}
 
 	public void UseReviveForCoins() {
@@ -18,7 +28,7 @@ public class DieMenuController : MonoBehaviour {
 	}
 
 	public void UseRevive() {
-		reviveButton.SetActive(false);
+		reviveButton.gameObject.SetActive(false);
 	}
 
 	public void Show(float time) {
@@ -47,6 +57,15 @@ public class DieMenuController : MonoBehaviour {
 		else {
 			canvasGroup.alpha = 0.0f;
 			canvasGroup.blocksRaycasts = canvasGroup.interactable = false;
+		}
+	}
+
+	public void ShowAd() {
+		if (Advertisement.IsReady(Consts.myPlacementId)) {
+			Advertisement.Show(Consts.myPlacementId);
+		}
+		else {
+			Debug.Log("Cant show AD");
 		}
 	}
 }

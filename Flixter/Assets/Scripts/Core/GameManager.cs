@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Advertisements;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -37,10 +38,18 @@ public class GameManager : Singleton<GameManager> {
 	public SpawnController SpawnController;
 	public BosterSpawner BosterSpawner;
 
+#if UNITY_IOS
+    const string gameId = "3261473";
+#elif UNITY_ANDROID
+	const string gameId = "3261472";
+#endif
+
 	public void Awake() {
 		EventManager = new EventManager();
 		Input.multiTouchEnabled = false;
 		LeanTween.init(800);
+
+		Advertisement.Initialize(gameId, false);
 
 		IsTimeStop = true;
 	}

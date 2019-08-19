@@ -1236,7 +1236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Year: 2019
   Month: 8
-  Day: 19
+  Day: 20
   TimebombLength: 7
   BombActivated: 1
 --- !u!4 &454092624
@@ -2801,8 +2801,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 232345237}
-        m_MethodName: Revive
+      - m_Target: {fileID: 1095894320}
+        m_MethodName: ShowAd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3804,7 +3804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 1095894319}
-  reviveButton: {fileID: 720019409}
+  reviveButton: {fileID: 720019411}
   reviveForCoinsPriceText: {fileID: 902090292}
 --- !u!1 &1131321086
 GameObject:

@@ -28,7 +28,12 @@ public class EnemyController : MonoBehaviour {
 			//TODO: Подумать над дамагом
 			//Особенно від боссів
 			GameManager.Instance.Player.GetDamage(livesCurr);
-			ReciveDamage(livesMax, true);
+			if(this is BossBase && GameManager.Instance.Player.IsShieldActive()) {
+				//ignore gamage
+			}
+			else {
+				ReciveDamage(livesMax, true);
+			}
 		}
 	}
 

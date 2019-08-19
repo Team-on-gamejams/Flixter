@@ -135,7 +135,7 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public void GetDamage(int damage) {
-		if (shield.IsActive || cheat.PlayerIgnoreDamage || IsInvinsible())
+		if (IsShieldActive() || cheat.PlayerIgnoreDamage || IsInvinsible())
 			return;
 
 		health -= damage;
@@ -152,6 +152,10 @@ public class PlayerControl : MonoBehaviour {
 
 	public void DeactivateShield() {
 		shield.DeactivateShield();
+	}
+
+	public bool IsShieldActive() {
+		return shield.IsActive;
 	}
 
 	//TODO: Add cool effect on die

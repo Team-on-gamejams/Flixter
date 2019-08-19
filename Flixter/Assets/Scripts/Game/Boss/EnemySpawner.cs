@@ -26,9 +26,9 @@ public class EnemySpawner : MonoBehaviour {
 		for (byte i = 1; i <= 10; ++i) {
 			ec.transform.Translate(Vector3.down * ec.speed * Time.deltaTime * GameManager.Instance.SpeedMult);
 			if(moveLeft)
-				ec.transform.Translate(Vector3.left * ec.speed * Time.deltaTime * GameManager.Instance.SpeedMult);
+				ec.transform.Translate(Vector3.left * ec.speed * Time.deltaTime);
 			else
-				ec.transform.Translate(Vector3.right * ec.speed * Time.deltaTime * GameManager.Instance.SpeedMult);
+				ec.transform.Translate(Vector3.right * ec.speed * Time.deltaTime);
 			yield return WaitForTime(Time.deltaTime);
 		}
 

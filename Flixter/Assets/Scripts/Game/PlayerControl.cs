@@ -22,6 +22,7 @@ public class PlayerControl : MonoBehaviour {
 			EventData data = new EventData("OnCoinsChangedEvent");
 			data.Data["coins"] = _coins;
 			GameManager.Instance.EventManager.CallOnCoinsChangedEvent(data);
+            PlayerPrefs.SetInt("coins", _coins);
 		}
 	}
 	int _coins;
@@ -189,7 +190,14 @@ public class PlayerControl : MonoBehaviour {
 	public void ReInit(){
 		//TODO: save/load coins and score
 		Score = 0;
-		Coins = 0;
+		if(PlayerPrefs.HasKey("coins"))
+        {
+            Coins = PlayerPrefs.GetInt("coins");
+        }
+        else
+        {
+            Coins = 0;
+        }
 
 		currRevivePrice = Consts.reviveStartPrice;
 

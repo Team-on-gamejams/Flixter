@@ -61,10 +61,10 @@ public class HelperFunctions : MonoBehaviour {
     public static IEnumerator BlinkOfDamage(SpriteRenderer _spRen)
     {
         Color tmp = _spRen.color;
-        tmp.a = 0.5f;
+        tmp = Color.red;
         _spRen.color = tmp;
-        yield return new WaitForSeconds(0.01f);
-        tmp.a = 1f;
+        yield return new WaitForSeconds(0.05f);
+        tmp = Color.white;
         _spRen.color = tmp;
     }
 

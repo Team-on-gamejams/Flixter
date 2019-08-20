@@ -188,14 +188,12 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public void ReInit(){
-		//TODO: save/load coins and score
+        
 		Score = 0;
-		if(PlayerPrefs.HasKey("coins"))
-        {
+
+		if(PlayerPrefs.HasKey("coins")){
             Coins = PlayerPrefs.GetInt("coins");
-        }
-        else
-        {
+        } else {
             Coins = 0;
         }
 

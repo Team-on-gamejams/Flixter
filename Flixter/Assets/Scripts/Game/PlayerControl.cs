@@ -188,8 +188,16 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public void ReInit(){
-        
-		Score = 0;
+        //Update MaxScore game result
+        if (PlayerPrefs.HasKey("maxScore")) {
+            if (PlayerPrefs.GetInt("maxScore") < Score) {
+                PlayerPrefs.SetInt("maxScore", Score);
+            }
+        } else {
+            PlayerPrefs.SetInt("maxScore", Score);
+        }
+
+        Score = 0;
 
 		if(PlayerPrefs.HasKey("coins")){
             Coins = PlayerPrefs.GetInt("coins");

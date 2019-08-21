@@ -61,11 +61,11 @@ public class HelperFunctions : MonoBehaviour {
     public static IEnumerator BlinkOfDamage(SpriteRenderer _spRen)
     {
         Color tmp = _spRen.color;
-        tmp = Color.red;
+        tmp.a = 0.5f;
         _spRen.color = tmp;
-        yield return new WaitForSeconds(0.05f);
-        tmp = Color.white;
-        _spRen.color = tmp;
+        yield return new WaitForSeconds(0.01f);
+        tmp.a = 1;
+		_spRen.color = tmp;
     }
 
     public static Vector3 GetRandSpawnPoint() {

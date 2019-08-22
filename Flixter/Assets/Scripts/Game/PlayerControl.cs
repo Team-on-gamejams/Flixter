@@ -193,7 +193,8 @@ public class PlayerControl : MonoBehaviour {
             if (PlayerPrefs.GetInt("maxScore") < Score) {
                 PlayerPrefs.SetInt("maxScore", Score);
             }
-        } else {
+        }
+		else {
             PlayerPrefs.SetInt("maxScore", Score);
         }
 
@@ -201,7 +202,8 @@ public class PlayerControl : MonoBehaviour {
 
 		if(PlayerPrefs.HasKey("coins")){
             Coins = PlayerPrefs.GetInt("coins");
-        } else {
+        }
+		else {
             Coins = 0;
         }
 

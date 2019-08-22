@@ -10,5 +10,7 @@ public static class Consts {
 	public const byte bossIdSpawner = 2;
 	public const int reviveStartPrice = 5;
 
+	public const float menuAnimationsTime = 1.5f;
+
 	public const string myPlacementId = "rewardedVideo";
 }

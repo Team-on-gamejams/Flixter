@@ -25,6 +25,8 @@ public class MenuController : MonoBehaviour {
 	public GameObject InGameMenu;
 	public DieMenuController DieMenu;
 	public BossBattleUIController BossUI;
+	public Inputnickname InputNickname;
+	public Leaderboard Leaderboard;
 
 	public TextMeshProUGUI coinsText;
 	public TextMeshProUGUI scoreText;

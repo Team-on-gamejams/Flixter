@@ -27,6 +27,22 @@ public class PlayerControl : MonoBehaviour {
 	}
 	int _coins;
 
+	public string Nickname {
+		get {
+			if(_nickname == null)
+				_nickname = PlayerPrefs.HasKey("nickname") ? PlayerPrefs.GetString("nickname") : null;
+			return _nickname;
+
+		}
+		set {
+			if(_nickname != value) {
+				_nickname = value;
+				PlayerPrefs.SetString("nickname", _nickname);
+			}
+		}
+	}
+	string _nickname;
+
 	internal int currRevivePrice;
 
 	public GameObject player;
@@ -70,25 +86,24 @@ public class PlayerControl : MonoBehaviour {
 	internal Vector3 offset;
 
 	private float shootTime = 0;
-	
-
 	GameObject bulletsHolder;
 
-	void Start() {
-		borders = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
-
-
+	private void Awake() {
 		foreach (var i in bulletStartPos)
 			i.SetActive(true);
 		bulletStartPosParsed = new Transform[bulletStartPos.Length][];
-		for(byte i = 0; i < bulletStartPosParsed.Length; ++i)
+		for (byte i = 0; i < bulletStartPosParsed.Length; ++i)
 			bulletStartPosParsed[i] = bulletStartPos[i].GetComponentsInChildren<Transform>().Skip(1).ToArray();
 
 		oneBlinkTime = blinkTime / blinkCount;
 
-		ReInit();
-
 		GameManager.Instance.Player = this;
+	}
+
+	void Start() {
+		borders = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
+
+		ReInit();
 	}
 
 	void OnMouseDown() {

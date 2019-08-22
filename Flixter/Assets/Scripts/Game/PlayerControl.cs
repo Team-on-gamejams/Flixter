@@ -203,27 +203,12 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public void ReInit(){
-        //Update MaxScore game result
-        if (PlayerPrefs.HasKey("maxScore")) {
-            if (PlayerPrefs.GetInt("maxScore") < Score) {
-                PlayerPrefs.SetInt("maxScore", Score);
-            }
-        }
-		else {
-            PlayerPrefs.SetInt("maxScore", Score);
-        }
-
-        Score = 0;
-
-		if(PlayerPrefs.HasKey("coins")){
-            Coins = PlayerPrefs.GetInt("coins");
-        }
-		else {
-            Coins = 0;
-        }
-
+		PlayerPrefs.SetInt("maxScore", PlayerPrefs.HasKey("maxScore") ? Mathf.Max(PlayerPrefs.GetInt("maxScore"), Score) : Score);
+		Score = 0;
+		Coins = PlayerPrefs.HasKey("coins") ? PlayerPrefs.GetInt("coins") : 0;
 		currRevivePrice = Consts.reviveStartPrice;
 
+		menuController.ShowFader();
 		LeanTween.delayedCall(Consts.menuAnimationsTime, () => {
 			player.transform.position = new Vector2(0, 0);
 			health = maxHealth;

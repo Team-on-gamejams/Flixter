@@ -8,6 +8,8 @@ public class MenuController : MonoBehaviour {
 	public enum CurrMenu : byte { MainMenu, PreGameMenu, InGameMenu, DieMenu }
 	public CurrMenu currMenu = CurrMenu.MainMenu;
 
+	public Image fader;
+
 	public GameObject MainMenu;
 	public RectTransform Back1;
 	public RectTransform Back2;
@@ -206,6 +208,7 @@ public class MenuController : MonoBehaviour {
 
 		LeanTween.move(PlayerSpriteMainMenu, new Vector2(1450, 1400), Consts.menuAnimationsTime / 6)
 			.setEase(LeanTweenType.easeInOutQuad);
+
 	}
 
 	void ShowInGameMenu(){
@@ -229,6 +232,30 @@ public class MenuController : MonoBehaviour {
 		})
 		.setOnComplete(() => {
 			GameManager.Instance.IsGameStart = true;
+		});
+
+		HideFader();
+	}
+
+	public void ShowFader() {
+		LeanTween.cancel(fader.gameObject, false);
+		LeanTween.value(fader.gameObject, fader.color.a, 1.0f, Consts.menuAnimationsTime)
+		.setEase(LeanTweenType.linear)
+		.setOnUpdate((a) => {
+			Color color = fader.color;
+			color.a = a;
+			fader.color = color;
+		});
+	}
+
+	public void HideFader() {
+		LeanTween.cancel(fader.gameObject, false);
+		LeanTween.value(fader.gameObject, fader.color.a, 0.0f, Consts.menuAnimationsTime)
+		.setEase(LeanTweenType.linear)
+		.setOnUpdate((a) => {
+			Color color = fader.color;
+			color.a = a;
+			fader.color = color;
 		});
 	}
 }

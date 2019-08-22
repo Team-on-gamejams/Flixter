@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class MenuController : MonoBehaviour {
-	public enum CurrMenu : byte { MainMenu, PreGameMenu, InGameMenu, DieMenu }
+	public enum CurrMenu : byte { MainMenu, PreGameMenu, InGameMenu, DieMenu, Leaderboard }
 	public CurrMenu currMenu = CurrMenu.MainMenu;
 
 	public Image fader;
@@ -110,6 +110,10 @@ public class MenuController : MonoBehaviour {
 			DieMenu.Hide(Consts.menuAnimationsTime);
 			ShowMainMenu();
 		}
+		else if (currMenu == CurrMenu.Leaderboard) {
+			HideLeaderboard();
+			ShowMainMenu(false);
+		}
 
 		coinsSlider.SlideIn();
 		scoreSlider.SlideIn();
@@ -121,7 +125,14 @@ public class MenuController : MonoBehaviour {
 		currMenu = CurrMenu.DieMenu;
 	}
 
-	void ShowMainMenu(){
+	public void ToLeaderboard() {
+		if (currMenu == CurrMenu.MainMenu) {
+			ShowLeaderboard();
+			currMenu = CurrMenu.Leaderboard;
+		}
+	}
+
+	void ShowMainMenu(bool animateButtons = true){
 		LeanTween.move(Back1, Back1Start, Consts.menuAnimationsTime)//30
 					.setEase(LeanTweenType.easeInBack);
 		LeanTween.value(Back1.gameObject, 30.0f, 34.0f, Consts.menuAnimationsTime)
@@ -138,7 +149,7 @@ public class MenuController : MonoBehaviour {
 				Back2.rotation = Quaternion.Euler(0, 0, z);
 			});
 
-		for (byte i = 0; i < Buttons.Length; ++i) {
+		for (byte i = 0; i < Buttons.Length && animateButtons; ++i) {
 			LeanTween.scale(Buttons[i], ButtonsStart[i].localScale, Consts.menuAnimationsTime)
 				.setEase(LeanTweenType.easeInOutQuart);
 			LeanTween.rotateZ(Buttons[i].gameObject, ButtonsStart[i].rotation.eulerAngles.z + 360 * Random.Range(1, 10), Consts.menuAnimationsTime)
@@ -237,9 +248,55 @@ public class MenuController : MonoBehaviour {
 		HideFader();
 	}
 
+	void ShowLeaderboard() {
+		Leaderboard.Show();
+
+		LeanTween.move(Back1, new Vector2(-5833, -2116), Consts.menuAnimationsTime)
+			.setEase(LeanTweenType.easeInOutQuad);
+
+		LeanTween.move(Back2, new Vector2(6042, 2713), Consts.menuAnimationsTime)
+			.setEase(LeanTweenType.easeInOutQuad);
+
+		LeanTweenType t = LeanTweenType.easeInOutBack;
+		LeanTween.move(Buttons[0], ButtonsStart[0].position + new Vector3(-1500, -1500), Consts.menuAnimationsTime)
+		.setEase(t);
+		LeanTween.move(Buttons[1], ButtonsStart[1].position + new Vector3(1500, 1500), Consts.menuAnimationsTime)
+		.setEase(t);
+		LeanTween.move(Buttons[2], ButtonsStart[2].position + new Vector3(1500, 1500), Consts.menuAnimationsTime)
+		.setEase(t);
+		LeanTween.move(Buttons[3], ButtonsStart[3].position + new Vector3(-1500, -1500), Consts.menuAnimationsTime)
+		.setEase(t);
+	}
+
+	void HideLeaderboard() {
+		LeanTween.move(Back1, Back1Start, Consts.menuAnimationsTime)
+			.setEase(LeanTweenType.easeInBack);
+		LeanTween.value(Back1.gameObject, 30.0f, 34.0f, Consts.menuAnimationsTime)
+			.setEase(LeanTweenType.linear)
+			.setOnUpdate((float z) => {
+				Back1.rotation = Quaternion.Euler(0, 0, z);
+			});
+
+		LeanTween.move(Back2, Back2Start, Consts.menuAnimationsTime)
+			.setEase(LeanTweenType.easeInOutBack);
+		LeanTween.value(Back2.gameObject, 38.0f, 34.0f, Consts.menuAnimationsTime)
+			.setEase(LeanTweenType.linear)
+			.setOnUpdate((float z) => {
+				Back2.rotation = Quaternion.Euler(0, 0, z);
+			})
+			.setOnComplete(()=> {
+				Leaderboard.Hide();
+			});
+
+		for(byte i = 0; i < Buttons.Length; ++i) {
+			LeanTween.move(Buttons[i], ButtonsStart[i].position, Consts.menuAnimationsTime)
+				.setEase(LeanTweenType.easeInOutBack);
+		}
+	}
+
 	public void ShowFader() {
 		LeanTween.cancel(fader.gameObject, false);
-		LeanTween.value(fader.gameObject, fader.color.a, 1.0f, Consts.menuAnimationsTime)
+		LeanTween.value(fader.gameObject, fader.color.a, 1.0f, Consts.menuAnimationsTime / 3)
 		.setEase(LeanTweenType.linear)
 		.setOnUpdate((a) => {
 			Color color = fader.color;
@@ -250,7 +307,7 @@ public class MenuController : MonoBehaviour {
 
 	public void HideFader() {
 		LeanTween.cancel(fader.gameObject, false);
-		LeanTween.value(fader.gameObject, fader.color.a, 0.0f, Consts.menuAnimationsTime)
+		LeanTween.value(fader.gameObject, fader.color.a, 0.0f, Consts.menuAnimationsTime / 3)
 		.setEase(LeanTweenType.linear)
 		.setOnUpdate((a) => {
 			Color color = fader.color;

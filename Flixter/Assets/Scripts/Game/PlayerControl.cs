@@ -43,6 +43,14 @@ public class PlayerControl : MonoBehaviour {
 	}
 	string _nickname;
 
+	public int ServerId {
+		get {
+			if (!PlayerPrefs.HasKey("serverId"))
+				PlayerPrefs.SetInt("serverId", (int)(System.DateTime.Now.Ticks % 1000000));
+			return PlayerPrefs.GetInt("serverId");
+		}
+	}
+
 	internal int currRevivePrice;
 
 	public GameObject player;

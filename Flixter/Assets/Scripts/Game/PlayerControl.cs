@@ -183,7 +183,7 @@ public class PlayerControl : MonoBehaviour {
 
 	//TODO: Add cool effect on revive
 	public void Revive(){
-		menuController.DieMenu.Hide(menuController.MainMenuToPreGameMenu, true);
+		menuController.DieMenu.Hide(Consts.menuAnimationsTime, true);
 		menuController.DieMenu.UseRevive();
 		health = maxHealth;
 		GameManager.Instance.IsGameStart = true;
@@ -197,7 +197,7 @@ public class PlayerControl : MonoBehaviour {
 			Coins -= currRevivePrice;
 			currRevivePrice += Consts.reviveStartPrice;
 
-			menuController.DieMenu.Hide(menuController.MainMenuToPreGameMenu, true);
+			menuController.DieMenu.Hide(Consts.menuAnimationsTime, true);
 			menuController.DieMenu.UseReviveForCoins();
 		}
 	}
@@ -224,7 +224,7 @@ public class PlayerControl : MonoBehaviour {
 
 		currRevivePrice = Consts.reviveStartPrice;
 
-		LeanTween.delayedCall(menuController.MainMenuToPreGameMenu, () => {
+		LeanTween.delayedCall(Consts.menuAnimationsTime, () => {
 			player.transform.position = new Vector2(0, 0);
 			health = maxHealth;
 			GameManager.Instance.bosterDock.Clear();

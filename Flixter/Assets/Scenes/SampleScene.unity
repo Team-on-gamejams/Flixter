@@ -4122,9 +4122,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655302671}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &664361839
 GameObject:
@@ -10470,7 +10470,7 @@ MonoBehaviour:
   spawnTime:
   - 1
   - 8
-  - 1
+  - 30
   EnemySinglePrefab:
   - {fileID: 3250196350666273533, guid: 08e23e33aef26974d8e28dec131ea19c, type: 3}
   - {fileID: 5713835879366028927, guid: d8f73eae531b6214aaadfc1ee407f203, type: 3}

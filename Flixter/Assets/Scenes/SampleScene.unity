@@ -717,7 +717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &160825496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -788,8 +788,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 0}
   ServerId: {fileID: 0}
-  Players: []
-  Scores: []
+  PlayersText: []
+  ScoresText: []
   NoConnection: {fileID: 0}
 --- !u!1 &174634689
 GameObject:
@@ -2344,7 +2344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Year: 2019
   Month: 8
-  Day: 23
+  Day: 25
   TimebombLength: 7
   BombActivated: 1
 --- !u!4 &454092624
@@ -4091,7 +4091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 655302674}
   ServerId: {fileID: 217830001}
-  Players:
+  PlayersText:
   - {fileID: 1905065536}
   - {fileID: 737355409}
   - {fileID: 488847673}
@@ -4102,7 +4102,7 @@ MonoBehaviour:
   - {fileID: 894809359}
   - {fileID: 294587387}
   - {fileID: 1373837362}
-  Scores:
+  ScoresText:
   - {fileID: 1242547466}
   - {fileID: 510106311}
   - {fileID: 1435788251}

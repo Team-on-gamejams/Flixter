@@ -42,7 +42,7 @@ public abstract class BossBase : EnemyController {
 		if (GameManager.Instance.IsTimeStop)
 			return;
 
-		if(AttackTime != -1 && (attackTimer += Time.deltaTime) >= AttackTime) {
+		if(completeMovingDown && AttackTime != -1 && (attackTimer += Time.deltaTime) >= AttackTime) {
 			attackTimer -= AttackTime;
 			ProcessAttack();
 		}
@@ -52,7 +52,7 @@ public abstract class BossBase : EnemyController {
 
 	protected void OnTimeStopChanged(EventData data) {
 		if (GameManager.Instance.IsTimeStop)
-			LeanTween.cancel(gameObject);
+			LeanTween.cancel(gameObject, false);
 		else
 			ProcessMove();
 	}

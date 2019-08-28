@@ -5,7 +5,10 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+
+using Random = UnityEngine.Random;
 
 public class Leaderboard : MonoBehaviour {
 	//TODO: read it from xml
@@ -23,6 +26,9 @@ public class Leaderboard : MonoBehaviour {
 	public TextMeshProUGUI[] PlayersText;
 	public TextMeshProUGUI[] ScoresText;
 	public TextMeshProUGUI NoConnection;
+
+	public Image LoadingImage;
+	public float avgLoadingTime = 3.0f;
 
 	public int UpdateKDSec = 30;
 	DateTime lastUpdate;
@@ -50,10 +56,15 @@ public class Leaderboard : MonoBehaviour {
 	}
 
 	void UpdateLeaderboard() {
-		if (IsConnectedToInternet())
-			ShowFakePlayers();
-		else
-			ShowNoInternet();
+		HideAll();
+		LoadingImage.gameObject.SetActive(true);
+		LeanTween.delayedCall(avgLoadingTime * Random.Range(0.5f, 1.5f), () => {
+			LoadingImage.gameObject.SetActive(false);
+			if(IsConnectedToInternet())
+				ShowFakePlayers();
+			else
+				ShowNoInternet();
+		});
 	}
 
 	bool IsConnectedToInternet() {
@@ -179,5 +190,13 @@ public class Leaderboard : MonoBehaviour {
 		scores.Clear();
 		players.AddRange(PlayerPrefsX.GetStringArray("Leaderboard.players"));
 		scores.AddRange(PlayerPrefsX.GetIntArray("Leaderboard.scores"));
+	}
+
+	void HideAll() {
+		NoConnection.alpha = 0.0f;
+		foreach (var player in PlayersText)
+			player.alpha = 0.0f;
+		foreach (var score in ScoresText)
+			score.alpha = 0.0f;
 	}
 }

@@ -17,7 +17,9 @@ public class MenuController : MonoBehaviour {
 	Vector3 Back2Start;
 	public RectTransform[] Buttons;
 	RectTransformSaver[] ButtonsStart;
-	public RectTransform PlayerSpriteMainMenu;
+
+	public RectTransform[] PlayerSpritesMainMenu;
+	byte currPlayerSprite;
 
 	public GameObject PreGameMenu;
 	RectTransform PreGameMenuRect;
@@ -38,6 +40,8 @@ public class MenuController : MonoBehaviour {
 		foreach (var child in childs){
 			child.gameObject.SetActive(true);
 		}
+
+		currPlayerSprite = (byte)PlayerPrefs.GetInt("MenuController.currPlayerSprite", 0);
 	}
 
 	void Start() {
@@ -57,6 +61,62 @@ public class MenuController : MonoBehaviour {
 
 		coinsSlider = coinsText.GetComponent<Slider>();
 		scoreSlider = scoreText.GetComponent<Slider>();
+	}
+
+	Vector3 startPosition = Vector3.zero;
+	Vector3 endPosition = Vector3.zero;
+
+	//void OnMouseDown() {
+	//	startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+	//}
+
+	//private void OnMouseUp() {
+	//	endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+	//	if (startPosition != endPosition && startPosition != Vector3.zero && endPosition != Vector3.zero) {
+	//		float deltaX = endPosition.x - startPosition.x;
+	//		float deltaY = endPosition.y - startPosition.y;
+	//		if ((deltaX > 5.0f || deltaX < -5.0f) && (deltaY >= -1.0f || deltaY <= 1.0f)) {
+	//			if (startPosition.x < endPosition.x) {
+	//				print("LTR");
+	//			}
+	//			else {
+	//				print("RTL");
+	//			}
+	//		}
+	//		startPosition = endPosition = Vector3.zero;
+	//	}
+	//}
+
+	void Update() {
+		if (Input.GetMouseButtonDown(0)){
+			startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		}
+		if (Input.GetMouseButtonUp(0)){
+			endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		}
+
+		if (startPosition != endPosition && startPosition != Vector3.zero && endPosition != Vector3.zero) {
+			float deltaX = endPosition.x - startPosition.x;
+			if (Mathf.Abs(deltaX) > 1.0f) {
+				if (startPosition.x < endPosition.x) {
+					print("LTR");
+					if(currPlayerSprite != 0)
+						--currPlayerSprite;
+				}
+				else {
+					print("RTL");
+					if(currPlayerSprite != PlayerSpritesMainMenu.Length - 1)
+						++currPlayerSprite;
+				}
+
+				for (byte i = 0; i < PlayerSpritesMainMenu.Length; ++i) {
+					LeanTween.move(PlayerSpritesMainMenu[i], new Vector2((i - currPlayerSprite) * 1450, 450 + (i - currPlayerSprite) * 950), Consts.menuAnimationsTime / 6)
+						.setEase(LeanTweenType.linear);
+				}
+			}
+			startPosition = endPosition = Vector3.zero;
+		}
 	}
 
 	public void ToInGameMenu(){
@@ -204,22 +264,21 @@ public class MenuController : MonoBehaviour {
 		LeanTween.move(PreGameMenuRect, new Vector2(0, 0), Consts.menuAnimationsTime / 3 * 2)
 			.setEase(LeanTweenType.easeOutBack);
 
-		LeanTween.move(PlayerSpriteMainMenu, new Vector2(0, 450), Consts.menuAnimationsTime / 6)
-			.setDelay(Consts.menuAnimationsTime / 2)
-			.setEase(LeanTweenType.easeInOutQuad)
-			//.setOnComplete(()=> {
-			//	GameManager.Instance.Player.Reload();
-			//})
-			;
+		for(byte i = 0; i < PlayerSpritesMainMenu.Length; ++i) {
+			LeanTween.move(PlayerSpritesMainMenu[i], new Vector2((i - currPlayerSprite) * 1450, 450 + (i - currPlayerSprite) * 950), Consts.menuAnimationsTime / 6)
+				.setDelay(Consts.menuAnimationsTime / 2)
+				.setEase(LeanTweenType.easeInOutQuad);
+		}
 	}
 
 	void HidePreGameMenu() {
 		LeanTween.move(PreGameMenuRect, new Vector2(2000, 0), Consts.menuAnimationsTime / 3 * 2)
 			.setEase(LeanTweenType.easeInBack);
 
-		LeanTween.move(PlayerSpriteMainMenu, new Vector2(1450, 1400), Consts.menuAnimationsTime / 6)
-			.setEase(LeanTweenType.easeInOutQuad);
-
+		for (byte i = 0; i < PlayerSpritesMainMenu.Length; ++i) {
+			LeanTween.move(PlayerSpritesMainMenu[i], new Vector2((i + 1) * 1450, 450 + (i + 1) * 950), Consts.menuAnimationsTime / 6)
+				.setEase(LeanTweenType.easeInOutQuad);
+		}
 	}
 
 	void ShowInGameMenu(){
@@ -231,18 +290,27 @@ public class MenuController : MonoBehaviour {
 		LeanTween.move(PreGameMenuRect, new Vector2(0, -2284), Consts.menuAnimationsTime)
 		.setEase(LeanTweenType.easeOutExpo);
 
-		LeanTween.move(PlayerSpriteMainMenu, new Vector2(0, 0), Consts.menuAnimationsTime)
+		LeanTween.move(PlayerSpritesMainMenu[currPlayerSprite], new Vector2(0, 0), Consts.menuAnimationsTime)
 		.setEase(LeanTweenType.easeOutExpo);
-		LeanTween.scale(PlayerSpriteMainMenu, new Vector2(0.6f, 0.6f), Consts.menuAnimationsTime)
+		LeanTween.scale(PlayerSpritesMainMenu[currPlayerSprite], new Vector2(0.6f, 0.6f), Consts.menuAnimationsTime)
 		.setEase(LeanTweenType.easeOutExpo);
-		CanvasGroup cgPlayer = PlayerSpriteMainMenu.GetComponent<CanvasGroup>();
-		LeanTween.value(PlayerSpriteMainMenu.gameObject, 1, 0, 1)
+		CanvasGroup cgPlayer = PlayerSpritesMainMenu[currPlayerSprite].GetComponent<CanvasGroup>();
+		LeanTween.value(PlayerSpritesMainMenu[currPlayerSprite].gameObject, 1, 0, 1)
 		.setDelay(Consts.menuAnimationsTime / 2)
 		.setOnUpdate((a) => {
 			cgPlayer.alpha = a;
 		})
 		.setOnComplete(() => {
 			GameManager.Instance.IsGameStart = true;
+		});
+
+		LeanTween.delayedCall(Consts.menuAnimationsTime * 3, () => {
+			PlayerSpritesMainMenu[currPlayerSprite].transform.localScale = Vector3.one;
+
+			for (byte i = 0; i < PlayerSpritesMainMenu.Length; ++i) {
+				PlayerSpritesMainMenu[i].transform.position = new Vector3((i + 1) * 1450, 450 + (i + 1) * 950, 0);
+				PlayerSpritesMainMenu[i].GetComponent<CanvasGroup>().alpha = 1.0f;
+			}
 		});
 
 		HideFader();

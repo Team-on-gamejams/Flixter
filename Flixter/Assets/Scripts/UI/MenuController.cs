@@ -65,6 +65,8 @@ public class MenuController : MonoBehaviour {
 
 		coinsSlider = coinsText.GetComponent<Slider>();
 		scoreSlider = scoreText.GetComponent<Slider>();
+
+		GameManager.Instance.Player.playerSprite.sprite = PlayerSpritesMainMenu[currPlayerSprite].GetComponentInChildren<Image>().sprite;
 	}
 
 	void Update() {

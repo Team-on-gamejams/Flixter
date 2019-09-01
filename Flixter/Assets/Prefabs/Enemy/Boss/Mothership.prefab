@@ -158,6 +158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livesMax: 2000
   speed: 1
+  dieParticlePrefab: {fileID: 5737591785606816508, guid: f90fab540d82f994491289cf47b91d24,
+    type: 3}
   BossName: Mothership
   moveType: 1
   AttackTime: -1

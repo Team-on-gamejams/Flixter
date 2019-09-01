@@ -97,6 +97,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livesMax: 50
   speed: 1
+  dieParticlePrefab: {fileID: 5737591785606816508, guid: ee52b2d466e923a4995832e7096335f2,
+    type: 3}
 --- !u!61 &7361201304273809465
 BoxCollider2D:
   m_ObjectHideFlags: 0

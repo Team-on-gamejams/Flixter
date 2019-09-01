@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -2698,7 +2698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Year: 2019
   Month: 9
-  Day: 1
+  Day: 2
   TimebombLength: 7
   BombActivated: 1
 --- !u!4 &454092624
@@ -3530,6 +3530,7 @@ MonoBehaviour:
   - {fileID: 1571960809}
   - {fileID: 1692648498}
   - {fileID: 1827353016}
+  swipeDist: 2.5
   PlayerSpritesMainMenu:
   - {fileID: 1356846691}
   - {fileID: 1620246921}
@@ -12230,7 +12231,7 @@ MonoBehaviour:
   spawnTime:
   - 1
   - 8
-  - 30
+  - 5
   EnemySinglePrefab:
   - {fileID: 3250196350666273533, guid: 08e23e33aef26974d8e28dec131ea19c, type: 3}
   - {fileID: 5713835879366028927, guid: d8f73eae531b6214aaadfc1ee407f203, type: 3}
@@ -13620,6 +13621,12 @@ PrefabInstance:
       propertyPath: playerSprite
       value: 
       objectReference: {fileID: 1057325032}
+    - target: {fileID: 5781828437688907759, guid: 891e80f4cd0fea94a9b43012b8eeb754,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: aa57db95ecbf78444b90a65fbab2ded8,
+        type: 3}
     - target: {fileID: 5781828438254496109, guid: 891e80f4cd0fea94a9b43012b8eeb754,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13675,12 +13682,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5781828437688907759, guid: 891e80f4cd0fea94a9b43012b8eeb754,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: aa57db95ecbf78444b90a65fbab2ded8,
-        type: 3}
     - target: {fileID: 5781828437688907758, guid: 891e80f4cd0fea94a9b43012b8eeb754,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x

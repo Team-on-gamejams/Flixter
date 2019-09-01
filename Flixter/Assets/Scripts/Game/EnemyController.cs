@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour {
 
 	private SpriteRenderer _spRen;
 
+	public GameObject dieParticlePrefab;
+
 	protected void Awake() {
 		_spRen = GetComponent<SpriteRenderer>();
 		livesCurr = livesMax;
@@ -61,6 +63,8 @@ public class EnemyController : MonoBehaviour {
 			if (this is BossBase)
 				GameManager.Instance.EventManager.CallOnBossKilled();
 
+			CreateDieEffect();
+
 			Destroy(this.gameObject);
 		}
 	}
@@ -71,5 +75,12 @@ public class EnemyController : MonoBehaviour {
 
 	public void StopMove() {
 		StopCoroutine(moveCoroutine);
+	}
+
+	void CreateDieEffect() {
+		GameObject dieObj = Instantiate(dieParticlePrefab, transform.position, Quaternion.identity, transform.parent);
+		ParticleSystem ps = dieObj.GetComponent<ParticleSystem>();
+		ps.Play();
+		Destroy(dieObj, ps.main.duration + ps.main.startLifetime.constant + 0.1f);
 	}
 }

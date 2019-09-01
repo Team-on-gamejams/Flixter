@@ -333,6 +333,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livesMax: 1000
   speed: 1
+  dieParticlePrefab: {fileID: 5737591785606816508, guid: 05de6c558ecb7464db0f1665066c6727,
+    type: 3}
   BossName: Lazer Cannon
   moveType: 2
   AttackTime: -1

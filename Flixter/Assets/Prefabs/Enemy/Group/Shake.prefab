@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3144273075591879499}
   - component: {fileID: 199819671945561550}
   m_Layer: 0
-  m_Name: EnemyGroupShake
+  m_Name: Shake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,10 +28,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8100950032083565685}
   - {fileID: 3851694856126866088}
   - {fileID: 1619375155412518313}
   - {fileID: 4637664158102788899}
+  - {fileID: 8100950032083565685}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -98,7 +98,7 @@ PrefabInstance:
     - target: {fileID: 5351892247890461844, guid: 08e23e33aef26974d8e28dec131ea19c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5351892247890461844, guid: 08e23e33aef26974d8e28dec131ea19c,
         type: 3}
@@ -173,7 +173,7 @@ PrefabInstance:
     - target: {fileID: 5351892247890461844, guid: 08e23e33aef26974d8e28dec131ea19c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5351892247890461844, guid: 08e23e33aef26974d8e28dec131ea19c,
         type: 3}
@@ -248,7 +248,7 @@ PrefabInstance:
     - target: {fileID: 5351892247890461844, guid: 08e23e33aef26974d8e28dec131ea19c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5351892247890461844, guid: 08e23e33aef26974d8e28dec131ea19c,
         type: 3}
@@ -323,7 +323,7 @@ PrefabInstance:
     - target: {fileID: 5351892247890461844, guid: 08e23e33aef26974d8e28dec131ea19c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5351892247890461844, guid: 08e23e33aef26974d8e28dec131ea19c,
         type: 3}

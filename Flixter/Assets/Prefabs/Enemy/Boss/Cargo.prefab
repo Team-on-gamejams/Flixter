@@ -318,6 +318,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livesMax: 1000
   speed: 8
+  dieParticlePrefab: {fileID: 5737591785606816508, guid: bb90d10188362f644a9cf85d300d6595,
+    type: 3}
   BossName: Cargo
   moveType: 3
   AttackTime: 4

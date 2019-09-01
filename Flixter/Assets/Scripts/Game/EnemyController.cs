@@ -81,6 +81,6 @@ public class EnemyController : MonoBehaviour {
 		GameObject dieObj = Instantiate(dieParticlePrefab, transform.position, Quaternion.identity, transform.parent);
 		ParticleSystem ps = dieObj.GetComponent<ParticleSystem>();
 		ps.Play();
-		Destroy(dieObj, ps.main.duration + ps.main.startLifetime.constant + 0.1f);
+		Destroy(dieObj, ps.main.duration + (ps.main.startLifetime.mode == ParticleSystemCurveMode.Constant ? ps.main.startLifetime.constant : ps.main.startLifetime.constantMax)  + 0.1f);
 	}
 }

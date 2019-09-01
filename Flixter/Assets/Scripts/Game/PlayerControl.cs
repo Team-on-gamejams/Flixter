@@ -54,6 +54,7 @@ public class PlayerControl : MonoBehaviour {
 	internal int currRevivePrice;
 
 	public GameObject player;
+	public SpriteRenderer playerSprite;
 
 	public float shootSpeed = 0.2f;
 	public int maxHealth = 10;

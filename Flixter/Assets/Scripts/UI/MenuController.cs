@@ -18,8 +18,11 @@ public class MenuController : MonoBehaviour {
 	public RectTransform[] Buttons;
 	RectTransformSaver[] ButtonsStart;
 
+	public float swipeDist = 2.5f;
 	public RectTransform[] PlayerSpritesMainMenu;
 	byte currPlayerSprite;
+	Vector3 startPosition = Vector3.zero;
+	Vector3 endPosition = Vector3.zero;
 
 	public GameObject PreGameMenu;
 	RectTransform PreGameMenuRect;
@@ -63,59 +66,51 @@ public class MenuController : MonoBehaviour {
 		scoreSlider = scoreText.GetComponent<Slider>();
 	}
 
-	Vector3 startPosition = Vector3.zero;
-	Vector3 endPosition = Vector3.zero;
-
-	//void OnMouseDown() {
-	//	startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-	//}
-
-	//private void OnMouseUp() {
-	//	endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-	//	if (startPosition != endPosition && startPosition != Vector3.zero && endPosition != Vector3.zero) {
-	//		float deltaX = endPosition.x - startPosition.x;
-	//		float deltaY = endPosition.y - startPosition.y;
-	//		if ((deltaX > 5.0f || deltaX < -5.0f) && (deltaY >= -1.0f || deltaY <= 1.0f)) {
-	//			if (startPosition.x < endPosition.x) {
-	//				print("LTR");
-	//			}
-	//			else {
-	//				print("RTL");
-	//			}
-	//		}
-	//		startPosition = endPosition = Vector3.zero;
-	//	}
-	//}
-
 	void Update() {
-		if (Input.GetMouseButtonDown(0)){
-			startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		}
-		if (Input.GetMouseButtonUp(0)){
-			endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		}
-
-		if (startPosition != endPosition && startPosition != Vector3.zero && endPosition != Vector3.zero) {
-			float deltaX = endPosition.x - startPosition.x;
-			if (Mathf.Abs(deltaX) > 1.0f) {
-				if (startPosition.x < endPosition.x) {
-					print("LTR");
-					if(currPlayerSprite != 0)
-						--currPlayerSprite;
-				}
-				else {
-					print("RTL");
-					if(currPlayerSprite != PlayerSpritesMainMenu.Length - 1)
-						++currPlayerSprite;
-				}
-
-				for (byte i = 0; i < PlayerSpritesMainMenu.Length; ++i) {
-					LeanTween.move(PlayerSpritesMainMenu[i], new Vector2((i - currPlayerSprite) * 1450, 450 + (i - currPlayerSprite) * 950), Consts.menuAnimationsTime / 6)
-						.setEase(LeanTweenType.linear);
-				}
+		//TODO: мягкий свайп, як картинок в галереи
+		if(currMenu == CurrMenu.PreGameMenu) {
+			if (Input.GetMouseButtonDown(0)) {
+				startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			}
-			startPosition = endPosition = Vector3.zero;
+
+			//if(startPosition != Vector3.zero) {
+			//	float deltaX = Input.mousePosition.x - startPosition.x;
+			//	if(deltaX > 0) {
+
+			//	}
+			//}
+
+			if (Input.GetMouseButtonUp(0)) {
+				endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				Debug.Log(endPosition.x - startPosition.x);
+				if (startPosition != endPosition && Mathf.Abs(endPosition.x - startPosition.x) > swipeDist) {
+					if (startPosition.x < endPosition.x) {
+						if (currPlayerSprite != 0) {
+							--currPlayerSprite;
+							ChangePlayerSprite();
+						}
+					}
+					else {
+						if (currPlayerSprite != PlayerSpritesMainMenu.Length - 1) {
+							++currPlayerSprite;
+							ChangePlayerSprite();
+						}
+					}
+
+				}
+
+				startPosition = endPosition = Vector3.zero;
+			}
+		}
+
+		void ChangePlayerSprite() {
+			GameManager.Instance.Player.playerSprite.sprite = PlayerSpritesMainMenu[currPlayerSprite].GetComponentInChildren<Image>().sprite;
+			PlayerPrefs.SetInt("MenuController.currPlayerSprite", currPlayerSprite);
+
+			for (byte i = 0; i < PlayerSpritesMainMenu.Length; ++i) {
+				LeanTween.move(PlayerSpritesMainMenu[i], new Vector2((i - currPlayerSprite) * 1450, 450 + (i - currPlayerSprite) * 950), Consts.menuAnimationsTime / 6)
+					.setEase(LeanTweenType.linear);
+			}
 		}
 	}
 
@@ -303,6 +298,11 @@ public class MenuController : MonoBehaviour {
 		.setOnComplete(() => {
 			GameManager.Instance.IsGameStart = true;
 		});
+
+		for (byte i = 0; i < PlayerSpritesMainMenu.Length; ++i) {
+			if(i != currPlayerSprite)
+				PlayerSpritesMainMenu[i].GetComponent<CanvasGroup>().alpha = 0.0f;
+		}
 
 		LeanTween.delayedCall(Consts.menuAnimationsTime * 3, () => {
 			PlayerSpritesMainMenu[currPlayerSprite].transform.localScale = Vector3.one;

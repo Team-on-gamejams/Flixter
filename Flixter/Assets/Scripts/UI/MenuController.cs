@@ -18,6 +18,8 @@ public class MenuController : MonoBehaviour {
 	public RectTransform[] Buttons;
 	RectTransformSaver[] ButtonsStart;
 
+	public StatsUI StatsUI;
+
 	public float swipeDist = 2.5f;
 	public RectTransform[] PlayerSpritesMainMenu;
 	byte currPlayerSprite;
@@ -73,6 +75,8 @@ public class MenuController : MonoBehaviour {
 		if(currMenu == CurrMenu.PreGameMenu && allowPlayerSwipe) {
 			if (Input.GetMouseButtonDown(0)) {
 				startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+				StatsUI.Hide();
 			}
 
 			if (startPosition != Vector3.zero) {
@@ -129,6 +133,9 @@ public class MenuController : MonoBehaviour {
 				LeanTween.move(PlayerSpritesMainMenu[i], new Vector2((i - currPlayerSprite) * 1450, 450 + (i - currPlayerSprite) * 950), Consts.menuAnimationsTime / 6)
 					.setEase(LeanTweenType.linear);
 			}
+
+			StatsUI.SetShipData(currPlayerSprite + 1);
+			LeanTween.delayedCall(Consts.menuAnimationsTime / 6, ()=> StatsUI.Show());
 		}
 	}
 
@@ -267,6 +274,8 @@ public class MenuController : MonoBehaviour {
 		.setEase(t);
 		LeanTween.move(Buttons[3], new Vector2(-645, 336), Consts.menuAnimationsTime / 2)
 		.setEase(t);
+
+		StatsUI.Hide();
 	}
 
 	void ShowPreGameMenu(){
@@ -276,7 +285,11 @@ public class MenuController : MonoBehaviour {
 		GameManager.Instance.IsGameStart = false;
 
 		LeanTween.move(PreGameMenuRect, new Vector2(0, 0), Consts.menuAnimationsTime / 3 * 2)
-			.setEase(LeanTweenType.easeOutBack);
+			.setEase(LeanTweenType.easeOutBack)
+			.setOnComplete(()=> {
+				StatsUI.SetShipData(currPlayerSprite + 1);
+				StatsUI.Show();
+			});
 
 		for(byte i = 0; i < PlayerSpritesMainMenu.Length; ++i) {
 			LeanTween.move(PlayerSpritesMainMenu[i], new Vector2((i - currPlayerSprite) * 1450, 450 + (i - currPlayerSprite) * 950), Consts.menuAnimationsTime / 6)

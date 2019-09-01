@@ -23,6 +23,7 @@ public class MenuController : MonoBehaviour {
 	byte currPlayerSprite;
 	Vector3 startPosition = Vector3.zero;
 	Vector3 endPosition = Vector3.zero;
+	bool allowPlayerSwipe = false;
 
 	public GameObject PreGameMenu;
 	RectTransform PreGameMenuRect;
@@ -67,7 +68,7 @@ public class MenuController : MonoBehaviour {
 	}
 
 	void Update() {
-		if(currMenu == CurrMenu.PreGameMenu) {
+		if(currMenu == CurrMenu.PreGameMenu && allowPlayerSwipe) {
 			if (Input.GetMouseButtonDown(0)) {
 				startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			}
@@ -269,6 +270,7 @@ public class MenuController : MonoBehaviour {
 	void ShowPreGameMenu(){
 		DieMenu.Hide(Consts.menuAnimationsTime, false);
 
+		startPosition = endPosition = Vector3.zero;
 		GameManager.Instance.IsGameStart = false;
 
 		LeanTween.move(PreGameMenuRect, new Vector2(0, 0), Consts.menuAnimationsTime / 3 * 2)
@@ -277,11 +279,14 @@ public class MenuController : MonoBehaviour {
 		for(byte i = 0; i < PlayerSpritesMainMenu.Length; ++i) {
 			LeanTween.move(PlayerSpritesMainMenu[i], new Vector2((i - currPlayerSprite) * 1450, 450 + (i - currPlayerSprite) * 950), Consts.menuAnimationsTime / 6)
 				.setDelay(Consts.menuAnimationsTime / 2)
-				.setEase(LeanTweenType.easeInOutQuad);
+				.setEase(LeanTweenType.easeInOutQuad)
+				.setOnComplete(()=> allowPlayerSwipe = true);
 		}
 	}
 
 	void HidePreGameMenu() {
+		allowPlayerSwipe = false;
+
 		LeanTween.move(PreGameMenuRect, new Vector2(2000, 0), Consts.menuAnimationsTime / 3 * 2)
 			.setEase(LeanTweenType.easeInBack);
 
@@ -292,6 +297,8 @@ public class MenuController : MonoBehaviour {
 	}
 
 	void ShowInGameMenu(){
+		allowPlayerSwipe = false;
+
 		LeanTween.move(Back1, new Vector2(-732, 3916), Consts.menuAnimationsTime)
 			.setEase(LeanTweenType.easeOutExpo);
 

@@ -67,39 +67,54 @@ public class MenuController : MonoBehaviour {
 	}
 
 	void Update() {
-		//TODO: мягкий свайп, як картинок в галереи
 		if(currMenu == CurrMenu.PreGameMenu) {
 			if (Input.GetMouseButtonDown(0)) {
 				startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			}
 
-			//if(startPosition != Vector3.zero) {
-			//	float deltaX = Input.mousePosition.x - startPosition.x;
-			//	if(deltaX > 0) {
+			if (startPosition != Vector3.zero) {
+				float deltaX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - startPosition.x;
 
-			//	}
-			//}
-
-			if (Input.GetMouseButtonUp(0)) {
-				endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				Debug.Log(endPosition.x - startPosition.x);
-				if (startPosition != endPosition && Mathf.Abs(endPosition.x - startPosition.x) > swipeDist) {
-					if (startPosition.x < endPosition.x) {
-						if (currPlayerSprite != 0) {
-							--currPlayerSprite;
-							ChangePlayerSprite();
+				if (deltaX != 0) {
+					float swipePersent = Mathf.Abs(deltaX) / swipeDist;
+					for (byte i = 0; i < PlayerSpritesMainMenu.Length; ++i) {
+						if(deltaX > 0) {
+							PlayerSpritesMainMenu[i].transform.localPosition = new Vector3(
+								(i - currPlayerSprite) * 1450 + 1450 * swipePersent,
+								450 + (i - currPlayerSprite) * 950 + 950 * swipePersent,
+								PlayerSpritesMainMenu[i].transform.localPosition.z
+							);
+						}
+						else{
+							PlayerSpritesMainMenu[i].transform.localPosition = new Vector3(
+								(i - currPlayerSprite) * 1450 + 1450 * swipePersent * -1,
+								450 + (i - currPlayerSprite) * 950 + 950 * swipePersent * -1,
+								PlayerSpritesMainMenu[i].transform.localPosition.z
+							);
 						}
 					}
-					else {
-						if (currPlayerSprite != PlayerSpritesMainMenu.Length - 1) {
-							++currPlayerSprite;
-							ChangePlayerSprite();
-						}
-					}
-
 				}
 
-				startPosition = endPosition = Vector3.zero;
+				if (Input.GetMouseButtonUp(0)) {
+					endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+					float swipePersent = Mathf.Abs(endPosition.x - startPosition.x) / swipeDist;
+					int swipeTimes = Mathf.RoundToInt(swipePersent);
+
+					if (startPosition != endPosition && swipeTimes != 0) {
+						if (startPosition.x < endPosition.x) {
+							while (currPlayerSprite != 0 && swipeTimes-- != 0)
+								--currPlayerSprite;
+						}
+						else {
+							while (currPlayerSprite != PlayerSpritesMainMenu.Length - 1 && swipeTimes-- != 0)
+								++currPlayerSprite;
+						}
+
+					}
+
+					ChangePlayerSprite();
+					startPosition = endPosition = Vector3.zero;
+				}
 			}
 		}
 
@@ -304,11 +319,11 @@ public class MenuController : MonoBehaviour {
 				PlayerSpritesMainMenu[i].GetComponent<CanvasGroup>().alpha = 0.0f;
 		}
 
-		LeanTween.delayedCall(Consts.menuAnimationsTime * 3, () => {
+		LeanTween.delayedCall(Consts.menuAnimationsTime * 1.5f, () => {
 			PlayerSpritesMainMenu[currPlayerSprite].transform.localScale = Vector3.one;
 
 			for (byte i = 0; i < PlayerSpritesMainMenu.Length; ++i) {
-				PlayerSpritesMainMenu[i].transform.position = new Vector3((i + 1) * 1450, 450 + (i + 1) * 950, 0);
+				PlayerSpritesMainMenu[i].transform.localPosition = new Vector3((i + 1) * 1450, 450 + (i + 1) * 950, 0);
 				PlayerSpritesMainMenu[i].GetComponent<CanvasGroup>().alpha = 1.0f;
 			}
 		});

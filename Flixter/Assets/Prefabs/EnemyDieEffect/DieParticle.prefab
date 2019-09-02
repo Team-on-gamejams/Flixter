@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3250196350920758074}
   - component: {fileID: 3250196350920758073}
   - component: {fileID: 4740682437589442717}
+  - component: {fileID: 581871433444323420}
   m_Layer: 0
   m_Name: DieParticle
   m_TagString: Untagged
@@ -4821,6 +4822,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20ac2bd853cb0cd4cb0f747e54f3b2bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParticleSystem: {fileID: 3250196350920758074}
+--- !u!114 &581871433444323420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5737591785606816508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7bcb75874f9ca1458172bc502b5608b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ParticleSystem: {fileID: 3250196350920758074}

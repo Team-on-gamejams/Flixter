@@ -131,15 +131,19 @@ public class MenuController : MonoBehaviour {
 					.setEase(LeanTweenType.linear);
 			}
 
-			StatsUI.SetShipData(PlayerSpritesMainMenu[currPlayerSprite].GetComponent<UISkinData>().SkinDataPrefab.GetComponent<SkinData>());
 			LeanTween.delayedCall(Consts.menuAnimationsTime / 6, ()=> StatsUI.Show());
 
 			//TODO: call only on start game
-			var childs = transform.GetComponentsInChildren<Transform>();
-			foreach (var child in childs) 
-				if (child.gameObject.GetInstanceID() != GameManager.Instance.Player.GetInstanceID()) 
-					Destroy(child);
-			Instantiate(PlayerSpritesMainMenu[currPlayerSprite].GetComponent<UISkinData>().SkinDataPrefab, GameManager.Instance.Player.transform);
+			//TODO: call in corruutine
+			if(GameManager.Instance.Player.player != null) {
+				var childs = GameManager.Instance.Player.player.transform.GetComponentsInChildren<Transform>();
+				foreach (var child in childs)
+					Destroy(child.gameObject);
+			}
+
+			GameManager.Instance.Player.player = Instantiate(PlayerSpritesMainMenu[currPlayerSprite].GetComponent<UISkinData>().SkinDataPrefab, GameManager.Instance.Player.transform).GetComponent<SkinData>();
+			StatsUI.SetShipData(GameManager.Instance.Player.player);
+
 			GameManager.Instance.Player.ReInit();
 		}
 	}
@@ -292,6 +296,7 @@ public class MenuController : MonoBehaviour {
 		LeanTween.move(PreGameMenuRect, new Vector2(0, 0), Consts.menuAnimationsTime / 3 * 2)
 			.setEase(LeanTweenType.easeOutBack)
 			.setOnComplete(()=> {
+				//TODO: use same as swipe
 				StatsUI.SetShipData(PlayerSpritesMainMenu[currPlayerSprite].GetComponent<UISkinData>().SkinDataPrefab.GetComponent<SkinData>());
 				StatsUI.Show();
 			});

@@ -137,16 +137,7 @@ public class MenuController : MonoBehaviour {
 			});
 
 			//TODO: call only on start game
-			if(GameManager.Instance.Player.player != null) {
-				var childs = GameManager.Instance.Player.player.transform.GetComponentsInChildren<Transform>();
-				foreach (var child in childs)
-					Destroy(child.gameObject);
-			}
-
-			GameManager.Instance.Player.player = Instantiate(PlayerSpritesMainMenu[currPlayerSprite].GetComponent<UISkinData>().SkinDataPrefab, GameManager.Instance.Player.transform).GetComponent<SkinData>();
-			StatsUI.SetShipData(GameManager.Instance.Player.player);
-
-			GameManager.Instance.Player.ReInit(true);
+			ChangePlayerSkin();
 		}
 	}
 
@@ -298,8 +289,7 @@ public class MenuController : MonoBehaviour {
 		LeanTween.move(PreGameMenuRect, new Vector2(0, 0), Consts.menuAnimationsTime / 3 * 2)
 			.setEase(LeanTweenType.easeOutBack)
 			.setOnComplete(()=> {
-				//TODO: use same as swipe
-				StatsUI.SetShipData(PlayerSpritesMainMenu[currPlayerSprite].GetComponent<UISkinData>().SkinDataPrefab.GetComponent<SkinData>());
+				ChangePlayerSkin();	
 				StatsUI.Show();
 			});
 
@@ -431,6 +421,18 @@ public class MenuController : MonoBehaviour {
 			color.a = a;
 			fader.color = color;
 		});
+	}
+
+	void ChangePlayerSkin() {
+		if (GameManager.Instance.Player.player != null) {
+			var childs = GameManager.Instance.Player.player.transform.GetComponentsInChildren<Transform>();
+			foreach (var child in childs)
+				Destroy(child.gameObject);
+		}
+
+		GameManager.Instance.Player.player = Instantiate(PlayerSpritesMainMenu[currPlayerSprite].GetComponent<UISkinData>().SkinDataPrefab, GameManager.Instance.Player.transform).GetComponent<SkinData>();
+		StatsUI.SetShipData(GameManager.Instance.Player.player);
+		GameManager.Instance.Player.ReInit(true);
 	}
 }
 

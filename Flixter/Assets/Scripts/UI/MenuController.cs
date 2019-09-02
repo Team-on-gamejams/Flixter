@@ -131,10 +131,12 @@ public class MenuController : MonoBehaviour {
 					.setEase(LeanTweenType.linear);
 			}
 
-			LeanTween.delayedCall(Consts.menuAnimationsTime / 6, ()=> StatsUI.Show());
+			LeanTween.delayedCall(Consts.menuAnimationsTime / 6, ()=> {
+				if (currMenu == CurrMenu.PreGameMenu)
+					StatsUI.Show();
+			});
 
 			//TODO: call only on start game
-			//TODO: call in corruutine
 			if(GameManager.Instance.Player.player != null) {
 				var childs = GameManager.Instance.Player.player.transform.GetComponentsInChildren<Transform>();
 				foreach (var child in childs)
@@ -144,8 +146,7 @@ public class MenuController : MonoBehaviour {
 			GameManager.Instance.Player.player = Instantiate(PlayerSpritesMainMenu[currPlayerSprite].GetComponent<UISkinData>().SkinDataPrefab, GameManager.Instance.Player.transform).GetComponent<SkinData>();
 			StatsUI.SetShipData(GameManager.Instance.Player.player);
 
-			//TODO: force ReInit
-			GameManager.Instance.Player.ReInit();
+			GameManager.Instance.Player.ReInit(true);
 		}
 	}
 

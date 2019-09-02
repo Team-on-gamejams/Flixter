@@ -196,7 +196,7 @@ public class PlayerControl : MonoBehaviour {
 		}
 	}
 
-	public void ReInit(){
+	public void ReInit(bool isForce = false){
 		foreach (var i in player.bulletStartPos)
 			i.SetActive(true);
 		bulletStartPosParsed = new Transform[player.bulletStartPos.Length][];
@@ -209,7 +209,7 @@ public class PlayerControl : MonoBehaviour {
 		currRevivePrice = Consts.reviveStartPrice;
 
 		menuController.ShowFader();
-		LeanTween.delayedCall(Consts.menuAnimationsTime, () => {
+		LeanTween.delayedCall(isForce ? 0.0f : Consts.menuAnimationsTime, () => {
 			player.transform.position = new Vector2(0, 0);
 			health = player.maxHealth;
 			GameManager.Instance.bosterDock.Clear();

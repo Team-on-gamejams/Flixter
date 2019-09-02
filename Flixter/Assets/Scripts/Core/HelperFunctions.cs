@@ -94,4 +94,9 @@ public class HelperFunctions : MonoBehaviour {
 				-1 * (Camera.main.transform.position.z)
 		));
 	}
+
+	[UnityEditor.MenuItem("PlayerPrefs/Clear All")]
+	static void ClearPlayerPrefs() {
+		PlayerPrefs.DeleteAll();
+	}
 }

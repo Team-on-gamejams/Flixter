@@ -95,8 +95,10 @@ public class HelperFunctions : MonoBehaviour {
 		));
 	}
 
+#if UNITY_EDITOR
 	[UnityEditor.MenuItem("PlayerPrefs/Clear All")]
 	static void ClearPlayerPrefs() {
 		PlayerPrefs.DeleteAll();
 	}
+#endif
 }

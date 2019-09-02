@@ -8270,12 +8270,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048498488}
   m_CullTransparentMesh: 0
---- !u!212 &1057325032 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 5781828437688907759, guid: 891e80f4cd0fea94a9b43012b8eeb754,
-    type: 3}
-  m_PrefabInstance: {fileID: 5781828437607248533}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1091891076
 GameObject:
   m_ObjectHideFlags: 0
@@ -14675,17 +14669,6 @@ PrefabInstance:
       propertyPath: hpSliders.Array.data[1]
       value: 
       objectReference: {fileID: 1255685591}
-    - target: {fileID: 1852177320202619683, guid: 891e80f4cd0fea94a9b43012b8eeb754,
-        type: 3}
-      propertyPath: playerSprite
-      value: 
-      objectReference: {fileID: 1057325032}
-    - target: {fileID: 5781828437688907759, guid: 891e80f4cd0fea94a9b43012b8eeb754,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: aa57db95ecbf78444b90a65fbab2ded8,
-        type: 3}
     - target: {fileID: 5781828438254496109, guid: 891e80f4cd0fea94a9b43012b8eeb754,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14739,21 +14722,6 @@ PrefabInstance:
     - target: {fileID: 5781828438254496109, guid: 891e80f4cd0fea94a9b43012b8eeb754,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5781828437688907758, guid: 891e80f4cd0fea94a9b43012b8eeb754,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 5781828437688907758, guid: 891e80f4cd0fea94a9b43012b8eeb754,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 5781828438590841071, guid: 891e80f4cd0fea94a9b43012b8eeb754,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

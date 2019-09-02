@@ -485,7 +485,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 75598eb768ebb814ba652c02729b3e12, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa57db95ecbf78444b90a65fbab2ded8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -513,7 +513,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.19, y: 1.99}
+    oldSize: {x: 1.89, y: 1.97}
     newSize: {x: 1.19, y: 1.99}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -549,7 +549,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5781828438254496109}
   - component: {fileID: 1852177320202619683}
-  - component: {fileID: 1505614840}
   - component: {fileID: 6452997352939879674}
   m_Layer: 0
   m_Name: Player
@@ -586,12 +585,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 154157226130350300}
+  playerSprite: {fileID: 5781828437688907759}
   shootSpeed: 0.2
   maxHealth: 100
   blinkTime: 1
   blinkCount: 5
   shield: {fileID: 810456196}
-  cheat: {fileID: 1505614840}
   menuController: {fileID: 0}
   hpSliders:
   - {fileID: 0}
@@ -605,20 +604,6 @@ MonoBehaviour:
   - {fileID: 4797423850398198563}
   - {fileID: 2441623214352991976}
   - {fileID: 2779834233287167167}
---- !u!114 &1505614840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5781828438254496098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42b890455a6a51e46a31dfcf500edc82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CheatsOn: 1
-  PlayerIgnoreDamage: 0
 --- !u!60 &6452997352939879674
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -747,7 +732,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5781828438590841069}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 073ee307317aba34d8701382a8c2949b, type: 2}
   m_CullingMode: 0

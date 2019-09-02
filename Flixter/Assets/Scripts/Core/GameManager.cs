@@ -29,7 +29,15 @@ public class GameManager : Singleton<GameManager> {
 	}
 	private float speedMult = 1.0f;
 
-	public bool IsGameStart = false;
+	public bool IsGameStart {
+		get => _isGameStart;
+		set {
+			_isGameStart = value;
+			EventData data = new EventData("CallOnGameStartChangedEvent");
+			GameManager.Instance.EventManager.CallOnGameStartChangedEvent(data);
+		}
+	}
+	bool _isGameStart = false;
 
 	public EventManager EventManager;
 	public PlayerControl Player;

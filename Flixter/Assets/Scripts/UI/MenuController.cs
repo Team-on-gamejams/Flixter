@@ -144,6 +144,7 @@ public class MenuController : MonoBehaviour {
 			GameManager.Instance.Player.player = Instantiate(PlayerSpritesMainMenu[currPlayerSprite].GetComponent<UISkinData>().SkinDataPrefab, GameManager.Instance.Player.transform).GetComponent<SkinData>();
 			StatsUI.SetShipData(GameManager.Instance.Player.player);
 
+			//TODO: force ReInit
 			GameManager.Instance.Player.ReInit();
 		}
 	}

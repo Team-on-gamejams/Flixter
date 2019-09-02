@@ -57,6 +57,7 @@ public class BosterBase : MonoBehaviour {
 	//Call when time == 0
 	protected virtual void TimeEnd() {
 		PlayerControl.activeBoster.Remove(this);
+		//TODO: fix crash
 		if(gameObject != null)
 			Destroy(gameObject);
 	}

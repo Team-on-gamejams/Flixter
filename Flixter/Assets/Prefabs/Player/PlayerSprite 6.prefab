@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2160286001736928449}
   - component: {fileID: 700612260831043440}
   m_Layer: 0
-  m_Name: PlayerSprite (1)
+  m_Name: PlayerSprite 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275f7d20e01df8f4b8b2d75f4d08a2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShipLevel: LVL 1
+  ShipLevel: LVL 6
   bodySprite: {fileID: 6450348148710184966}
   shield: {fileID: 700612261659835245}
   simpleBulletPrefab: {fileID: 5474211784042162513, guid: d1c3ea1a4cb7d014fbef07bd0a7642f4,
@@ -61,8 +61,8 @@ MonoBehaviour:
   - {fileID: 2908041419259209985}
   - {fileID: 3398783552518071126}
   shootSpeed: 0.2
-  bulletDmg: 10
-  maxHealth: 100
+  bulletDmg: 20
+  maxHealth: 1300
 --- !u!1 &1183417067757333400
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140512237165297419}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.618, y: -0.67, z: 0}
+  m_LocalPosition: {x: -0.942, y: -0.503, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2502821197436433555}
@@ -435,7 +435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5928809909586697560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.618, y: -0.67, z: 0}
+  m_LocalPosition: {x: -0.942, y: -0.503, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7620997745715493670}
@@ -465,7 +465,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6115208055093853438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.623, y: -0.675, z: 0}
+  m_LocalPosition: {x: 0.947, y: -0.508, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7620997745715493670}
@@ -653,7 +653,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: b2324da99191de349adb504e476c6fba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 092726d5233ca2a4eb0dbb22d21618dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -681,7 +681,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.19, y: 1.99}
+    oldSize: {x: 1.88, y: 2.02}
     newSize: {x: 1.19, y: 1.99}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -692,7 +692,11 @@ PolygonCollider2D:
     - - {x: 0.26523316, y: -1.003502}
       - {x: -0.25839373, y: -1.0108433}
       - {x: -0.628054, y: -0.6726854}
+      - {x: -0.92077076, y: -0.605391}
+      - {x: -0.28641847, y: 0.22716966}
       - {x: -0.00047007203, y: 1.0355697}
+      - {x: 0.30637664, y: 0.22014359}
+      - {x: 0.9457098, y: -0.5983994}
       - {x: 0.62227607, y: -0.67134297}
 --- !u!114 &700612261813480085
 MonoBehaviour:
@@ -791,7 +795,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7896132327623971561}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.623, y: -0.675, z: 0}
+  m_LocalPosition: {x: 0.947, y: -0.508, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2502821197436433555}

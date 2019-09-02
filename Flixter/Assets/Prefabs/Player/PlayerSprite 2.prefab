@@ -61,7 +61,7 @@ MonoBehaviour:
   - {fileID: 2908041419259209985}
   - {fileID: 3398783552518071126}
   shootSpeed: 0.2
-  bulletDmg: 10
+  bulletDmg: 12
   maxHealth: 200
 --- !u!1 &1183417067757333400
 GameObject:

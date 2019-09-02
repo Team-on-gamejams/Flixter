@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2160286001736928449}
   - component: {fileID: 700612260831043440}
   m_Layer: 0
-  m_Name: PlayerSprite (1)
+  m_Name: PlayerSprite 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275f7d20e01df8f4b8b2d75f4d08a2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShipLevel: LVL 1
+  ShipLevel: LVL 3
   bodySprite: {fileID: 6450348148710184966}
   shield: {fileID: 700612261659835245}
   simpleBulletPrefab: {fileID: 5474211784042162513, guid: d1c3ea1a4cb7d014fbef07bd0a7642f4,
@@ -61,8 +61,8 @@ MonoBehaviour:
   - {fileID: 2908041419259209985}
   - {fileID: 3398783552518071126}
   shootSpeed: 0.2
-  bulletDmg: 10
-  maxHealth: 100
+  bulletDmg: 14
+  maxHealth: 300
 --- !u!1 &1183417067757333400
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,7 +653,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: b2324da99191de349adb504e476c6fba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1373bad12dad1a74a9b0ab48309aee2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -681,7 +681,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.19, y: 1.99}
+    oldSize: {x: 1.21, y: 1.92}
     newSize: {x: 1.19, y: 1.99}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -50,6 +50,8 @@ public class GameManager : Singleton<GameManager> {
     const string gameId = "3261473";
 #elif UNITY_ANDROID
 	const string gameId = "3261472";
+#else
+	const string gameId = "WINDOWS_BUILD";
 #endif
 
 	public void Awake() {

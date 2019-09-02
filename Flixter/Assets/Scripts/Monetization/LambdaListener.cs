@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Advertisements;
 
+//TODO:  Purchase for disable ads
+//TODO:  AD on PreGameMenu for coins every 2 minutes
 public class LambdaListener : IUnityAdsListener {
 	public UnityAction OnFinish;
 	public UnityAction OnSkip;

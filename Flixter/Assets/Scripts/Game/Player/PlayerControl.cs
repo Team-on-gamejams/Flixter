@@ -53,18 +53,15 @@ public class PlayerControl : MonoBehaviour {
 
 	internal int currRevivePrice;
 
-	public GameObject player;
-	public SpriteRenderer playerSprite;
-
-	public float shootSpeed = 0.2f;
-	public int maxHealth = 10;
+	public SkinData player;
+	
 	int health {
 		get => _health;
 		set {
 			_health = value;
 			foreach (var i in hpSliders) {
 				LeanTween.cancel(i.gameObject, false);
-				LeanTween.value(i.gameObject, i.value, ((float)(_health)) / maxHealth, 0.2f)
+				LeanTween.value(i.gameObject, i.value, ((float)(_health)) / player.maxHealth, 0.2f)
 				.setOnUpdate((float val)=> {
 					i.value = val;
 				});
@@ -79,16 +76,10 @@ public class PlayerControl : MonoBehaviour {
 
 	public static List<BosterBase> activeBoster = new List<BosterBase>();
 
-	[SerializeField] CoolShieldEffect shield;
-	[SerializeField] CheatManager cheat;
 	[SerializeField] MenuController menuController;
 	[SerializeField] UnityEngine.UI.Slider[] hpSliders;
 
-	public SpriteRenderer playerBody;
-
-    public int currentBulletStartPosUse;
-	public GameObject simpleBulletPrefab;
-	public GameObject[] bulletStartPos;
+	public int currentBulletStartPosUse;
 	private Transform[][] bulletStartPosParsed;
 
 	private Vector3 borders;
@@ -98,12 +89,6 @@ public class PlayerControl : MonoBehaviour {
 	GameObject bulletsHolder;
 
 	private void Awake() {
-		foreach (var i in bulletStartPos)
-			i.SetActive(true);
-		bulletStartPosParsed = new Transform[bulletStartPos.Length][];
-		for (byte i = 0; i < bulletStartPosParsed.Length; ++i)
-			bulletStartPosParsed[i] = bulletStartPos[i].GetComponentsInChildren<Transform>().Skip(1).ToArray();
-
 		oneBlinkTime = blinkTime / blinkCount;
 
 		GameManager.Instance.Player = this;
@@ -111,8 +96,6 @@ public class PlayerControl : MonoBehaviour {
 
 	void Start() {
 		borders = Camera.main.ViewportToWorldPoint(new Vector3(0, 0));
-
-		ReInit();
 	}
 
 	void OnMouseDown() {
@@ -152,15 +135,17 @@ public class PlayerControl : MonoBehaviour {
 	void ShootUpdate(float deltaTIme){
 		shootTime += deltaTIme;
 
-		if (shootTime >= shootSpeed) {
-			shootTime -= shootSpeed;
-			foreach (var currPos in bulletStartPosParsed[currentBulletStartPosUse])
-				Instantiate(simpleBulletPrefab, currPos.position, Quaternion.identity, bulletsHolder.transform);
+		if (shootTime >= player.shootSpeed) {
+			shootTime -= player.shootSpeed;
+			foreach (var currPos in bulletStartPosParsed[currentBulletStartPosUse]) {
+				BulletController bc = Instantiate(player.simpleBulletPrefab, currPos.position, Quaternion.identity, bulletsHolder.transform).GetComponent<BulletController>();
+				bc.damage = player.bulletDmg;
+			}
 		}
 	}
 
 	public void GetDamage(int damage) {
-		if (IsShieldActive() || cheat.PlayerIgnoreDamage || IsInvinsible())
+		if (IsShieldActive() || IsInvinsible())
 			return;
 
 		health -= damage;
@@ -168,19 +153,19 @@ public class PlayerControl : MonoBehaviour {
 		if (health <= 0)
 			Die();
 		else
-			StartCoroutine(BlinkOfDamage(playerBody));
+			StartCoroutine(BlinkOfDamage(player.bodySprite));
 	}
 
 	public void ActivateShield(){
-		shield.ActivateShield();
+		player.shield.ActivateShield();
 	}
 
 	public void DeactivateShield() {
-		shield.DeactivateShield();
+		player.shield.DeactivateShield();
 	}
 
 	public bool IsShieldActive() {
-		return shield.IsActive;
+		return player.shield.IsActive;
 	}
 
 	//TODO: Add cool effect on die
@@ -194,14 +179,14 @@ public class PlayerControl : MonoBehaviour {
 	public void Revive(){
 		menuController.DieMenu.Hide(Consts.menuAnimationsTime, true);
 		menuController.DieMenu.UseRevive();
-		health = maxHealth;
+		health = player.maxHealth;
 		GameManager.Instance.IsGameStart = true;
 	}
 
 	//TODO: Add cool effect on revive
 	public void ReviveForCoins() {
 		if(Coins >= currRevivePrice) {
-			health = maxHealth;
+			health = player.maxHealth;
 			GameManager.Instance.IsGameStart = true;
 			Coins -= currRevivePrice;
 			currRevivePrice += Consts.reviveStartPrice;
@@ -212,6 +197,12 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	public void ReInit(){
+		foreach (var i in player.bulletStartPos)
+			i.SetActive(true);
+		bulletStartPosParsed = new Transform[player.bulletStartPos.Length][];
+		for (byte i = 0; i < bulletStartPosParsed.Length; ++i)
+			bulletStartPosParsed[i] = player.bulletStartPos[i].GetComponentsInChildren<Transform>().Skip(1).ToArray();
+
 		PlayerPrefs.SetInt("maxScore", PlayerPrefs.HasKey("maxScore") ? Mathf.Max(PlayerPrefs.GetInt("maxScore"), Score) : Score);
 		Score = 0;
 		Coins = PlayerPrefs.HasKey("coins") ? PlayerPrefs.GetInt("coins") : 0;
@@ -220,7 +211,7 @@ public class PlayerControl : MonoBehaviour {
 		menuController.ShowFader();
 		LeanTween.delayedCall(Consts.menuAnimationsTime, () => {
 			player.transform.position = new Vector2(0, 0);
-			health = maxHealth;
+			health = player.maxHealth;
 			GameManager.Instance.bosterDock.Clear();
 			menuController.DieMenu.SetDefaults();
 		}); 

@@ -24,7 +24,8 @@ public class StatsUI : MonoBehaviour {
 			});
 	}
 
-	public void SetShipData(int level) {
-		LevelText.text = $"LVL {level}";
+	public void SetShipData(SkinData data) {
+		LevelText.text = $"LVL {data.ShipLevel}";
+		StatsText.text = $"HP: {data.maxHealth} \nAttack: {data.bulletDmg}";
 	}
 }

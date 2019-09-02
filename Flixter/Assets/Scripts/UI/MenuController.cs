@@ -67,8 +67,6 @@ public class MenuController : MonoBehaviour {
 
 		coinsSlider = coinsText.GetComponent<Slider>();
 		scoreSlider = scoreText.GetComponent<Slider>();
-
-		GameManager.Instance.Player.playerSprite.sprite = PlayerSpritesMainMenu[currPlayerSprite].GetComponentInChildren<Image>().sprite;
 	}
 
 	void Update() {
@@ -126,7 +124,6 @@ public class MenuController : MonoBehaviour {
 		}
 
 		void ChangePlayerSprite() {
-			GameManager.Instance.Player.playerSprite.sprite = PlayerSpritesMainMenu[currPlayerSprite].GetComponentInChildren<Image>().sprite;
 			PlayerPrefs.SetInt("MenuController.currPlayerSprite", currPlayerSprite);
 
 			for (byte i = 0; i < PlayerSpritesMainMenu.Length; ++i) {
@@ -134,8 +131,16 @@ public class MenuController : MonoBehaviour {
 					.setEase(LeanTweenType.linear);
 			}
 
-			StatsUI.SetShipData(currPlayerSprite + 1);
+			StatsUI.SetShipData(PlayerSpritesMainMenu[currPlayerSprite].GetComponent<UISkinData>().SkinDataPrefab.GetComponent<SkinData>());
 			LeanTween.delayedCall(Consts.menuAnimationsTime / 6, ()=> StatsUI.Show());
+
+			//TODO: call only on start game
+			var childs = transform.GetComponentsInChildren<Transform>();
+			foreach (var child in childs) 
+				if (child.gameObject.GetInstanceID() != GameManager.Instance.Player.GetInstanceID()) 
+					Destroy(child);
+			Instantiate(PlayerSpritesMainMenu[currPlayerSprite].GetComponent<UISkinData>().SkinDataPrefab, GameManager.Instance.Player.transform);
+			GameManager.Instance.Player.ReInit();
 		}
 	}
 
@@ -287,7 +292,7 @@ public class MenuController : MonoBehaviour {
 		LeanTween.move(PreGameMenuRect, new Vector2(0, 0), Consts.menuAnimationsTime / 3 * 2)
 			.setEase(LeanTweenType.easeOutBack)
 			.setOnComplete(()=> {
-				StatsUI.SetShipData(currPlayerSprite + 1);
+				StatsUI.SetShipData(PlayerSpritesMainMenu[currPlayerSprite].GetComponent<UISkinData>().SkinDataPrefab.GetComponent<SkinData>());
 				StatsUI.Show();
 			});
 

@@ -37,7 +37,7 @@ public class HelperFunctions : MonoBehaviour {
 			if (!GameManager.Instance.IsTimeStop){
 					go.transform.Translate(Vector3.down * speed * Time.deltaTime * GameManager.Instance.SpeedMult);
 			}
-			yield return new WaitForSeconds(Time.deltaTime);
+			yield return null;
 		}
 	}
 
@@ -46,7 +46,7 @@ public class HelperFunctions : MonoBehaviour {
 			if (!GameManager.Instance.IsTimeStop) {
 				go.transform.Translate(Vector3.down * speed * Time.deltaTime * (GameManager.Instance.SpeedMult == 1 ? 1 : GameManager.Instance.SpeedMult * addSpeedMult));
 			}
-			yield return new WaitForSeconds(Time.deltaTime);
+			yield return null;
 		}
 	}
 

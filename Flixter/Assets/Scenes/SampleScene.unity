@@ -3026,7 +3026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Year: 2019
   Month: 9
-  Day: 2
+  Day: 12
   TimebombLength: 7
   BombActivated: 1
 --- !u!4 &454092624
@@ -13219,9 +13219,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnTime:
+  - 100
+  - 100
   - 1
-  - 8
-  - 5
   EnemySinglePrefab:
   - {fileID: 3250196350666273533, guid: 08e23e33aef26974d8e28dec131ea19c, type: 3}
   - {fileID: 5713835879366028927, guid: d8f73eae531b6214aaadfc1ee407f203, type: 3}
@@ -13231,9 +13231,7 @@ MonoBehaviour:
   - {fileID: 3144273075591879510, guid: 1b451f59eec5b974c943310c63894181, type: 3}
   - {fileID: 3144273075591879510, guid: fb8a4440806d4da44b905d3f3d371d14, type: 3}
   EnemyBossPrefab:
-  - {fileID: 3144273075591879510, guid: 9097d70ccb63e214ca21418978d40bba, type: 3}
-  - {fileID: 3144273075591879510, guid: da43217119d13f942a6e429acd0e4dd8, type: 3}
-  - {fileID: 3144273075591879510, guid: 128348d672a4f9c4f843a01d8337b8df, type: 3}
+  - {fileID: 3144273075591879510, guid: 46b49595dd30947418d0a6db870f7f4d, type: 3}
 --- !u!4 &1793660148
 Transform:
   m_ObjectHideFlags: 0

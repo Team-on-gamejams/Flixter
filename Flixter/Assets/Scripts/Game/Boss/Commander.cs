@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mothership : BossBase {
+public class Commander : BossBase {
 	public GameObject attack;
 
 	bool alreadySpawn = true;
@@ -11,10 +11,8 @@ public class Mothership : BossBase {
 
 	private void Update() {
 		if (currTimer >= maxTimer) {
-			if(Mathf.Abs(transform.position.x) <= 0.05f) {
-				ProcessAttack();
-				currTimer = -4.0f;
-			}
+			ProcessAttack();
+			currTimer = 0.0f;
 		}
 		else {
 			currTimer += Time.deltaTime;

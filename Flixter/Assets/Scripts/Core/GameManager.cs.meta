@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 83cbced52001ce54588a5bb25cd9d138
+timeCreated: 1507121652
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - Facebook: {instanceID: 0}
+  - Firebase: {instanceID: 0}
+  - PrefabsCache: {instanceID: 0}
+  - LoadingImage: {instanceID: 0}
+  - QuestsData: {fileID: 11400000, guid: 98c394c19316c48c18b2c63e3889ed88, type: 2}
+  - UpgradesData: {fileID: 11400000, guid: 71e19078aa647404ab29ad97e4447abb, type: 2}
+  - BonusesData: {fileID: 11400000, guid: 2933e3c333f8744cc815c84ed3d9a806, type: 2}
+  - TributesData: {fileID: 11400000, guid: bc293afb4201e4adebbf33cf0dcbc2d7, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

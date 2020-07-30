@@ -52,6 +52,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -63,6 +64,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -181,8 +183,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!50 &5020245023785517410
 Rigidbody2D:
   serializedVersion: 4
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 2252462886927609074}
   - component: {fileID: 6173372478854009561}
   m_Layer: 0
-  m_Name: Cargo
+  m_Name: CargoOld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -280,6 +280,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -291,6 +292,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -326,12 +328,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7bcb2b27f5ebb438b92ee2c90e7186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  livesMax: 100
+  livesMax: 3000
   speed: 8
+  dieParticlePrefab: {fileID: 0}
   BossName: Cargo
   moveType: 3
   AttackTime: 3.5
-  attack: {fileID: 81508677974199814}
+  reload: {fileID: 0}
 --- !u!50 &2048532143
 Rigidbody2D:
   serializedVersion: 4
@@ -407,6 +410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 5280842279912932408, guid: 4415abe4ddf17704f855df9eee7f95dc,
     type: 3}
-  coinsCount: 10
+  coinsCountMin: 0
+  coinsCountMax: 0
   dropDistance: 2
   flightSpeed: 4
